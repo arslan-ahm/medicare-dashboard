@@ -75,29 +75,28 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
             <p className="text-sm font-semibold">
               Duration:{" "}
               <span className="text-xs text-gray-600">
-                {appt.start_time && appt.end_time ? (
-                  <>
+                {appt.start_time && appt.duration ? (
+                    <>
                     {new Date(appt.start_time)
                       .toLocaleTimeString([], {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
                       })
                       .replace(/ am| pm/, "")}{" "}
                     -{" "}
-                    {new Date(appt.end_time)
+                    {new Date(
+                      new Date(appt.start_time).getTime() + appt.duration * 60000
+                    )
                       .toLocaleTimeString([], {
-                        hour: "numeric",
-                        minute: "2-digit",
-                        hour12: true,
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
                       })
                       .replace(/ am| pm/, "")}{" "}
                     (
-                    {(new Date(appt.end_time).getTime() -
-                      new Date(appt.start_time).getTime()) /
-                      60000}{" "}
-                    mins)
-                  </>
+                    {appt.duration} mins)
+                    </>
                 ) : (
                   "N/A"
                 )}

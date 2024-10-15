@@ -33,14 +33,14 @@ const useCalender = () => {
         id: appt.id,
         title: appt.purpose,
         start: startTime,
-        end: dayjs(appt.end_time).toISOString(),
+        end: dayjs(appt.start_time).add(appt.duration ?? 0, 'minute').toISOString(),
         color: "transparent",
         extendedProps: {
           status: appt.status,
           patientName: `${appt.patientName}`,
           location: appt.isOnline ? "Online" : "In-Person",
         },
-      });
+            });
     });
   
     const events = Object.entries(groupedEvents).map(([start, appts]) => {
