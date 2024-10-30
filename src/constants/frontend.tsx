@@ -110,7 +110,7 @@ export const CUSTOMERS_TESTIMONIALS = [
 export const SPECIALITY_GRID = [
   {
     containerClassName:
-      "col-span-1 lg:col-span-2 h-full bg-primary min-h-[500px] lg:min-h-[300px]",
+      "col-span-3 lg:col-span-2 h-full bg-primary min-h-[500px] lg:min-h-[300px]",
     title: "Empower Your Practice with Medicare Dashboard",
     desc: "Streamline patient management, appointment scheduling, and data insights with our intuitive platform designed for healthcare professionals.",
     img: true,
@@ -124,7 +124,7 @@ export const SPECIALITY_GRID = [
   },
   {
     containerClassName:
-      "col-span-1 bg-primary lg:col-span-3 bg-blue min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]",
+      "col-span-3 bg-blue min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]",
     title: "Gain Insights with Interactive Dashboards",
     desc: "Monitor key metrics, track patient data, and make informed decisions with real-time analytics tailored for your practice.",
     img: true,

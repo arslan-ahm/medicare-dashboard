@@ -28,7 +28,12 @@ const SpecialitySection = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
         {SPECIALITY_GRID.map((item, index) => (
-          <WobbleCard key={index} containerClassName={item.containerClassName}>
+          <WobbleCard
+            key={index}
+            containerClassName={
+              item.containerClassName
+            }
+          >
             <GridSection
               title={item.title}
               desc={item.desc}
