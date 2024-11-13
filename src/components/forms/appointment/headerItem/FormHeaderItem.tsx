@@ -41,7 +41,9 @@ const FormHeader = () => {
                     ? doctor?.specialization ?? ""
                     : option.subtitle === "time"
                     ? timeWithPeriod ?? ""
-                    : option.bold_text
+                    : typeof option.bold_text === "string"
+                    ? option.bold_text
+                    : ""
                 }
                 type="p"
                 className="text-gray-400 sm:inline-block hidden"
