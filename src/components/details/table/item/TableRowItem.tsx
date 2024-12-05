@@ -1,68 +1,28 @@
 "use client";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { ReactNode } from "react";
 import Image from "next/image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import IconButton from "@/components/titlebarActions/IconButton";
-import OptionButton from "../DropdownOptions";
+import OptionButton from "../../DropdownOptions";
 import ModelInterface from "@/components/modal/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
-import { formatDate } from "@/lib/timeHandler";
-import { PATIENT_STATUS } from "@/constants/formData";
-import { deletePatient } from "@/store/slices/patient.slice";
-import toast from "react-hot-toast";
-import { useAppDispatch } from "@/hooks/useRedux";
+import { formatDate } from "@/utils/timeHandler";
 import PatientForm from "@/components/forms/patient/PatientForm";
-
-const statusColor: { [key: string]: string } = {
-  recovered: "bg-md_varient_green text-green",
-  "awaiting surgery": "bg-md_varient_blue text-blue",
-  "on treatment": "bg-md_varient_red text-red",
-  "on going": "bg-md_varient_yellow text-yellow",
-};
+import useTableRowItem from "./useTableRowItem";
 
 const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
-  const buttonRef = useRef<HTMLDivElement | null>(null);
-  const [updatePatientState, setUpdatePatientState] = useState(false);
-  const dispatch = useAppDispatch();
-  const refinedStatus =
-    PATIENT_STATUS.find((status) => status.value === patient.status)?.label ||
-    "N/A";
-  const statusBadgeColor =
-    statusColor[refinedStatus.toLowerCase()] || "bg-gray-100 text-gray-800";
-
-  useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const dropdownHeight = 80;
-
-      let top = rect.bottom + 5;
-      const left = rect.left - 100;
-
-      if (rect.bottom + dropdownHeight > viewportHeight) {
-        top = rect.top - dropdownHeight - 5;
-      }
-
-      setPosition({ top, left });
-    }
-  }, [isOpen]);
-
-  const handleEdit = () => {
-    setUpdatePatientState(true);
-    setIsOpen(false);
-  };
-
-  const handleDelete = async (_id: string) => {
-    try {
-      await dispatch(deletePatient(_id)).unwrap();
-      toast.success("Patient Removed, Successfully... 🙂");
-    } catch (error) {
-      console.error(error);
-      toast.error("Cannot delete patient, Please try again... 😟");
-    }
-  };
+  const {
+    statusBadgeColor,
+    refinedStatus,
+    buttonRef,
+    setIsOpen,
+    isOpen,
+    position,
+    handleEdit,
+    handleDelete,
+    updatePatientState,
+    setUpdatePatientState,
+  } = useTableRowItem(patient);
 
   return (
     <>
@@ -81,7 +41,9 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
       <TableDetail title={patient.diagnosis} />
       <TableDetail
         title={
-          <span className={`px-3 py-1 rounded-full text-nowrap ${statusBadgeColor}`}>
+          <span
+            className={`px-3 py-1 rounded-full text-nowrap ${statusBadgeColor}`}
+          >
             {refinedStatus}
           </span>
         }
@@ -138,7 +100,13 @@ const TableDetail = ({
   style?: string;
 }) => {
   return (
-    <td className={`px-6 py-4 text-[12px] lg:text-base ${style && style + " rounded-xl "}`}>{title}</td>
+    <td
+      className={`px-6 py-4 text-[12px] lg:text-base ${
+        style && style + " rounded-xl "
+      }`}
+    >
+      {title}
+    </td>
   );
 };
 

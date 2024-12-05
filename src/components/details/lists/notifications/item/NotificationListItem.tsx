@@ -3,7 +3,7 @@ import React from "react";
 import IconButton from "@/components/titlebarActions/IconButton";
 import { LuDelete } from "react-icons/lu";
 import { Notification } from "@/types/slices/notification";
-import { formatDate } from "@/lib/timeHandler";
+import { formatDate } from "@/utils/timeHandler";
 import Loader from "@/components/loader/Loader";
 import useNotificationItem from "./useNotificationItem";
 

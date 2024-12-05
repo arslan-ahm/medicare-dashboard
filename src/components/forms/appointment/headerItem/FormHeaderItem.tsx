@@ -1,45 +1,10 @@
 import React from "react";
-import { FaUserDoctor } from "react-icons/fa6";
-import { FaBusinessTime } from "react-icons/fa";
-import { FaMagnifyingGlassLocation } from "react-icons/fa6";
 import Text from "@/components/Text";
-import { useAppSelector } from "@/hooks/useRedux";
+import { APPOINTMENT_DETAILS } from "@/constants/formData";
+import useFromHeaderItem from "./useFormHeaderItem";
 
 const FormHeader = () => {
-  const doctor = useAppSelector((state) => state.auth.doctor);
-
-  const formattedDate = new Date().toLocaleDateString("en-GB", {
-    weekday: "short",
-    day: "2-digit",
-    month: "long",
-  });
-
-  const timeWithPeriod = new Date().toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
-
-  const APPOINTMENT_DETAILS = [
-    {
-      title: "Partictioner",
-      subtitle: doctor?.name,
-      icon: <FaUserDoctor />,
-      bold_text: doctor?.specialization,
-    },
-    {
-      title: "date and time",
-      subtitle: formattedDate,
-      icon: <FaBusinessTime />,
-      bold_text: timeWithPeriod,
-    },
-    {
-      title: "location",
-      subtitle: "General clinic",
-      icon: <FaMagnifyingGlassLocation />,
-      bold_text: "Room 2",
-    },
-  ];
+  const { doctor, formattedDate, timeWithPeriod } = useFromHeaderItem();
   return (
     <>
       {APPOINTMENT_DETAILS.map((option, index) => (
@@ -58,14 +23,26 @@ const FormHeader = () => {
             />
             {option.subtitle && (
               <Text
-                text={option.subtitle}
+                text={
+                  option.subtitle === "doctor_name"
+                    ? doctor?.name ?? ""
+                    : option.subtitle === "time"
+                    ? formattedDate ?? ""
+                    : option.subtitle
+                }
                 type="h6"
                 className="text-sm sm:text-base text-md_gray"
               />
             )}
             {option.bold_text && (
               <Text
-                text={option.bold_text}
+                text={
+                  option.subtitle === "doctor_name"
+                    ? doctor?.specialization ?? ""
+                    : option.subtitle === "time"
+                    ? timeWithPeriod ?? ""
+                    : option.bold_text
+                }
                 type="p"
                 className="text-gray-400 sm:inline-block hidden"
               />

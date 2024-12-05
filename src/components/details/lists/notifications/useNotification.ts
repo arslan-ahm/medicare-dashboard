@@ -6,7 +6,7 @@ import { deleteAllNotifications, markAllNotificationsAsRead } from "@/store/slic
 
 const useNotification = () => {
   const dispatch = useAppDispatch();
-  const { notifications } = useAppSelector((store) => store.notification);
+  const { notifications, loading } = useAppSelector((store) => store.notification);
 
   useEffect(() => {
     const timeout = setTimeout(async () => {
@@ -30,7 +30,7 @@ const useNotification = () => {
     }
   };
 
-  return { notifications, removeAllNotifications };
+  return { notifications, loading, removeAllNotifications };
 }
 
 export default useNotification;

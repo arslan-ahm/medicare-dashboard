@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CiEdit } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoPersonOutline } from "react-icons/io5";
@@ -6,30 +6,19 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import IconButton from "@/components/titlebarActions/IconButton";
 import { Appointment } from "@/types/slices/appointment";
 import ModelInterface from "@/components/modal/ModelInterface";
-import toast from "react-hot-toast";
-import { deleteAppointment } from "@/store/slices/appointment.slice";
-import { useAppDispatch } from "@/hooks/useRedux";
 import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
+import useAppointmentListItem from "./useAppointmentListItem";
 
 const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
-  const dispatch = useAppDispatch();
-  const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-  const [modelOpen, setModelOpen] = useState(false);
-  const isCurrent = true;
-
-  const handleDelete = async () => {
-    try {
-      await dispatch(deleteAppointment(appt.id)).unwrap();
-      toast.success("Appointment Removed, Successfully... 🙂");
-    } catch (error) {
-      console.error(error);
-      toast.error("Cannot delete appointment, Please try again... 😟");
-    }
-  };
-
-  const handleEdit = () => {
-    setModelOpen(true);
-  };
+  const {
+    isCurrent,
+    isAccordionOpen,
+    setIsAccordionOpen,
+    modelOpen,
+    setModelOpen,
+    handleDelete,
+    handleEdit,
+  } = useAppointmentListItem(appt);
 
   return (
     <>

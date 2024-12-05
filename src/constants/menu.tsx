@@ -35,3 +35,10 @@ export const TODAYS_DATE = new Date().toLocaleDateString("en-US", {
   month: "long",
   year: "numeric",
 });
+
+export const FRONTEND_NAVLIST = [
+  { text: "Home", link: "#home" },
+  { text: "About", link: "#about" },
+  { text: "Contact", link: "#contact" },
+  { text: "Our Work", link: "#our_work" },
+];

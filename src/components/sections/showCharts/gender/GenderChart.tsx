@@ -2,15 +2,17 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import AppointmentChart from "@/components/ChartCotainer";
-import { useAppSelector } from "@/hooks/useRedux";
+import useGenderChart from "./useGenderChart";
 
-const DoughnutChart = dynamic(() => import("@/components/charts/Donout"), {
-  ssr: false,
-});
+const DoughnutChart = dynamic(
+  () => import("@/components/charts/donout/Donout"),
+  {
+    ssr: false,
+  }
+);
 
 const GenderChart = () => {
-  const { patients, loading } = useAppSelector((state) => state.patients);
-  const totalPatients = patients.length;
+  const { loading, totalPatients } = useGenderChart();
   return (
     <>
       <AppointmentChart

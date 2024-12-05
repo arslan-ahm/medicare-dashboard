@@ -1,4 +1,4 @@
-import { uploadImage } from "@/lib/cloudinary";
+import { uploadImage } from "@/utils/cloudinary";
 import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 

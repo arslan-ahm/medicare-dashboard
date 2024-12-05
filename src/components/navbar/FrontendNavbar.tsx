@@ -7,6 +7,7 @@ import { IMAGES } from "@/constants/imgs";
 import TextButton from "@/components/TextButton";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { FRONTEND_NAVLIST } from "@/constants/menu";
 
 const Navbar = () => {
   const router = useRouter();
@@ -14,12 +15,6 @@ const Navbar = () => {
     router.push("/dashboard");
   };
 
-  const NavList = [
-    { text: "Home", link: "#home" },
-    { text: "About", link: "#about" },
-    { text: "Contact", link: "#contact" },
-    { text: "Our Work", link: "#our_work" },
-  ];
   return (
     <nav className="bg-white py-4 px-4 sm:px-6 flex justify-between items-center border-b border-gray-200 sticky top-0 left-0 w-full z-40">
       <div className="flex gap-2 items-center text-xl text-gray-500 font-bold sm:w-[30%] md:w-[20%]">
@@ -31,7 +26,7 @@ const Navbar = () => {
 
       <div className="hidden lg:flex max-w-[350px] xl:max-w-[80vh] w-[80%]">
         <ul className="flex space-x-8">
-          {NavList.map((item, i) => (
+          {FRONTEND_NAVLIST.map((item, i) => (
             <li key={i}>
               <NavItem text={item.text} link={item.link} />
             </li>

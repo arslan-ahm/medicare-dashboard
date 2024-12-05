@@ -11,10 +11,10 @@ const Loader = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
       width = "w-20";
       break;
     case "md":
-      width = "w-60";
+      width = "w-20 xs:w-28 w-32";
       break;
-    case "lg":
-      width = "w-80";
+      case "lg":
+      width = "w-60";
       break;
     default:
       width = "w-40";

@@ -1,21 +1,14 @@
 "use client";
 
-import { IoHelpCircleOutline } from "react-icons/io5";
 import IconButton from "./IconButton";
+import { SETTINGS_HEADER } from "@/constants/pagebarActions";
 
 const SettingsActions = () => {
-  const SettingsHeaderComponents = [
-    {
-      icon: <IoHelpCircleOutline className="text-xl" />,
-      handleClick: () => {},
-    },
-  ];
-
   return (
     <ul className="flex space-x-2">
-      {SettingsHeaderComponents.map(({ icon, handleClick }, ind) => (
+      {SETTINGS_HEADER.map(({ icon }, ind) => (
         <li className="cursor-not-allowed " key={ind}>
-          <IconButton icon={icon} handleClick={handleClick} />
+          <IconButton icon={icon} handleClick={() => {}} />
         </li>
       ))}
     </ul>

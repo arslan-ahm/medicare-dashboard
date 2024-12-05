@@ -1,3 +1,6 @@
+import { FaMagnifyingGlassLocation } from 'react-icons/fa6';
+import { FaBusinessTime } from 'react-icons/fa';
+import { FaUserDoctor } from 'react-icons/fa6';
 export const SPECIALIZATION_LIST = [
   { label: "General Medicalcare", value: "General Medicalcare" },
   { label: "Cardiology", value: "Cardiology" },
@@ -36,4 +39,26 @@ export const APPOINTMENT_TYPE = [
 export const APPOINTMENT_STATUS = [
   { label: "Confirmed", value: "CONFIRMED" },
   { label: "Not Confirmed", value: "NOT_CONFIRMED" },
+];
+
+
+export const APPOINTMENT_DETAILS = [
+  {
+    title: "Partictioner",
+    subtitle: "doctor_name",
+    icon: <FaUserDoctor />,
+    bold_text: "Specialization",
+  },
+  {
+    title: "date and time",
+    subtitle: "time",
+    icon: <FaBusinessTime />,
+    bold_text: "Time period",
+  },
+  {
+    title: "location",
+    subtitle: "General clinic",
+    icon: <FaMagnifyingGlassLocation />,
+    bold_text: "Room 2",
+  },
 ];

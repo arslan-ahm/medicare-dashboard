@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import TaskListItem from "./item/TaskListItem";
-import { useAppSelector } from "@/hooks/useRedux";
 import ViewAllButton from "@/components/ViewAllButton";
 import LoaderScreen from "@/components/loader/LoaderScreen";
+import useTaskList from "./useTaskList";
 
 const TasksList = () => {
-  const { tasks, loading } = useAppSelector((state) => state.tasks);
+  const { loading, tasks } = useTaskList();
 
   return (
     <div>
