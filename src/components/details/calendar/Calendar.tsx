@@ -27,7 +27,6 @@ const Calendar: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Group events by start time
   const groupedEvents: Record<string, CalendarEvent[]> = {};
 
   appointments.forEach((appt) => {
@@ -49,17 +48,16 @@ const Calendar: React.FC = () => {
     });
   });
 
-  // Create a condensed list of events (showing only count)
   const events = Object.entries(groupedEvents).map(([start, appts]) => {
     if (appts.length === 1) {
       return appts[0];
     }
     return {
       id: `group-${start}`,
-      title: `${appts.length} Appointments`, // Show count
+      title: `${appts.length} Appointments`,
       start,
       end: appts[0].end,
-      extendedProps: { appointments: appts }, // Pass full event list
+      extendedProps: { appointments: appts },
     };
   });
 
@@ -80,7 +78,7 @@ const Calendar: React.FC = () => {
           slotMinTime="08:00:00"
           slotMaxTime="18:00:00"
           events={events}
-          eventContent={RenderEventContent} // Custom render function for hover effect
+          eventContent={RenderEventContent}
           height="auto"
           contentHeight="auto"
           aspectRatio={1.5}

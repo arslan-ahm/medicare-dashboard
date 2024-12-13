@@ -4,7 +4,7 @@ import IconButton from "@/components/titlebarActions/IconButton";
 import { LuDelete } from "react-icons/lu";
 import { Notification } from "@/types/slices/notification";
 import { formatDate } from "@/lib/timeHandler";
-// import Loader from "@/components/loader/Loader";
+import Loader from "@/components/loader/Loader";
 import useNotificationItem from "./useNotificationItem";
 
 const NotificationListItem = ({
@@ -23,8 +23,7 @@ const NotificationListItem = ({
         }`}
       >
         {isloading ? (
-          // <Loader size="sm" />
-          <p>Loading...</p>
+          <Loader size="sm" />
         ) : (
           <>
             <h4
