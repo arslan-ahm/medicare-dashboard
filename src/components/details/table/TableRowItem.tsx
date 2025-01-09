@@ -57,12 +57,11 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
 
   const handleDelete = async (_id: string) => {
     try {
-      console.log("Deleting task with id: ", _id);
       await dispatch(deletePatient(_id)).unwrap();
-      toast.success("Task deleted successfully");
+      toast.success("Patient Removed, Successfully... 🙂");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to delete task");
+      toast.error("Cannot delete patient, Please try again... 😟");
     }
   };
 

@@ -67,8 +67,9 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
         method: "POST",
         body: formData,
       })
+
       if (!res.ok) {
-        toast.error("Failed to upload image");
+        toast.error("Not able to upload image... 😶");
         throw new Error("'handleUploadImage'... failed");
       }
       const data = await res.json();
@@ -94,7 +95,7 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       !upcomingAppointment
     ) {
       setLoading(false);
-      return toast.error("Please fill all the fields");
+      return toast.error("Important fields are missing... 🙄");
     }
 
 
@@ -116,10 +117,10 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
 
       if (existingPatient) {
         await dispatch(updatePatient({ ...existingPatient, ...updatedPatientData })).unwrap();
-        toast.success("Patient updated successfully");
+        toast.success("Patient updated, Successfully... 😉");
       } else {
         await dispatch(addPatient(updatedPatientData)).unwrap();
-        toast.success("Patient added successfully");
+        toast.success("Patient Added, Successfully... 😋");
       }
 
       setFormData(initailState);
@@ -128,7 +129,7 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       }
     } catch (error) {
       console.error(error);
-      return toast.error("Something went wrong");
+      return toast.error("Something went wrong... 😔");
     } finally {
       setLoading(false);
     }

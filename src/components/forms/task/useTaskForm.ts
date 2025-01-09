@@ -51,15 +51,15 @@ export const useTaskForm = (existingTask?: TaskFormEditProp, onSuccess?: () => v
 
     if (!title || !date) {
       console.log("Please fill all the fields", formData);
-      return toast.error("Please fill all the fields");
+      return toast.error("Important fields are missing... 😶");
     }
     try {
       if (existingTask) {
         await dispatch(editTask({ ...existingTask, ...formData })).unwrap();
-        toast.success("Task updated successfully");
+        toast.success("Task updated successfully... 😎");
       } else {
         await dispatch(addTask(formData)).unwrap();
-        toast.success("Task added successfully");
+        toast.success("Task added successfully... 😋");
       }
 
       setFormData(initialState);
@@ -69,7 +69,7 @@ export const useTaskForm = (existingTask?: TaskFormEditProp, onSuccess?: () => v
       }
     } catch (error) {
       console.error(error);
-      return toast.error("Something went wrong");
+      return toast.error("Something went wrong... 😟");
     } finally {
       setLoading(false);
     }

@@ -35,20 +35,20 @@ export const useEditProfileForm = () => {
 
     if (!name || !email || !specialization || !organization) {
       console.log("Please fill all the fields");
-      return toast.error("Please fill all the fields");
+      return toast.error("Important fields are missing... 😶");
     }
 
     if (!emailRegex.test(email)) {
-      return toast.error("Invalid email address");
+      return toast.error("Email is not valid... 😯");
     }
 
     try {
       await dispatch(updateProfile(formData));
       console.log("Profile Updated Successfully");
-      toast.success("Account created successfully");
+      toast.success("Edit Profile Successfully... 😊");
     } catch (error) {
       console.error(error);
-      return toast.error("Something went wrong");
+      return toast.error("Something went wrong... 😟");
     } finally {
       setLoading(false);
     }

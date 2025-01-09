@@ -31,11 +31,11 @@ export const useResetPasswordForm = () => {
 
     if (!password || !confirmPassword) {
       console.log("Please fill all the fields");
-      return toast.error("Please fill all the fields");
+      return toast.error("Must fill all the fields... 🙄");
     }
-
+    
     if (password !== confirmPassword) {
-      return toast.error("Passwords do not match");
+      return toast.error("Password & Confirm Password are different... 🤔");
     }
 
     try {
@@ -54,10 +54,10 @@ export const useResetPasswordForm = () => {
       }
       setFormData(initialState);
       router.push("/login");
-      toast.success("Password updated successfully 🎉");
+      toast.success("Password Updated Successfully... 🎉");
     } catch (error) {
       console.log("=>", error);
-      toast.error("Password Update Failed");
+      toast.error("Something went wrong... 😔");
     } finally {
       setLoading(false);
     }

@@ -81,23 +81,23 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
 
     if (!patientName || !purpose || !start_time || !end_time) {
       console.log("Please fill all the fields");
-      return toast.error("Please fill all the fields");
+      return toast.error("Important fields are missing... 🙄");
     }
 
     try {
       if (existingAppt) {
         await dispatch(updateAppointment({ ...existingAppt, ...formData })).unwrap();
-        toast.success("Appointment updated successfully");
+        toast.success("Your appointment updated, Successfully... 😉");
       } else {
         await dispatch(addAppointment(formData)).unwrap();
-        toast.success("Appointment added successfully");
+        toast.success("Appointment Added, Successfully... 😋");
       }
 
       setFormData(initialFormData);
       if (onSuccess) { onSuccess(); }
     } catch (error) {
       console.error(error);
-      return toast.error("Something went wrong");
+      return toast.error("Something went wrong... 😔");
     } finally {
       setFormData(initialFormData);
       setLoading(false);

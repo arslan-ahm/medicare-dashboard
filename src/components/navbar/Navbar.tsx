@@ -21,6 +21,7 @@ import { fetchTasks } from "@/store/slices/task.slice";
 import { fetchAppointments } from "@/store/slices/appointment.slice";
 import { fetchNotifications } from "@/store/slices/notification.slice";
 import Link from "next/link";
+import { formatDate } from "@/lib/timeHandler";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -75,12 +76,12 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await signOut({ redirect: false });
-      toast.success("Successfully logged out!");
+      toast.success("Logged out... Successfully! 😊");
       dispatch(logout());
       router.push("/login");
     } catch (error) {
       console.error("Failed to sign out", error);
-      toast.error("Successfully logged out!");
+      toast.error("Failed to sign out... 😟");
     }
   };
 
@@ -152,6 +153,7 @@ const Navbar = () => {
                   <p className="text-[12px] text-gray-500 font-medium">
                     {msg.title}
                   </p>
+                  <span className="text-[8px] block text-end text-md_gray">({formatDate(msg.time)})</span>
                 </Link>
               </li>
             ))

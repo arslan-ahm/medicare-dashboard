@@ -73,10 +73,10 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
       setIsDeleteLoading(true);
       setIsOpen(false);
       await dispatch(deleteTask(id)).unwrap();
-      toast.success("Task deleted successfully");
+      toast.success("Task Removed, Successfully... 🙂");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to delete task");
+      toast.error("Cannot delete task, Please try again... 😟");
     } finally {
       setIsDeleteLoading(false);
     }

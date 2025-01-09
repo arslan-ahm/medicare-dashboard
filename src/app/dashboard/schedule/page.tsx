@@ -9,7 +9,7 @@ const Schedule = () => {
 
   return (
     <section className="mt-4">
-      <PageTitleBar title={`Weekly schedule for ${month} ${year}`}>
+      <PageTitleBar title={`Schedules for ${month} ${year}`}>
         <ScheduleActions />
       </PageTitleBar>
 

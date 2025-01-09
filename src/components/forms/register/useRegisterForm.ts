@@ -33,15 +33,15 @@ export const useRegisterForm = () => {
 
     if (!name || !email || !password) {
       console.log("Please fill all the fields");
-      return toast.error("Please fill all the fields");
+      return toast.error("Important fields are missing... 😶");
     }
 
     if (!emailRegex.test(email)) {
-      return toast.error("Invalid email address");
+      return toast.error("Email is not valid... 😯");
     }
 
     if (password.length < 8) {
-      return toast.error("Password should be at least 8 characters long");
+      return toast.error("Password is too short... 😌");
     }
 
     try {
@@ -62,12 +62,12 @@ export const useRegisterForm = () => {
 
       if (res.ok) {
         router.push("/login");
-        toast.success("Account created successfully");
+        toast.success("User Registered Successfully... 😊");
         return;
       }
     } catch (error) {
       console.error(error);
-      return toast.error("Something went wrong");
+      return toast.error("Something went wrong... 😟");
     } finally {
       setLoading(false);
     }

@@ -19,7 +19,7 @@ const PatientTable = () => {
 
   return (
     <>
-      <div className="relative overflow-x-auto max-w-[82vw] xs:max-w-[85vw] min-[485px]:max-w-[95vw] md:max-w-[90vw] custom-scroll shadow-md bg-red">
+      <div className="relative overflow-x-auto max-w-[82vw] xs:max-w-[85vw] min-[485px]:max-w-[95vw] md:max-w-[90vw] custom-scroll shadow-md">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
             <tr>

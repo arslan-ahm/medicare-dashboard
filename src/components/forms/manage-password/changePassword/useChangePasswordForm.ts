@@ -32,29 +32,24 @@ export const useChangePasswordForm = () => {
     const { oldPassword, newPassword, confirmPassword } = formData;
 
     if (!oldPassword || !newPassword || !confirmPassword) {
-      console.log("Please fill all the fields");
-      return toast.error("Please fill all the fields");
+      return toast.error("Important fields are missing... 🙄");
     }
 
     if (newPassword !== confirmPassword) {
-      return toast.error("Passwords do not match");
+      return toast.error("Password & Confirm Password are different... 🤔");
     }
 
     try {
       const res = await dispatch(changePassword({ oldPassword, newPassword }));
       if (changePassword.fulfilled.match(res)) {
-        toast.success("Updated Your New Password... 🤗");
+        toast.success("Just Updated your Password... 🤗");
         setFormData(initialState);
       } else if (changePassword.rejected.match(res)) {
-        console.log(
-          "%cError (useChangePasswordForm.ts) =>",
-          "font-size:16px;color:red;",
-          res.payload
-        );
-        toast.error("Password Update Failed");
+        toast.error("Password is not Updated... 🤐");
       }
     } catch (error) {
-      console.log("=>", error);
+      console.error("[useChangePasswordForm.ts] => ", error);
+      toast.error("Something went wrong... 😔");
     } finally {
       setLoading(false);
     }

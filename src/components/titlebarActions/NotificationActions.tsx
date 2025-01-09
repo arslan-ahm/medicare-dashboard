@@ -13,10 +13,10 @@ const NotificationActions = () => {
   const removeAllNotifications = async () => {
     try {
       await dispatch(deleteAllNotifications()).unwrap();
-      toast.success("Notification deleted successfully");
+      toast.success("Notification deleted successfully... 😎");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to delete notification");
+      toast.error("Failed to delete notification... 😟");
     }
   };
 

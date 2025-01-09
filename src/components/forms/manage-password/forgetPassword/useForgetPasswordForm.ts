@@ -50,7 +50,7 @@ export const useForgetPasswordForm = (): UseForgetPasswordFormReturn => {
       router.push("/login");
     } catch (err) {
       setError(err instanceof Error ? err.message : "An unexpected error occurred");
-      toast.error(error || "Failed to send email. Try again! ❌");
+      toast.error(error || "Failed to send email. Try again! 🤐");
     } finally {
       setLoading(false);
     }

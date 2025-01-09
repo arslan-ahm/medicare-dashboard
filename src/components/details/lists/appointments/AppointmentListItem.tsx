@@ -21,10 +21,10 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
     try {
       console.log("Deleting task with id: ", appt.id);
       await dispatch(deleteAppointment(appt.id)).unwrap();
-      toast.success("Appointment deleted successfully");
+      toast.success("Appointment Removed, Successfully... 🙂");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to delete Appointment");
+      toast.error("Cannot delete appointment, Please try again... 😟");
     }
   };
 

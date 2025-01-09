@@ -1,4 +1,4 @@
-"use client"; // ✅ This makes it a client component
+"use client";
 
 import { CiFilter } from "react-icons/ci";
 import { IoAddOutline, IoHelpCircleOutline } from "react-icons/io5";
@@ -46,13 +46,18 @@ const ScheduleActions = () => {
     <>
       <ul className="flex space-x-2">
         {patientBarComponents.map(({ icon, handleClick, hide }, ind) => (
-          <li key={ind} className={`${hide && "cursor-not-allowed"}`}>
+          <li
+            key={ind}
+            className={`${hide && "cursor-not-allowed"} ${
+              hide && "sm:inline-block hidden"
+            }`}
+          >
             <IconButton icon={icon} handleClick={handleClick} />
           </li>
         ))}
       </ul>
       <ModelInterface title="Add Appointment" open={isOpen} setOpen={setIsOpen}>
-        <AppointmentForm />
+        <AppointmentForm onSuccess={() => setIsOpen(false)} />
       </ModelInterface>
     </>
   );

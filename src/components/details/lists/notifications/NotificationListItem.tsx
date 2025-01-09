@@ -26,10 +26,10 @@ const NotificationListItem: React.FC<NotificationListItemProps> = ({
     try {
       setIsLoading(true);
       await dispatch(deleteNotification(notification.id)).unwrap();
-      toast.success("Notification deleted successfully");
+      toast.success("Notification Removed, Successfully... 🙂");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to delete notification");
+      toast.error("Cannot delete notification, Please try again... 😟");
     } finally {
       setIsLoading(true);
     }
