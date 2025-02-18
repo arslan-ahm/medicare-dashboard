@@ -1,0 +1,121 @@
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  email          String   @unique
+  password       String
+  // googleId       String?  @unique
+  specialization String
+  createdAt      DateTime @default(now())
+
+  organization Organization?
+
+  patients     Patient[]
+  appointments Appointment[]
+  tasks        Task[]
+}
+
+model Organization {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  companyName  String
+  industry     String
+  numEmployees Int?
+  doctorId     String @unique @db.ObjectId
+  doctor       Doctor @relation(fields: [doctorId], references: [id])
+}
+
+model Task {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  date        DateTime
+  status      TaskStatus
+  doctorId    String     @db.ObjectId
+  doctor      Doctor     @relation(fields: [doctorId], references: [id])
+}
+
+model Patient {
+  id                    String        @id @default(auto()) @map("_id") @db.ObjectId
+  forename              String
+  surname               String
+  email                 String        @unique
+  phone                 String?
+  dateOfBirth           DateTime
+  gender                Gender?
+  recordNumber          String        @unique
+  diagnosis             String
+  status                PatientStatus
+  notes                 String?
+  lastAppointmentId     String?       @unique @db.ObjectId
+  upcomingAppointmentId String?       @unique @db.ObjectId
+  doctorId              String        @db.ObjectId
+  doctor                Doctor        @relation(fields: [doctorId], references: [id])
+  appointments          Appointment[] @relation("PatientAppointments")
+
+  lastAppointment     Appointment? @relation(name: "LastAppointment", fields: [lastAppointmentId], references: [id])
+  upcomingAppointment Appointment? @relation(name: "UpcomingAppointment", fields: [upcomingAppointmentId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+model Appointment {
+  id        String            @id @default(auto()) @map("_id") @db.ObjectId
+  date      DateTime
+  time      String
+  location  String
+  purpose   String
+  duration  Int
+  type      AppointmentType
+  status    AppointmentStatus
+  isOnline  Boolean
+  doctorId  String            @db.ObjectId
+  doctor    Doctor            @relation(fields: [doctorId], references: [id])
+  patientId String            @db.ObjectId
+  patient   Patient           @relation(fields: [patientId], references: [id], name: "PatientAppointments", onDelete: NoAction, onUpdate: NoAction)
+
+  asLastAppointment     Patient? @relation(name: "LastAppointment")
+  asUpcomingAppointment Patient? @relation(name: "UpcomingAppointment")
+
+  createdAt DateTime @default(now())
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum AppointmentType {
+  FIRST_TIME
+  FOLLOW_UP
+}
+
+enum AppointmentStatus {
+  CONFIRMATION_REQUIRED
+  CONFIRMED
+}
+
+enum TaskStatus {
+  COMPLETED
+  NOT_COMPLETED
+}
+
+enum PatientStatus {
+  RECOVERED
+  AWAITING_SURGERY
+  ON_TREATMENT
+  OTHER
+}

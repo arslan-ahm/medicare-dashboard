@@ -1,15 +1,22 @@
 import Link from "next/link";
+import { CiGrid32 } from "react-icons/ci";
+import { FiCalendar } from "react-icons/fi";
+import { LuClipboardCheck } from "react-icons/lu";
+import { BsPeople } from "react-icons/bs";
+import { GoMail } from "react-icons/go";
+import { BsBarChart } from "react-icons/bs";
+import { FiHelpCircle } from "react-icons/fi";
 
 const Sidebar = () => {
   const menuItems = [
-    { label: 'Dashboard', icon: '...', link: '/dashboard' },
-    { label: 'Schedule', icon: '...', link: '/dashboard/schedule' },
-    { label: 'Tasks', icon: '...', link: '/dashboard/tasks' },
-    { label: 'Messages', icon: '...', link: '/dashboard/messages' },
-    { label: 'Analytics', icon: '...', link: '/dashboard/analytics' },
-    { label: 'Settings', icon: '...', link: '/dashboard/settings' },
-    { label: 'Support', icon: '...', link: '/dashboard/support' },
-];
+    { label: "Dashboard", icon: <CiGrid32 />, link: "/dashboard" },
+    { label: "Schedule", icon: <FiCalendar />, link: "/dashboard/schedule" },
+    { label: "Tasks", icon: <LuClipboardCheck />, link: "/dashboard/tasks" },
+    { label: "Messages", icon: <BsPeople />, link: "/dashboard/messages" },
+    { label: "Analytics", icon: <GoMail />, link: "/dashboard/analytics" },
+    { label: "Settings", icon: <BsBarChart />, link: "/dashboard/settings" },
+    { label: "Support", icon: <FiHelpCircle />, link: "/dashboard/support" },
+  ];
 
   return (
     <aside className="w-64 bg-gray-100 p-4 border-r border-gray-200">
@@ -17,8 +24,13 @@ const Sidebar = () => {
       <ul>
         {menuItems.map((item) => (
           <li key={item.label} className="mb-2">
-            <Link href={item.link} className="block p-2 rounded hover:bg-gray-200 text-gray-700">
-              {/* {item.icon && <Icon name={item.icon} className="mr-2" />} */} {/* Add your icon component here */}
+            <Link
+              href={item.link}
+              className="flex gap-2 p-2 rounded hover:bg-gray-200 text-gray-700"
+            >
+              {item.icon && (
+                <span className="text-xl font-bold">{item.icon}</span>
+              )}
               {item.label}
             </Link>
           </li>
