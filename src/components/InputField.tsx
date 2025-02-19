@@ -1,16 +1,22 @@
 import React from "react";
 
 type InputFieldProps = {
+  name?: string;
   label?: string | React.ReactNode;
   placeholder?: string;
   fieldType?: string;
   inputType: "primary" | "secondary";
+  value: string;
+  setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
+  name,
   label,
   inputType = "secondary",
   fieldType = "text",
+  value,
+  setValue,
 }) => {
   return (
     <div
@@ -32,6 +38,9 @@ const InputField: React.FC<InputFieldProps> = ({
             : "outline-none bg-transparent placeholder:text-gray-400"
         }
         placeholder="i.e. Jhon Doe"
+        name={name}
+        value={value}
+        onChange={setValue}
         type={fieldType}
       />
     </div>

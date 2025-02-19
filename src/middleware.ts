@@ -1,14 +1,26 @@
+import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(req: NextRequest) {
-  const session = req.cookies.get("next-auth.session-token");
-  const isAuthPage = req.nextUrl.pathname.startsWith("/login");
+export async function middleware(req: NextRequest) {
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  if (!session && !isAuthPage) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-  
-  return NextResponse.next();
+    const authRoutes = ["/login", "/register"];
+    const protectedRoutes = ["/dashboard"]; 
+
+    const url = req.nextUrl.clone();
+    const { pathname } = req.nextUrl;
+
+    if (token && authRoutes.includes(pathname)) {
+        url.pathname = "/dashboard";
+        return NextResponse.redirect(url);
+    }
+
+    if (!token && protectedRoutes.includes(pathname)) {
+        url.pathname = "/login";
+        return NextResponse.redirect(url);
+    }
+
+    return NextResponse.next();
 }
 
-export const config = { matcher: ["/dashboard"] };
+export const config = { matcher: ["/", "/login", "/register", "/dashboard"] };

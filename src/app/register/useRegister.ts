@@ -47,7 +47,6 @@ const useRegister = () => {
 
       if (res.ok) {
         toast.success("Account created successfully");
-        console.log("Response => ", res);
         router.push("/login");
         return;
       }

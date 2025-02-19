@@ -12,7 +12,7 @@ const Sidebar = () => {
     { label: "Dashboard", icon: <CiGrid32 />, link: "/dashboard" },
     { label: "Schedule", icon: <FiCalendar />, link: "/dashboard/schedule" },
     { label: "Tasks", icon: <LuClipboardCheck />, link: "/dashboard/tasks" },
-    { label: "Messages", icon: <BsPeople />, link: "/dashboard/messages" },
+    { label: "Patients", icon: <BsPeople />, link: "/dashboard/patients" },
     { label: "Analytics", icon: <GoMail />, link: "/dashboard/analytics" },
     { label: "Settings", icon: <BsBarChart />, link: "/dashboard/settings" },
     { label: "Support", icon: <FiHelpCircle />, link: "/dashboard/support" },

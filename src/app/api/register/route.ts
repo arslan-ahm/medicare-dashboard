@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "../../../../lib/prisma";
 import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -11,7 +11,6 @@ export const POST = async (req: NextRequest) => {
         error: "Invalid credentials.",
       });
     }
-    // console.log("Creating doctor...");
 
     const doctor = await prisma.doctor.findUnique({
       where: {
@@ -31,7 +30,6 @@ export const POST = async (req: NextRequest) => {
 
     const hashedPassword = await bcrypt.hash(body.password, 10);
 
-    // console.log("Got Input...", name, email, password, specialization);
     const res = await prisma.doctor.create({
       data: { ...body, password: hashedPassword },
     });

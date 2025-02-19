@@ -1,10 +1,7 @@
-"use client";
 import React from "react";
-import { useSession } from "next-auth/react";
 
 const Page = () => {
-  const { data } = useSession();
-  console.log('Session => ',data);
+  console.log("Dashboard Page");
   return <div>Dashboard</div>;
 };
 
