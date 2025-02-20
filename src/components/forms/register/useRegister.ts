@@ -1,17 +1,38 @@
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
+import { useAuth } from "@/hooks/useAuth";
 
-const useRegister = () => {
+export const useRegisterForm = () => {
+  useAuth(true);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    specialization: "",
+  });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const router = useRouter();
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setError(null);
+  };
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const confirmPassword = formData.get("confirmPassword") as string;
-    const specialization = formData.get("specialization") as string;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setLoading(true);
+    const { name, email, password, confirmPassword, specialization } = formData;
 
     if (!name || !email || !password) {
       console.log("Please fill all the fields");
@@ -53,8 +74,10 @@ const useRegister = () => {
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
-  return { handleSubmit };
+
+  return { formData, handleChange, handleRegister, error, loading };
 };
-export default useRegister;

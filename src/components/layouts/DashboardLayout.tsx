@@ -1,8 +1,9 @@
-"use client";
+
 
 import React from 'react';
 import Navbar from '../navbar/Navbar';
 import Sidebar from '../sidebar/Sidebar';
+import BreadCrumb from '../BreadCrumb';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -11,6 +12,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex flex-1">
         <Sidebar />
         <main className="flex-1 bg-gray-50 p-6">
+          <BreadCrumb />
           {children} {/* Your dashboard content goes here */}
         </main>
       </div>

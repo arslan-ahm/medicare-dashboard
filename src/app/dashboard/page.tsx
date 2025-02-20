@@ -1,7 +1,21 @@
-import React from "react";
+"use client";
+
+import { getSession } from "next-auth/react";
+import React, { useEffect } from "react";
 
 const Page = () => {
-  console.log("Dashboard Page");
+  useEffect(() => {
+    async function fetchSession() {
+      try {
+        const session = await getSession();
+        console.log("Session =>", session);
+      } catch (error) {
+        console.error("Error =>", error);
+      }
+    }
+    fetchSession();
+  }, []);
+
   return <div>Dashboard</div>;
 };
 
