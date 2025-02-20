@@ -7,6 +7,7 @@ import { LuClipboardCheck } from "react-icons/lu";
 import { BsPeople } from "react-icons/bs";
 import { BsBarChart } from "react-icons/bs";
 import { FiHelpCircle } from "react-icons/fi";
+import { CiSettings } from "react-icons/ci";
 
 const Sidebar = () => {
   const menuItems = [
@@ -17,10 +18,9 @@ const Sidebar = () => {
     { label: "Analytics", icon: <BsBarChart />, link: "/dashboard/analytics" },
   ];
   const generalItems = [
-  { label: "Settings", icon: "@", link: "/dashboard/settings" },
-  { label: "Support", icon: <FiHelpCircle />, link: "/dashboard/support" },
-
-  ]
+    { label: "Settings", icon: <CiSettings />, link: "/dashboard/settings" },
+    { label: "Support", icon: <FiHelpCircle />, link: "/dashboard/support" },
+  ];
 
   return (
     <aside className="w-64 bg-gray-100 p-4 border-r border-gray-200">

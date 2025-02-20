@@ -13,7 +13,7 @@ const Text: React.FC<TextProps> = ({ text, className, type = "p", link }) => {
     h1: "text-5xl",
     h2: "text-3xl text-gray-900",
     h3: "text-lg lg:text-2xl font-[500]",
-    h4: "text-xl",
+    h4: "text-md sm:text-lg md:text-xl font-[500]",
     h5: "text-sm md:text-md lg:text-lg",
     h6: "text-md",
     p: "text-sm",

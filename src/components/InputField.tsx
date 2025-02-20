@@ -10,6 +10,7 @@ type InputFieldProps = {
   required?: boolean;
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   labelStyle?: string;
+  inputStyle?: string;
 };
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -22,6 +23,7 @@ const InputField: React.FC<InputFieldProps> = ({
   required = false,
   placeholder,
   labelStyle,
+  inputStyle,
 }) => {
   const defaultPlaceholder = placeholder
     ? placeholder
@@ -52,7 +54,7 @@ const InputField: React.FC<InputFieldProps> = ({
         </span>
       )}
       <input
-        className={`w-full placeholder:text-md_gray ${
+        className={`w-full placeholder:text-md_gray ${inputStyle} ${
           inputType == "primary"
             ? "border-b outline-none border-black bg-transparent p-1"
             : "outline-none bg-transparent"

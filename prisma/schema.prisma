@@ -51,7 +51,6 @@ model Patient {
   id                    String        @id @default(auto()) @map("_id") @db.ObjectId
   forename              String
   surname               String
-  email                 String        @unique
   phone                 String?
   dateOfBirth           DateTime
   gender                Gender?
