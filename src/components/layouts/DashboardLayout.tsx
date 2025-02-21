@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />
-        <main className="flex-1 bg-gray-50 pt-2 px-2 md:px-5">
+        <main className="flex-1 bg-gray-50 p-1 px-2 md:px-5">
           <BreadCrumb />
           {children}
         </main>

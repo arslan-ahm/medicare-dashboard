@@ -5,6 +5,7 @@ import React from "react";
 type ButtonProps = {
   variant?: "outline" | "filled";
   text: string;
+  type?: "submit" | "button";
   onClick?: () => void;
   className?: string;
 };
@@ -13,13 +14,15 @@ const TextButton: React.FC<ButtonProps> = ({
   variant = "filled",
   text,
   onClick,
+  type = "button",
   className = "",
 }) => {
   return (
     <button
       onClick={onClick}
+      type={type}
       className={`
-        border-2 border-primary py-2 px-3 text-md lg:text-lg rounded-md flex justify-center items-center
+        border-2 border-primary py-2 px-3 text-sm lg:text-md lg:text-lg rounded-md flex justify-center text-center items-center
         transition-all duration-300 w-full
         ${
           variant &&

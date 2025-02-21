@@ -20,25 +20,29 @@ export const useLoginForm = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+    console.log("Starting handleLogin...", formData);
+    
     if (!formData.email || !formData.password) {
       setError("Email and password are required.");
       return;
     }
-
+    console.log("Clicked ... 1");
+    
     setLoading(true);
     const response = await signIn("credentials", {
       ...formData,
       redirect: false,
     });
-
+    
+    console.log("Clicked ... 2");
     if (response?.error) {
       setError("Invalid credentials. Please try again.");
       toast.error("Invalid credentials. Please try again.");
       setLoading(false);
       return;
     }
-
+    
+    console.log("Clicked ... 3");
     toast.success("Successfully logged in!");
     router.push("/dashboard");
   };

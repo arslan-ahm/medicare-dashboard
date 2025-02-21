@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react";
-import { useRegisterForm } from "./useRegister";
+import { useRegisterForm } from "./useRegisterForm";
 import InputField from "../../InputField";
 import TextButton from "../../TextButton";
+import { SPECIALIZATION_LIST } from "@/constants/formValues";
+import CustomSelect from "../CustomSelect";
 
 const RegisterForm = () => {
   const { formData, handleChange, handleRegister, error, loading } =
@@ -19,6 +21,16 @@ const RegisterForm = () => {
           setValue={handleChange}
           labelStyle="text-[13px]"
           placeholder="i.e. Jhon Doe"
+          required
+        />
+        <InputField
+          label="Your Company"
+          name="organization"
+          inputType="primary"
+          value={formData.organization}
+          setValue={handleChange}
+          labelStyle="text-[13px]"
+          placeholder="i.e. Health Care"
           required
         />
         <InputField
@@ -41,16 +53,6 @@ const RegisterForm = () => {
           fieldType="password"
           required
         />
-        <InputField
-          label="Confirm Password"
-          name="confirmPassword"
-          inputType="primary"
-          value={formData.confirmPassword}
-          setValue={handleChange}
-          labelStyle="text-[13px]"
-          fieldType="password"
-          required
-        />
         <div className="mb-6">
           <label
             htmlFor="specialization"
@@ -58,22 +60,12 @@ const RegisterForm = () => {
           >
             Specialization
           </label>
-          <select
+          <CustomSelect
             name="specialization"
             value={formData.specialization}
             onChange={handleChange}
-            id="specialization"
-            required
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          >
-            <option value="">Select Specialization</option>
-            <option value="General Medicalcare">General Medicalcare</option>
-            <option value="Cardiology">Cardiology</option>
-            <option value="Dermatology">Dermatology</option>
-            <option value="Neurology">Neurology</option>
-            <option value="Pediatrics">Pediatrics</option>
-            <option value="Psychiatry">Psychiatry</option>
-          </select>
+            options={SPECIALIZATION_LIST}
+          />
         </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}

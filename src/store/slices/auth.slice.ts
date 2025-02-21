@@ -4,6 +4,12 @@ interface Doctor {
   id: string;
   name: string;
   email: string;
+  organization: string;
+  specialization: string;
+
+  patients: string[];
+  appointments: string[];
+  tasks: string[];
 }
 
 interface AuthState {
@@ -27,34 +33,42 @@ export const changePassword = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      console.log("Sending Change Password Request", {
-        oldPassword,
-        newPassword,
-      });
-
       const response = await fetch("/api/auth/changePassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ oldPassword, newPassword }),
       });
 
-      console.log("Response Status:", response.status);
-
-      const contentType = response.headers.get("content-type");
-      if (!contentType || !contentType.includes("application/json")) {
-        throw new Error(`Unexpected response format: ${await response.text()}`);
-      }
-
       const data = await response.json();
-      console.log("🔹 Response Data:", data);
-
-      if (!response.ok) {
+      if (!response.ok)
         throw new Error(data.message || "Failed to change password");
-      }
 
       return data.message;
     } catch (error) {
-      console.error("Unsucessfull... Error => ", error);
+      return rejectWithValue((error as Error).message);
+    }
+  }
+);
+
+export const updateProfile = createAsyncThunk(
+  "auth/updateProfile",
+  async (
+    { name, email, specialization, organization }: Partial<Doctor>,
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await fetch("/api/auth/updateProfile", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, specialization, organization }),
+      });
+
+      const data = await response.json();
+      if (!response.ok)
+        throw new Error(data.message || "Failed to update profile");
+
+      return data.doctor; // Returning updated doctor data
+    } catch (error) {
       return rejectWithValue((error as Error).message);
     }
   }
@@ -73,6 +87,7 @@ const authSlice = createSlice({
       state.doctor = null;
       state.error = null;
       state.successMessage = null;
+      state.loading = false;
     },
     clearMessages: (state) => {
       state.error = null;
@@ -91,6 +106,20 @@ const authSlice = createSlice({
         state.successMessage = action.payload;
       })
       .addCase(changePassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(updateProfile.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+        state.successMessage = null;
+      })
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        state.loading = false;
+        state.successMessage = "Profile updated successfully";
+        state.doctor = action.payload; // Update doctor info
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

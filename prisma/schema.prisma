@@ -17,24 +17,14 @@ model Doctor {
   name           String
   email          String   @unique
   password       String
-  // googleId       String?  @unique
   specialization String
   createdAt      DateTime @default(now())
 
-  organization Organization?
+  organization String?
 
   patients     Patient[]
   appointments Appointment[]
   tasks        Task[]
-}
-
-model Organization {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  companyName  String
-  industry     String
-  numEmployees Int?
-  doctorId     String @unique @db.ObjectId
-  doctor       Doctor @relation(fields: [doctorId], references: [id])
 }
 
 model Task {
@@ -54,7 +44,6 @@ model Patient {
   phone                 String?
   dateOfBirth           DateTime
   gender                Gender?
-  recordNumber          String        @unique
   diagnosis             String
   status                PatientStatus
   notes                 String?

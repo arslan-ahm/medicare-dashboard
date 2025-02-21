@@ -1,22 +1,19 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useAuth } from "@/hooks/useAuth";
 
-export const useRegisterForm = () => {
+export const useEditProfileForm = () => {
   useAuth(true);
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    organization: "",
     specialization: "",
   });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const router = useRouter();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -32,9 +29,9 @@ export const useRegisterForm = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const { name, email, password, confirmPassword, specialization } = formData;
+    const { name, email, specialization } = formData;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !specialization) {
       console.log("Please fill all the fields");
       return toast.error("Please fill all the fields");
     }
@@ -43,34 +40,10 @@ export const useRegisterForm = () => {
       return toast.error("Invalid email address");
     }
 
-    if (password.length < 8) {
-      return toast.error("Password should be at least 8 characters long");
-    }
-
-    if (password !== confirmPassword) {
-      return toast.error("Passwords do not match");
-    }
-
     try {
-      console.log("Registering...");
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          name,
-          specialization,
-        }),
-      });
+      console.log("Updated... OK", formData);
 
-      if (res.ok) {
-        toast.success("Account created successfully");
-        router.push("/login");
-        return;
-      }
+      toast.success("Account created successfully");
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong");
