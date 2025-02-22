@@ -6,9 +6,10 @@ interface SidebarItemProps {
   label: string;
   icon: React.ReactNode;
   link: string;
+  handleText?: boolean | null;
 }
 
-const SidebarItem = ({ label, icon, link }: SidebarItemProps) => {
+const SidebarItem = ({ label, icon, link, handleText }: SidebarItemProps) => {
   const pathname = usePathname();
   const isActive = pathname === link;
 
@@ -29,7 +30,9 @@ const SidebarItem = ({ label, icon, link }: SidebarItemProps) => {
         >
           {icon}
         </span>
-        {label}
+        <span className={`${!handleText ? "invisible" : "lg:inline-block"}`}>
+          {label}
+        </span>
       </Link>
     </li>
   );

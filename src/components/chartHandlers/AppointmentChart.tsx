@@ -7,6 +7,7 @@ type AppointmentChartProps = {
   value: string;
   percentage?: string;
   type?: "success" | "loss";
+  containerStyles?: string;
 };
 
 const AppointmentChart: React.FC<AppointmentChartProps> = ({
@@ -14,9 +15,12 @@ const AppointmentChart: React.FC<AppointmentChartProps> = ({
   value,
   percentage,
   type = "success",
+  containerStyles,
 }) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 flex flex-col gap-2">
+    <div
+      className={`bg-white shadow-md rounded-lg p-4 flex flex-col gap-2 ${containerStyles}`}
+    >
       <div className="flex items-center justify-between w-full">
         <Text text={title} type="h5" className="font-[600]" />
         <span className="text-black text-xl">
@@ -25,7 +29,11 @@ const AppointmentChart: React.FC<AppointmentChartProps> = ({
       </div>
       <div>
         <div className="flex h-full w-full justify-between items-center">
-          <div className={`flex h-full ${percentage ? "justify-end" : "justify-center"} gap-3 flex-col`}>
+          <div
+            className={`flex h-full ${
+              percentage ? "justify-end" : "justify-center"
+            } gap-3 flex-col`}
+          >
             <Text
               text={value}
               type="h2"

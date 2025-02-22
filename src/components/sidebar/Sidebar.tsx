@@ -1,27 +1,48 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SidebarSection from "./SidebarSection";
 import { generalItems, menuItems } from "@/constants/menu";
-import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import IconButton from "../pageTitlebar/IconButton";
-import { IoIosArrowForward } from "react-icons/io";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // Default closed to avoid hydration issue
+  const [isMobile, setIsMobile] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false); // Track component mount
+
+  useEffect(() => {
+    setHasMounted(true); // Mark component as mounted
+
+    const handleResize = () => {
+      const mobileView = window.innerWidth < 640;
+      setIsMobile(mobileView);
+      setIsOpen(window.innerWidth >= 1024); // Only open on large screens
+    };
+
+    handleResize(); // Run initially
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  if (!hasMounted) return null;
+
   return (
     <aside
-      className={`${
-        !isOpen ? "w-[53px]" : "w-[200px]"
-      } lg:w-[250px] bg-gray-100 p-4 border-r border-gray-200`}
+      className={`
+        ${isOpen ? "w-[200px] lg:w-[250px]" : "w-[53px] sm:w-[60px]"} 
+        ${isMobile && "sm:shadow-lg z-50"}
+        bg-gray-100 p-4 border-r border-gray-200 transition-all duration-300 sticky min-h-[400px] left-0 top-[77px]
+      `}
     >
-      <div className="inline-block lg:hidden">
-      <IconButton
-        handleClick={() => setIsOpen(!isOpen)}
-        icon={!isOpen ? <IoIosArrowBack /> : <IoIosArrowForward />}
+      <div className="hidden sm:inline-block bg-white absolute top-4 right-[-15px] md:right-[-25px] lg:hidden">
+        <IconButton
+          handleClick={() => setIsOpen(!isOpen)}
+          icon={isOpen ? <IoIosArrowBack /> : <IoIosArrowForward />}
         />
-        </div>
+      </div>
 
-      <SidebarSection title="MENU" toShow={isOpen}  items={menuItems} />
+      <SidebarSection title="MENU" toShow={isOpen} items={menuItems} />
       <hr className="w-[80%] bg-md_gray my-4 mx-auto" />
       <SidebarSection title="GENERAL" toShow={isOpen} items={generalItems} />
     </aside>
