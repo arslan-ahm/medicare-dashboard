@@ -19,33 +19,35 @@ const ChangePasswordForm = () => {
           <FormHeader title="Change Password" noLink />
         </div>
         <table className="w-full border-separate border-spacing-y-3">
-          <InputRow
-            lable="Current Password"
-            setValue={handleChange}
-            value={formData.currentPassword}
-            name="currentPassword"
-            inputType="password"
-            placeholder="********"
-            required
-          />
-          <InputRow
-            lable="Change Password"
-            setValue={handleChange}
-            value={formData.changePassword}
-            name="changePassword"
-            inputType="password"
-            placeholder="********"
-            required
-          />
-          <InputRow
-            lable="Confirm Password"
-            setValue={handleChange}
-            value={formData.confirmPassword}
-            name="confirmPassword"
-            inputType="password"
-            placeholder="********"
-            required
-          />
+          <tbody>
+            <InputRow
+              lable="Current Password"
+              setValue={handleChange}
+              value={formData.currentPassword}
+              name="currentPassword"
+              inputType="password"
+              placeholder="********"
+              required
+            />
+            <InputRow
+              lable="Change Password"
+              setValue={handleChange}
+              value={formData.changePassword}
+              name="changePassword"
+              inputType="password"
+              placeholder="********"
+              required
+            />
+            <InputRow
+              lable="Confirm Password"
+              setValue={handleChange}
+              value={formData.confirmPassword}
+              name="confirmPassword"
+              inputType="password"
+              placeholder="********"
+              required
+            />
+          </tbody>
         </table>
 
         {error && <p className="text-sm text-red-600">{error}</p>}

@@ -18,7 +18,7 @@ export const menuItems: MenuItem[] = [
   {
     label: "Notification",
     icon: <IoNotificationsOutline />,
-    link: "/dashboard/messages",
+    link: "/dashboard/notifications",
   },
 ];
 

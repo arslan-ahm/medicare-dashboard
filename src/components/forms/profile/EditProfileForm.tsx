@@ -18,46 +18,45 @@ const EditProfileForm = () => {
         className="space-y-7 w-full mx-auto bg-white p-6 rounded-md shadow-sm mt-8"
       >
         <div className="text-center">
-          <FormHeader
-            title="Update Profile"
-            noLink
-          />
+          <FormHeader title="Update Profile" noLink />
         </div>
         <table className="w-full border-separate border-spacing-y-3">
-          <InputRow
-            lable="Name"
-            setValue={handleChange}
-            value={formData.name}
-            name="name"
-            inputType="text"
-            placeholder="i.e. Jhon Doe"
-            required
-          />
-          <InputRow
-            lable="Your Company"
-            setValue={handleChange}
-            value={formData.organization}
-            name="organization"
-            inputType="text"
-            placeholder="i.e. Health Care"
-            required
-          />
-          <InputRow
-            lable="Email"
-            setValue={handleChange}
-            value={formData.email}
-            name="email"
-            inputType="email"
-            required
-          />
-          <InputSection title="Specialization">
-            <CustomSelect
-              name="specialization"
-              value={formData.specialization}
-              onChange={handleChange}
-              options={SPECIALIZATION_LIST}
+          <tbody>
+            <InputRow
+              lable="Name"
+              setValue={handleChange}
+              value={formData.name}
+              name="name"
+              inputType="text"
+              placeholder="i.e. Jhon Doe"
+              required
             />
-          </InputSection>
+            <InputRow
+              lable="Your Company"
+              setValue={handleChange}
+              value={formData.organization}
+              name="organization"
+              inputType="text"
+              placeholder="i.e. Health Care"
+              required
+            />
+            <InputRow
+              lable="Email"
+              setValue={handleChange}
+              value={formData.email}
+              name="email"
+              inputType="email"
+              required
+            />
+            <InputSection title="Specialization">
+              <CustomSelect
+                name="specialization"
+                value={formData.specialization}
+                onChange={handleChange}
+                options={SPECIALIZATION_LIST}
+              />
+            </InputSection>
+          </tbody>
         </table>
 
         {error && <p className="text-sm text-red-600">{error}</p>}

@@ -14,6 +14,7 @@ import { CiMail } from "react-icons/ci";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { RxExit } from "react-icons/rx";
 import React from "react";
+import QuickIcon from "./QuickIcon";
 
 const Navbar = () => {
   const disptch = useAppDispatch();
@@ -69,6 +70,7 @@ const Navbar = () => {
             <span className="hidden sm:flex items-center space-x-2">
               <QuickIcon
                 icon={<CiMail />}
+                cursor="not-allowed"
                 handleClick={() => console.log("Mail clicked...")}
               />
             </span>
@@ -84,18 +86,5 @@ const Navbar = () => {
   );
 };
 
-const QuickIcon = ({
-  icon,
-  handleClick,
-}: {
-  icon: React.ReactNode;
-  handleClick: () => void;
-}) => {
-  return (
-    <span onClick={handleClick} className="cursor-pointer text-2xl">
-      {icon}
-    </span>
-  );
-};
 
 export default Navbar;

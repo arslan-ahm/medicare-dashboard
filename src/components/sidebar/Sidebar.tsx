@@ -6,20 +6,20 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import IconButton from "../pageTitlebar/IconButton";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Default closed to avoid hydration issue
+  const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false); // Track component mount
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    setHasMounted(true); // Mark component as mounted
+    setHasMounted(true);
 
     const handleResize = () => {
       const mobileView = window.innerWidth < 640;
       setIsMobile(mobileView);
-      setIsOpen(window.innerWidth >= 1024); // Only open on large screens
+      setIsOpen(window.innerWidth >= 1024);
     };
 
-    handleResize(); // Run initially
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
