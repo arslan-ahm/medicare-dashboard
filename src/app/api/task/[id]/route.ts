@@ -7,6 +7,7 @@ export const GET = async (
 ) => {
   try {
     const { id } = params;
+    const task = await prisma.task.findUnique({ where: { id } });
     const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
@@ -16,30 +17,23 @@ export const GET = async (
       );
     }
 
-    const appointment = await prisma.appointment.findUnique({
-      where: { id },
-      include: {
-        patient: true,
-      },
-    });
-
-    if (!appointment) {
+    if (!task) {
       return NextResponse.json(
-        { status: "error", message: "Appointment not found.", ok: false },
+        { status: "error", message: "Task not found.", ok: false },
         { status: 404 }
       );
     }
 
     return NextResponse.json({
       status: "success",
-      data: appointment,
-      message: "Appointment fetched successfully.",
+      data: task,
+      message: "Task fetched successfully.",
       ok: true,
     });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(
-        { status: "error", message: "Failed to fetch appointment.", ok: false },
+        { status: "error", message: "Failed to fetch task.", ok: false },
         { status: 500 }
       );
     }
@@ -62,21 +56,21 @@ export const PUT = async (
       );
     }
 
-    const updatedAppointment = await prisma.appointment.update({
+    const updatedTask = await prisma.task.update({
       where: { id },
       data: body,
     });
 
     return NextResponse.json({
       status: "success",
-      data: updatedAppointment,
-      message: "Appointment updated successfully.",
+      data: updatedTask,
+      message: "Task updated successfully.",
       ok: true,
     });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(
-        { status: "error", message: "Failed to update appointment.", ok: false },
+        { status: "error", message: "Failed to update task.", ok: false },
         { status: 500 }
       );
     }
@@ -98,19 +92,19 @@ export const DELETE = async (
       );
     }
 
-    await prisma.appointment.delete({
+    await prisma.task.delete({
       where: { id },
     });
 
     return NextResponse.json({
       status: "success",
-      message: "Appointment deleted successfully.",
+      message: "Task deleted successfully.",
       ok: true,
     });
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(
-        { status: "error", message: "Failed to delete appointment.", ok: false },
+        { status: "error", message: "Failed to delete task.", ok: false },
         { status: 500 }
       );
     }

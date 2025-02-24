@@ -38,23 +38,21 @@ model Task {
 }
 
 model Patient {
-  id                    String        @id @default(auto()) @map("_id") @db.ObjectId
-  forename              String
-  surname               String
-  phone                 String?
-  dateOfBirth           DateTime
-  gender                Gender?
-  diagnosis             String
-  status                PatientStatus
-  notes                 String?
-  lastAppointmentId     String?       @unique @db.ObjectId
-  upcomingAppointmentId String?       @unique @db.ObjectId
-  doctorId              String        @db.ObjectId
-  doctor                Doctor        @relation(fields: [doctorId], references: [id])
-  appointments          Appointment[] @relation("PatientAppointments")
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  forename     String
+  surname      String
+  phone        String?
+  dateOfBirth  DateTime
+  gender       Gender?
+  diagnosis    String
+  status       PatientStatus
+  notes        String?
+  doctorId     String        @db.ObjectId
+  doctor       Doctor        @relation(fields: [doctorId], references: [id])
+  appointments Appointment[] @relation("PatientAppointments")
 
-  lastAppointment     Appointment? @relation(name: "LastAppointment", fields: [lastAppointmentId], references: [id])
-  upcomingAppointment Appointment? @relation(name: "UpcomingAppointment", fields: [upcomingAppointmentId], references: [id])
+  lastAppointments     Appointment[] @relation(name: "LastAppointment")
+  upcomingAppointments Appointment[] @relation(name: "UpcomingAppointment")
 
   createdAt DateTime @default(now())
 }
@@ -72,10 +70,10 @@ model Appointment {
   doctorId  String            @db.ObjectId
   doctor    Doctor            @relation(fields: [doctorId], references: [id])
   patientId String            @db.ObjectId
-  patient   Patient           @relation(fields: [patientId], references: [id], name: "PatientAppointments", onDelete: NoAction, onUpdate: NoAction)
+  patient   Patient           @relation(fields: [patientId], references: [id], name: "PatientAppointments")
 
-  asLastAppointment     Patient? @relation(name: "LastAppointment")
-  asUpcomingAppointment Patient? @relation(name: "UpcomingAppointment")
+  asLastAppointment     Patient? @relation(name: "LastAppointment", fields: [id], references: [id])
+  asUpcomingAppointment Patient? @relation(name: "UpcomingAppointment", fields: [id], references: [id])
 
   createdAt DateTime @default(now())
 }

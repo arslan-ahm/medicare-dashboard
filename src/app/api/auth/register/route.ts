@@ -23,6 +23,7 @@ export const POST = async (req: NextRequest) => {
         {
           error: "Doctor already exists.",
           data: doctor,
+          ok: false,
         },
         { status: 400 }
       );
@@ -37,6 +38,7 @@ export const POST = async (req: NextRequest) => {
     if (!res) {
       return NextResponse.json({
         error: "Not Created, Prisma DB issue.",
+        ok: false,
       });
     }
 
@@ -48,6 +50,7 @@ export const POST = async (req: NextRequest) => {
       {
         message: "Doctor created successfully.",
         doctor: { name: body.name, email: body.email },
+        ok: true,
       },
       { status: 201 }
     );
@@ -55,6 +58,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({
       error: "Invalid credentials.",
       body: error,
+      ok: false,
     });
   }
 };

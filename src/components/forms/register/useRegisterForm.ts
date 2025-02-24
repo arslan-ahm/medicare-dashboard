@@ -49,7 +49,7 @@ export const useRegisterForm = () => {
 
     try {
       console.log("Registering...");
-      const res = await fetch("/api/register", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
