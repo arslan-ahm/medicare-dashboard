@@ -4,7 +4,7 @@ import IconButton from "../../pageTitlebar/IconButton";
 import { RiEditLine } from "react-icons/ri";
 import { MdDeleteOutline } from "react-icons/md";
 
-interface TaskListItemProps {
+type TaskListItemProps =  {
   id: string;
   status: boolean;
   title: string;
@@ -61,7 +61,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   }, []);
 
   return (
-    <div className="flex items-center justify-between relative">
+    <div className="flex flex-col-reverse sm:flex-row items-center justify-between relative border-b border-gray-200 py-2">
       {/* Task Info */}
       <div className="flex items-center space-x-4">
         <input
@@ -73,14 +73,14 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
         />
         <div>
           <h3
-            className={`text-lg font-semibold ${
+            className={`text-md md:text-lg font-semibold ${
               isChecked ? "line-through text-gray-400" : ""
             }`}
           >
             {title}
           </h3>
           {description && (
-            <p className="text-sm text-gray-500">
+            <p className="text-[12px] md:text-sm text-gray-500">
               {description?.length > 50
                 ? `${description.slice(0, 50)}...`
                 : description}
@@ -89,7 +89,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
         </div>
       </div>
 
-      <div className="flex items-center space-x-2 relative">
+      <div className="flex justify-between sm:justify-end w-full items-center space-x-2 relative">
         <span className="text-sm text-gray-500">{date}</span>
 
         <div ref={buttonRef}>

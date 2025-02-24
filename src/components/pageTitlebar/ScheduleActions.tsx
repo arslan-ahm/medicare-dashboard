@@ -1,11 +1,12 @@
 "use client"; // ✅ This makes it a client component
 
 import { CiFilter } from "react-icons/ci";
-import { IoAddOutline, IoSearchOutline } from "react-icons/io5";
+import { IoAddOutline, IoHelpCircleOutline } from "react-icons/io5";
 import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
+import { BsPrinter } from "react-icons/bs";
 
-const PatientActions = () => {
+const ScheduleActions = () => {
   const router = useRouter();
   const patientBarComponents = [
     {
@@ -13,28 +14,31 @@ const PatientActions = () => {
       handleClick: () => {
         router.push("/dashboard/patients/add");
       },
-      hide: false,
-    },
-    {
-      icon: <IoSearchOutline />,
-      handleClick: () => {
-        console.log("Search");
-      },
-      hide: true,
     },
     {
       icon: <CiFilter />,
       handleClick: () => {
         console.log("Filter");
       },
-      hide: true,
+    },
+    {
+      icon: <BsPrinter />,
+      handleClick: () => {
+        console.log("Save");
+      },
+    },
+    {
+      icon: <IoHelpCircleOutline />,
+      handleClick: () => {
+        console.log("Help");
+      },
     },
   ];
 
   return (
     <ul className="flex space-x-2">
-      {patientBarComponents.map(({ icon, handleClick, hide }, ind) => (
-        <li key={ind} className={`${!hide ? "inline-block" : "hidden"} sm:inline-block`}>
+      {patientBarComponents.map(({ icon, handleClick }, ind) => (
+        <li key={ind}>
           <IconButton icon={icon} handleClick={handleClick} />
         </li>
       ))}
@@ -42,4 +46,4 @@ const PatientActions = () => {
   );
 };
 
-export default PatientActions;
+export default ScheduleActions;

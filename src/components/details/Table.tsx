@@ -85,50 +85,106 @@ const PatientTable = () => {
   };
 
   return (
-    <div className="overflow-x-auto w-full bg-white mt-3 py-2">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="shadow-sm">
-          <tr>
-            {tableHeaders.map((header, index) => (
-              <TableHeading key={index} title={header} />
-            ))}
-            <th className="relative px-6 py-3">
-              <span className="sr-only">Options</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {patients.map((patient, index) => (
-            <tr key={index}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {patient.name}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {patient.diagnosis}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <span
-                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-md_varient_blue text-blue`}
-                >
-                  {patient.status}
-                </span>
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {patient.lastAppointment}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {patient.nextAppointment}
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <button className="text-indigo-600 hover:text-indigo-900">
-                  ...
-                </button>
-              </td>
+    <>
+       <div className="relative w-full overflow-auto bg-white mt-3 py-2">
+  <table className="min-w-full divide-y divide-gray-200">
+    <thead className="shadow-sm">
+      <tr>
+        {tableHeaders.map((header, index) => (
+          <TableHeading key={index} title={header} />
+        ))}
+        <th className="relative px-6 py-3">
+          <span className="sr-only">Options</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody className="bg-white divide-y divide-gray-200">
+      {patients.map((patient, index) => (
+        <tr key={index}>
+          <td className="px-6 py-4 min-w-[150px] whitespace-nowrap text-sm font-medium text-gray-900">
+            {patient.name}
+          </td>
+          <td className="px-6 py-4 min-w-[200px] whitespace-nowrap text-sm text-gray-500">
+            {patient.diagnosis}
+          </td>
+          <td className="px-6 py-4 min-w-[120px] whitespace-nowrap text-sm text-gray-500">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-md_varient_blue text-blue">
+              {patient.status}
+            </span>
+          </td>
+          <td className="px-6 py-4 min-w-[150px] whitespace-nowrap text-sm text-gray-500">
+            {patient.lastAppointment}
+          </td>
+          <td className="px-6 py-4 min-w-[150px] whitespace-nowrap text-sm text-gray-500">
+            {patient.nextAppointment}
+          </td>
+          <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <button className="text-indigo-600 hover:text-indigo-900">...</button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+
+      {/* <div className="relative overflow-x-auto">
+        <table className="w-full text-[10px] overflow-x-auto sm:text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Product name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Color
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Category
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Price
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="flex justify-center mt-2">
+          </thead>
+          <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Apple MacBook Pro 17&quot;
+              </th>
+              <td className="px-6 py-4">Silver</td>
+              <td className="px-6 py-4">Laptop</td>
+              <td className="px-6 py-4">$2999</td>
+            </tr>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Microsoft Surface Pro
+              </th>
+              <td className="px-6 py-4">White</td>
+              <td className="px-6 py-4">Laptop PC</td>
+              <td className="px-6 py-4">$1999</td>
+            </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Magic Mouse 2
+              </th>
+              <td className="px-6 py-4">Black</td>
+              <td className="px-6 py-4">Accessories</td>
+              <td className="px-6 py-4">$99</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> */}
+
+      <div className="flex justify-center mt-2 w-full">
         <div
           className="inline-flex rounded-md shadow-sm -space-x-px"
           aria-label="Pagination"
@@ -217,7 +273,7 @@ const PatientTable = () => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

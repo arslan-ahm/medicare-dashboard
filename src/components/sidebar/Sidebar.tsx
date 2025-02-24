@@ -43,7 +43,7 @@ const Sidebar = () => {
       </div>
 
       <SidebarSection title="MENU" toShow={isOpen} items={menuItems} />
-      <hr className="w-[80%] bg-md_gray my-4 mx-auto" />
+      <hr className={`w-[80%] bg-md_gray ${isOpen && "ml-2"} my-4 sm:mx-auto`} />
       <SidebarSection title="GENERAL" toShow={isOpen} items={generalItems} />
     </aside>
   );

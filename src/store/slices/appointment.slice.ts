@@ -1,23 +1,6 @@
+import { Appointment, AppointmentsType } from "@/types/slices/appointment";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-interface Appointment {
-  id: string;
-  date: string;
-  time: string;
-  location: string;
-  purpose: string;
-  duration: number;
-  type: string;
-  status: string;
-  isOnline: boolean;
-  patientId: string;
-}
-
-interface AppointmentsType {
-  appointments: Appointment[];
-  loading: boolean;
-  error: string | null;
-}
 
 const initialState: AppointmentsType = {
   appointments: [],

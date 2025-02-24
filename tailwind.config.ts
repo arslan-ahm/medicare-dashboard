@@ -11,9 +11,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "primary": "#0000ac",
         "md_gray": "#828282",
         "light_gray": "#e0e0e0",
-        "primary": "#0000ac",
         "red": "#eb5757",
         "md_varient_red": "#ffc5c5",
         "light_varient_red": "#fbdddd",
