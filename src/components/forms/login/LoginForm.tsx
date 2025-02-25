@@ -21,7 +21,7 @@ const LoginForm = () => {
           labelStyle="text-[13px]"
           placeholder="i.e. Jhon Doe"
           required
-          />
+        />
         <InputField
           label="Password"
           name="password"
@@ -36,7 +36,7 @@ const LoginForm = () => {
           <Text text="Forget Password" type="span" link="/forget-password" />
         </div>
         {error && <p className="text-sm text-red-600">{error}</p>}
-        <TextButton text={loading ? "Loading..." : "Login"} />
+        <TextButton type="submit" text={loading ? "Loading..." : "Login"} />
       </form>
     </>
   );

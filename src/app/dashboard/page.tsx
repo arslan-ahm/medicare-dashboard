@@ -1,54 +1,42 @@
-"use client";
-
-import React, { useEffect } from "react";
-import { getSession } from "next-auth/react";
+import React from "react";
+import TasksListSection from "@/components/(Sections)/taskList/TasksList";
 import AppointmentChart from "@/components/chartHandlers/AppointmentChart";
-import ListHeader from "@/components/details/lists/ListHeader";
-import TasksList from "@/components/details/lists/TasksList";
+import AppointmentSection from "@/components/(Sections)/appointmentList/AppointmentList";
 
 const Page = () => {
-  useEffect(() => {
-    async function fetchSession() {
-      try {
-        const session = await getSession();
-        console.log("Session =>", session);
-      } catch (error) {
-        console.error("Error =>", error);
-      }
-    }
-    fetchSession();
-  }, []);
 
   return (
-    <div className="grid grid-cols-6 gap-4 pt-2">
-      <AppointmentChart
-        title="Offline Consultations"
-        percentage="+20%"
-        type="success"
-        value="110"
-        containerStyles="col-span-6 sm:col-span-3 lg:col-span-2"
+    <>
+      <div className="grid grid-cols-6 gap-4 pt-2">
+        <AppointmentChart
+          title="Offline Consultations"
+          percentage="+20%"
+          type="success"
+          value="110"
+          containerStyles="col-span-6 sm:col-span-3 lg:col-span-2"
         />
-      <AppointmentChart
-        title="Online Consultations"
-        percentage="-15%"
-        type="loss"
-        value="65"
-        containerStyles="col-span-6 sm:col-span-3 lg:col-span-2"
-      />
-      <AppointmentChart title="Total Patients" type="loss" value="155" containerStyles="col-span-6 lg:col-span-2" />
+        <AppointmentChart
+          title="Online Consultations"
+          percentage="-15%"
+          type="loss"
+          value="65"
+          containerStyles="col-span-6 sm:col-span-3 lg:col-span-2"
+        />
+        <AppointmentChart
+          title="Total Patients"
+          type="loss"
+          value="155"
+          containerStyles="col-span-6 lg:col-span-2"
+        />
 
-      <div className="bg-white shadow-sm p-4 col-span-6 sm:col-span-4">
-        <ListHeader
-          title="Tasks"
-          subtext="New Tasks"
-          handleClick={() => console.log("Add Task clicked...")}
-        />
-        <div className="max-h-[40vh] overflow-y-auto custom-scroll px-2">
-          <TasksList />
+        <div className="bg-white shadow-sm p-4 order-last sm:order-none col-span-6 sm:col-span-4">
+          <TasksListSection />
+        </div>
+        <div className="bg-white shadow-sm p-4 col-span-6 sm:col-span-2">
+          <AppointmentSection />
         </div>
       </div>
-      <div className="bg-yellow col-span-6 sm:col-span-2"></div>
-    </div>
+    </>
   );
 };
 

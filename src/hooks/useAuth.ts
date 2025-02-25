@@ -1,26 +1,32 @@
-"use client"; 
+"use client";
 
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { signOut } from "next-auth/react";
 import { RootState } from "@/store/store";
-import { logout, setUser } from "@/store/slices/auth.slice";
+// import axios from "axios";
 
-export function useAuth(redirect = false) {
-  const { data: session } = useSession();
-  const dispatch = useDispatch();
-  const router = useRouter();
+export function useAuth() {
   const user = useSelector((state: RootState) => state.auth.doctor);
 
-  useEffect(() => {
-    if (session?.user) {
-      dispatch(setUser({ id: session.user?.id ?? "", name: session.user.name ?? "", email: session.user.email ?? "" }));
-      if (redirect) router.push("/dashboard");
-    } else {
-      dispatch(logout());
-    }
-  }, [session, dispatch]);
+  // useEffect(() => {
+  //   async function fetchSession() {
+  //     try {
+  //       const session = await getSession();
+  //       console.log("Session =>", session);
+
+  //       if (session?.user?.id) {
+  //         axios.defaults.headers.common[
+  //           "doctorId"
+  //         ] = `Bearer ${session.user.id}`;
+  //       }
+  //     } catch (error) {
+  //       console.error("Error =>", error);
+  //     }
+  //   }
+
+  //   fetchSession();
+  // }, []);
 
   return { user, signOut };
 }

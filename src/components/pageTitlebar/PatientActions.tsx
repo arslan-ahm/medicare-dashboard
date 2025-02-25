@@ -3,15 +3,17 @@
 import { CiFilter } from "react-icons/ci";
 import { IoAddOutline, IoSearchOutline } from "react-icons/io5";
 import IconButton from "./IconButton";
-import { useRouter } from "next/navigation";
+import ModelInterface from "../models/ModelInterface";
+import AddAppointmentForm from "../forms/addAppointment/AddAppointmentForm";
+import { useState } from "react";
 
 const PatientActions = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const patientBarComponents = [
     {
       icon: <IoAddOutline />,
       handleClick: () => {
-        router.push("/dashboard/patients/add");
+        setIsOpen(true);
       },
       hide: false,
     },
@@ -31,14 +33,24 @@ const PatientActions = () => {
     },
   ];
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <ul className="flex space-x-2">
-      {patientBarComponents.map(({ icon, handleClick, hide }, ind) => (
-        <li key={ind} className={`${!hide ? "inline-block" : "hidden"} sm:inline-block`}>
-          <IconButton icon={icon} handleClick={handleClick} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className="flex space-x-2">
+        {patientBarComponents.map(({ icon, handleClick, hide }, ind) => (
+          <li
+            key={ind}
+            className={`${!hide ? "inline-block" : "hidden"} sm:inline-block`}
+          >
+            <IconButton icon={icon} handleClick={handleClick} />
+          </li>
+        ))}
+      </ul>
+      <ModelInterface title="Add Appointment" open={isOpen} setOpen={setIsOpen}>
+        <AddAppointmentForm />
+      </ModelInterface>
+    </>
   );
 };
 

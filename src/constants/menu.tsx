@@ -34,3 +34,9 @@ export const SETTINGS_TABS = [
   { id: "profile", label: "Update Profile" },
   { id: "password", label: "Change Password" },
 ];
+
+export const TODAYS_DATE = new Date().toLocaleDateString("en-US", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+})

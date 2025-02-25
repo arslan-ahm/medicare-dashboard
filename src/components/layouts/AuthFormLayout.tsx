@@ -14,15 +14,15 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
       <div className="hidden h-screen  text-white xl:col-span-2 sm:flex flex-col items-center gap-y-5 justify-center bg-primary">
         <Text text="ALL IN ONE DASHBOARD" type="h3" />
         <div className="w-[90%] lg:w-3/5 px-8">
-        <Image
-          src={IMAGES.AuthScreenDashboardPreview}
-          alt="Dashboard Preview"
-          layout="responsive" 
-          width={200}
-          height={100}
-          className="object-cover rounded-lg shadow-md"
+          <Image
+            src={IMAGES.AuthScreenDashboardPreview}
+            alt="Dashboard Preview"
+            layout="responsive"
+            width={200}
+            height={100}
+            className="object-cover rounded-lg shadow-md"
           />
-          </div>
+        </div>
         <Text
           text="Keep track of all patient information in this section."
           type="h5"

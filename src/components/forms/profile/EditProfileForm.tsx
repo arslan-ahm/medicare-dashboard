@@ -9,12 +9,12 @@ import { SPECIALIZATION_LIST } from "@/constants/formValues";
 import FormHeader from "../FormHeader";
 
 const EditProfileForm = () => {
-  const { formData, handleChange, handleRegister, error, loading } =
+  const { formData, handleChange, handleSubmit, error, loading } =
     useEditProfileForm();
   return (
     <>
       <form
-        onSubmit={handleRegister}
+        onSubmit={handleSubmit}
         className="space-y-7 w-full mx-auto bg-white p-6 rounded-md shadow-sm mt-8"
       >
         <div className="text-center">
@@ -25,7 +25,7 @@ const EditProfileForm = () => {
             <InputRow
               lable="Name"
               setValue={handleChange}
-              value={formData.name}
+              value={formData.name || ""}
               name="name"
               inputType="text"
               placeholder="i.e. Jhon Doe"
@@ -34,7 +34,7 @@ const EditProfileForm = () => {
             <InputRow
               lable="Your Company"
               setValue={handleChange}
-              value={formData.organization}
+              value={formData.organization || ""}
               name="organization"
               inputType="text"
               placeholder="i.e. Health Care"
@@ -43,7 +43,7 @@ const EditProfileForm = () => {
             <InputRow
               lable="Email"
               setValue={handleChange}
-              value={formData.email}
+              value={formData.email || ""}
               name="email"
               inputType="email"
               required
@@ -51,7 +51,7 @@ const EditProfileForm = () => {
             <InputSection title="Specialization">
               <CustomSelect
                 name="specialization"
-                value={formData.specialization}
+                value={formData.specialization || ""}
                 onChange={handleChange}
                 options={SPECIALIZATION_LIST}
               />
@@ -60,7 +60,10 @@ const EditProfileForm = () => {
         </table>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
-        <TextButton text={loading ? "Updating..." : "Update Profile"} />
+        <TextButton
+          type="submit"
+          text={loading ? "Updating..." : "Update Profile"}
+        />
       </form>
     </>
   );

@@ -17,14 +17,14 @@ const ListHeader: React.FC<ListHeaderProps> = ({
   handleClick,
 }) => {
   return (
-    <div className="flex justify-between items-center border-b border-gray-200 pb-2 mb-4">
+    <div className="flex flex-col min-[400px]:flex-row justify-between items-between min-[400px]:items-center border-b border-gray-200 pb-2 mb-4">
       <Text text={title} type="h6" className="font-semibold" />
       <div className="flex items-center gap-4">
         {subtext && (
           <Text
             text={subtext}
             type="span"
-            className="text-primary font-semibold"
+            className="inline-block sm:hidden xl:inline-block text-primary font-semibold"
           />
         )}
         <IconButton

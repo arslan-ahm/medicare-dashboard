@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { updateProfile } from "@/store/slices/auth.slice";
+import { useAuth } from "@/hooks/useAuth";
 
-export const useEditProfileForm = () => {
-  const { doctor } = useAppSelector((store) => store.auth);
-  const dispatch = useAppDispatch();
+export const useAddAppointmentForm = () => {
+  useAuth(true);
 
-  const [formData, setFormData] = useState({
-    name: doctor?.name,
-    email: doctor?.email,
-    organization: doctor?.organization,
-    specialization: doctor?.specialization,
-  });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    organization: "",
+    specialization: "",
+  });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -31,9 +29,9 @@ export const useEditProfileForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const { name, email, specialization, organization } = formData;
+    const { name, email, specialization } = formData;
 
-    if (!name || !email || !specialization || !organization) {
+    if (!name || !email || !specialization) {
       console.log("Please fill all the fields");
       return toast.error("Please fill all the fields");
     }
@@ -43,8 +41,8 @@ export const useEditProfileForm = () => {
     }
 
     try {
-      await dispatch(updateProfile(formData));
-      console.log("Profile Updated Successfully");
+      console.log("Updated... OK", formData);
+
       toast.success("Account created successfully");
     } catch (error) {
       console.error(error);
@@ -54,11 +52,5 @@ export const useEditProfileForm = () => {
     }
   };
 
-  return {
-    formData,
-    handleChange,
-    handleSubmit,
-    error,
-    loading,
-  };
+  return { formData, handleChange, handleSubmit, error, loading };
 };

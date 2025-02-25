@@ -3,17 +3,13 @@
 import { CiFilter } from "react-icons/ci";
 import { IoAddOutline, IoHelpCircleOutline } from "react-icons/io5";
 import IconButton from "./IconButton";
-import { useRouter } from "next/navigation";
 import { BsPrinter } from "react-icons/bs";
 
 const ScheduleActions = () => {
-  const router = useRouter();
   const patientBarComponents = [
     {
       icon: <IoAddOutline />,
-      handleClick: () => {
-        router.push("/dashboard/patients/add");
-      },
+      handleClick: () => {},
     },
     {
       icon: <CiFilter />,

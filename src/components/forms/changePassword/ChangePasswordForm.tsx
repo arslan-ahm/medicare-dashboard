@@ -23,8 +23,8 @@ const ChangePasswordForm = () => {
             <InputRow
               lable="Current Password"
               setValue={handleChange}
-              value={formData.currentPassword}
-              name="currentPassword"
+              value={formData.oldPassword}
+              name="oldPassword"
               inputType="password"
               placeholder="********"
               required
@@ -32,8 +32,8 @@ const ChangePasswordForm = () => {
             <InputRow
               lable="Change Password"
               setValue={handleChange}
-              value={formData.changePassword}
-              name="changePassword"
+              value={formData.newPassword}
+              name="newPassword"
               inputType="password"
               placeholder="********"
               required
@@ -51,7 +51,10 @@ const ChangePasswordForm = () => {
         </table>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
-        <TextButton text={loading ? "Updating..." : "Update Password"} />
+        <TextButton
+          type="submit"
+          text={!loading ? "Update Password" : "Updating..."}
+        />
       </form>
     </>
   );

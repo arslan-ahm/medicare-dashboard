@@ -1,29 +1,39 @@
 "use client";
 
+import React, { useEffect } from "react";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { CiMail } from "react-icons/ci";
+import { RxExit } from "react-icons/rx";
+import { IoNotificationsOutline } from "react-icons/io5";
 import InputField from "../InputField";
 import { IoIosSearch } from "react-icons/io";
-import toast from "react-hot-toast";
-import { logout } from "@/store/slices/auth.slice";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { useRouter } from "next/navigation";
+import { fetchDoctor, logout } from "@/store/slices/auth.slice";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import Text from "../Text";
-import Image from "next/image";
 import { IMAGES } from "@/constants/imgs";
-import { CiMail } from "react-icons/ci";
-import { IoNotificationsOutline } from "react-icons/io5";
-import { RxExit } from "react-icons/rx";
-import React from "react";
 import QuickIcon from "./QuickIcon";
+import { TODAYS_DATE } from "@/constants/menu";
 
 const Navbar = () => {
-  const disptch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const doctor = useAppSelector(store => store.auth.doctor);
   const router = useRouter();
+  console.log("Doctor(Nabar.tsx) =>", doctor);
+
+  useEffect(() => {
+    if (!doctor){
+      dispatch(fetchDoctor());
+    }
+  }, [dispatch, doctor]);
+
   const handleLogout = async () => {
     try {
       await signOut({ redirect: false });
       toast.success("Successfully logged out!");
-      disptch(logout());
+      dispatch(logout());
       router.push("/login");
     } catch (error) {
       console.error("Failed to sign out", error);
@@ -54,16 +64,12 @@ const Navbar = () => {
         </div>
         <div className="flex items-center space-x-4">
           <div className="flex flex-col items-end border-r-2 pr-[5px] border-r-light_gray">
-            <p className="text-[13px] text-md_gray">ARslan Ahmad</p>
-            <p className="text-[14px] font-semibold">Health Care</p>
+            <p className="text-[13px] text-md_gray">{doctor?.name}</p>
+            <p className="text-[14px] font-semibold">{doctor?.organization}</p>
           </div>
 
           <span className="hidden sm:inline-block border-2 rounded-md border-light_gray text-md_gray p-1 lg:px-3 lg:py-1 text-[11px] sm:text-[14px] sm:text-base ">
-            {new Date().toLocaleDateString("en-US", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
+            {TODAYS_DATE}
           </span>
 
           <div className="flex  items-center text-gray-500 space-x-4 sm:space-x-6">
@@ -85,6 +91,5 @@ const Navbar = () => {
     </nav>
   );
 };
-
 
 export default Navbar;

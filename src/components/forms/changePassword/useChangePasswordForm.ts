@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { useAuth } from "@/hooks/useAuth";
+import { useAppDispatch } from "@/hooks/useRedux";
+import { changePassword } from "@/store/slices/auth.slice";
+
+const initialState = {
+  oldPassword: "",
+  newPassword: "",
+  confirmPassword: "",
+};
 
 export const useChangePasswordForm = () => {
-  useAuth(true);
-
-  const [formData, setFormData] = useState({
-    currentPassword: "",
-    changePassword: "",
-    confirmPassword: "",
-  });
+  const dispatch = useAppDispatch();
+  const [formData, setFormData] = useState(initialState);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -27,26 +29,32 @@ export const useChangePasswordForm = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const { currentPassword, changePassword, confirmPassword } = formData;
+    const { oldPassword, newPassword, confirmPassword } = formData;
 
-    if (!currentPassword || !changePassword || !confirmPassword) {
+    if (!oldPassword || !newPassword || !confirmPassword) {
       console.log("Please fill all the fields");
       return toast.error("Please fill all the fields");
     }
 
-    if (changePassword !== confirmPassword) {
+    if (newPassword !== confirmPassword) {
       return toast.error("Passwords do not match");
     }
 
-
-
     try {
-      console.log("Updated... OK", formData);
-
-      toast.success("Account created successfully");
+      const res = await dispatch(changePassword({ oldPassword, newPassword }));
+      if (changePassword.fulfilled.match(res)) {
+        toast.success("Updated Your New Password... 🤗");
+        setFormData(initialState);
+      } else if (changePassword.rejected.match(res)) {
+        console.log(
+          "%cError (useChangePasswordForm.ts) =>",
+          "font-size:16px;color:red;",
+          res.payload
+        );
+        toast.error("Password Update Failed");
+      }
     } catch (error) {
-      console.error(error);
-      return toast.error("Something went wrong");
+      console.log("=>", error);
     } finally {
       setLoading(false);
     }

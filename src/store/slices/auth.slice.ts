@@ -1,4 +1,6 @@
+import { AxiosError } from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import api from "@/lib/axiosInstance";
 
 interface Doctor {
   id: string;
@@ -26,6 +28,23 @@ const initialState: AuthState = {
   successMessage: null,
 };
 
+export const fetchDoctor = createAsyncThunk(
+  "auth/fetchDoctor",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.get("/doctor");
+      console.log("Your Response =>", response.data);
+      return response.data?.user;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to fetch doctor data"
+        );
+      }
+    }
+  }
+);
+
 export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async (
@@ -33,19 +52,17 @@ export const changePassword = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const response = await fetch("/api/auth/changePassword", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ oldPassword, newPassword }),
+      const response = await api.patch("/auth/changePassword", {
+        oldPassword,
+        newPassword,
       });
-
-      const data = await response.json();
-      if (!response.ok)
-        throw new Error(data.message || "Failed to change password");
-
-      return data.message;
+      return response.data.message;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error?.message || "Failed to change password"
+        );
+      }
     }
   }
 );
@@ -57,19 +74,19 @@ export const updateProfile = createAsyncThunk(
     { rejectWithValue }
   ) => {
     try {
-      const response = await fetch("/api/auth/updateProfile", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, specialization, organization }),
+      const response = await api.put("/doctor", {
+        name,
+        email,
+        specialization,
+        organization,
       });
-
-      const data = await response.json();
-      if (!response.ok)
-        throw new Error(data.message || "Failed to update profile");
-
-      return data.doctor; // Returning updated doctor data
+      return response.data.doctor;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to update profile"
+        );
+      }
     }
   }
 );
@@ -96,6 +113,19 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchDoctor.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchDoctor.fulfilled, (state, action) => {
+        state.loading = false;
+        state.doctor = action.payload;
+      })
+      .addCase(fetchDoctor.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
       .addCase(changePassword.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -109,6 +139,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
+
       .addCase(updateProfile.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -116,8 +147,8 @@ const authSlice = createSlice({
       })
       .addCase(updateProfile.fulfilled, (state, action) => {
         state.loading = false;
+        state.doctor = action.payload;
         state.successMessage = "Profile updated successfully";
-        state.doctor = action.payload; // Update doctor info
       })
       .addCase(updateProfile.rejected, (state, action) => {
         state.loading = false;
