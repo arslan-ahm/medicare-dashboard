@@ -1,12 +1,6 @@
 import React from "react";
+import { CustomSelectProps } from "@/types/componentsTypes/customSelect";
 
-interface CustomSelectProps {
-  name: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { label: string; value: string }[];
-  id?: string;
-}
 
 const CustomSelect: React.FC<CustomSelectProps> = ({ name, value, onChange, options, id }) => {
   return (

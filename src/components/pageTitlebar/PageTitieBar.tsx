@@ -2,12 +2,7 @@
 
 import React from "react";
 import Text from "../Text";
-
-type PageTitleBarProps = {
-  title: string;
-  subtitle?: string;
-  children?: React.ReactNode;
-};
+import { PageTitleBarProps } from "@/types/componentsTypes/pageComponentType";
 
 const PageTitleBar: React.FC<PageTitleBarProps> = ({
   title,

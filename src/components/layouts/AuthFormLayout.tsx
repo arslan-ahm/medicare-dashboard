@@ -2,10 +2,9 @@ import React from "react";
 import Text from "../Text";
 import Image from "next/image";
 import { IMAGES } from "@/constants/imgs";
+import { FormLayoutProps } from "@/types/componentsTypes/layout";
 
-type FormLayoutProps = {
-  children: React.ReactNode;
-};
+
 
 const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
   return (

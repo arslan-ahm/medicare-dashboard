@@ -1,16 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import IconButton from "../../pageTitlebar/IconButton";
-import { RiEditLine } from "react-icons/ri";
 import { MdDeleteOutline } from "react-icons/md";
-
-type TaskListItemProps =  {
-  id: string;
-  status: boolean;
-  title: string;
-  description?: string;
-  date: string;
-}
+import { HiOutlineDotsHorizontal } from "react-icons/hi";
+import { RiEditLine } from "react-icons/ri";
+import IconButton from "../../pageTitlebar/IconButton";
+import { OptionButtonProps, TaskListItemProps } from "@/types/componentsTypes/taskListItem";
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
   id,
@@ -113,11 +106,6 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   );
 };
 
-type OptionButtonProps = {
-  id: string;
-  text: string;
-  type: "edit" | "delete";
-};
 
 const OptionButton: React.FC<OptionButtonProps> = ({ text, type, id }) => {
   const handleClick = (type: "edit" | "delete") => {

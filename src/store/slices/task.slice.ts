@@ -1,80 +1,10 @@
+import { AxiosError } from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-
-interface Task {
-  id: string;
-  title: string;
-  description?: string;
-  date: string;
-  status: boolean;
-}
-
-interface TasksType {
-  tasks: Task[];
-  loading: boolean;
-  error: string | null;
-}
+import api from "@/lib/axiosInstance";
+import { Task, TasksType } from "@/types/slices/task";
 
 const initialState: TasksType = {
-  tasks: [
-    {
-      id: "task1",
-      status: true,
-      title: "Complete project report",
-      description: "Finalize and submit the project report by end of the day.",
-      date: "2023-10-01",
-    },
-    {
-      id: "task2",
-      status: false,
-      title: "Team meeting",
-      description: "Discuss project milestones and next steps.",
-      date: "2023-10-02",
-    },
-    {
-      id: "task3",
-      status: true,
-      title: "Code review",
-      description: "Review code for the new feature implementation.",
-      date: "2023-10-03",
-    },
-    {
-      id: "task4",
-      status: false,
-      title: "Client presentation",
-      description:
-        "Prepare slides and present the project progress to the client.",
-      date: "2023-10-04",
-    },
-    {
-      id: "task5",
-      status: true,
-      title: "Update documentation",
-      description: "Update the project documentation with the latest changes.",
-      date: "2023-10-05",
-    },
-    {
-      id: "task6",
-      status: true,
-      title: "Code review",
-      description: "Review code for the new feature implementation.",
-      date: "2023-10-03",
-    },
-    {
-      id: "task7",
-      status: false,
-      title: "Client presentation",
-      description:
-        "Prepare slides and present the project progress to the client.",
-      date: "2023-10-04",
-    },
-    {
-      id: "task8",
-      status: true,
-      title: "Update documentation",
-      description: "Update the project documentation with the latest changes.",
-      date: "2023-10-05",
-    },
-  ],
+  tasks: [],
   loading: false,
   error: null,
 };
@@ -85,12 +15,14 @@ export const fetchTasks = createAsyncThunk<
   { rejectValue: string }
 >("tasks/fetchTasks", async (_, { rejectWithValue }) => {
   try {
-    const response = await fetch("/api/task");
-    if (!response.ok) throw new Error("Failed to fetch tasks");
-
-    return await response.json();
+    const response = await api.get("/task");
+    return response.data;
   } catch (error) {
-    return rejectWithValue((error as Error).message);
+    if (error instanceof AxiosError) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to fetch tasks"
+      );
+    }
   }
 });
 
@@ -100,17 +32,14 @@ export const addTask = createAsyncThunk<
   { rejectValue: string }
 >("tasks/addTask", async (newTask, { rejectWithValue }) => {
   try {
-    const response = await fetch("/api/task", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newTask),
-    });
-
-    if (!response.ok) throw new Error("Failed to add task");
-
-    return await response.json();
+    const response = await api.post("/task", newTask);
+    return response.data;
   } catch (error) {
-    return rejectWithValue((error as Error).message);
+    if (error instanceof AxiosError) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to add task"
+      );
+    }
   }
 });
 
@@ -118,17 +47,14 @@ export const editTask = createAsyncThunk<Task, Task, { rejectValue: string }>(
   "tasks/editTask",
   async (updatedTask, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/task/${updatedTask.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedTask),
-      });
-
-      if (!response.ok) throw new Error("Failed to update task");
-
-      return await response.json();
+      const response = await api.put(`/task/${updatedTask.id}`, updatedTask);
+      return response.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to update task"
+        );
+      }
     }
   }
 );
@@ -139,13 +65,14 @@ export const deleteTask = createAsyncThunk<
   { rejectValue: string }
 >("tasks/deleteTask", async (taskId, { rejectWithValue }) => {
   try {
-    const response = await fetch(`/api/task/${taskId}`, { method: "DELETE" });
-
-    if (!response.ok) throw new Error("Failed to delete task");
-
+    await api.delete(`/task/${taskId}`);
     return taskId;
   } catch (error) {
-    return rejectWithValue((error as Error).message);
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.response?.data?.message);
+    } else {
+      return rejectWithValue("Failed to delete task");
+    }
   }
 });
 

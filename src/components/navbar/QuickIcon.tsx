@@ -1,10 +1,5 @@
 import React from "react";
-
-type QuickIconProps = {
-  icon: React.ReactNode;
-  handleClick: () => void;
-  cursor?: "pointer" | "not-allowed";
-};
+import { QuickIconProps } from "@/types/componentsTypes/quickIcon";
 
 const QuickIcon: React.FC<QuickIconProps> = ({
   icon,

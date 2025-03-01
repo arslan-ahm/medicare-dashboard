@@ -1,11 +1,7 @@
+import { SidebarSectionProps } from "@/types/componentsTypes/menuTypes";
 import SidebarItem from "./SidebarItem";
-import { MenuItem } from "@/constants/menu";
 
-type SidebarSectionProps = {
-  title: string;
-  items: MenuItem[];
-  toShow?: boolean | null;
-};
+
 
 const SidebarSection = ({ title, items, toShow }: SidebarSectionProps) => {
   return (

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
-    const doctorId = req.headers.get("doctorid");
+    const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
       return NextResponse.json(

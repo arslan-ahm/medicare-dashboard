@@ -1,13 +1,7 @@
 import React from "react";
 import QuickIcon from "../navbar/QuickIcon";
 import { IoClose } from "react-icons/io5";
-
-type ModelInterfaceProps = {
-  title: string;
-  open: boolean;
-  setOpen: (val: boolean) => void;
-  children: React.ReactNode;
-};
+import { ModelInterfaceProps } from "@/types/componentsTypes/model";
 
 const ModelInterface: React.FC<ModelInterfaceProps> = ({
   title,

@@ -1,11 +1,7 @@
 import React from "react";
 import Text from "../Text";
+import { FormHeaderProps } from "@/types/componentsTypes/form";
 
-type FormHeaderProps = {
-  title: string;
-  subhead?: string;
-  noLink?: boolean;
-};
 
 const FormHeader = ({ title, subhead, noLink = false }: FormHeaderProps) => {
   const isLogin = title?.toLowerCase().includes("login");

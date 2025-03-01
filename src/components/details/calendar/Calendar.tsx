@@ -4,26 +4,8 @@ import dayjs from "dayjs";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { Appointment } from "@/types/slices/appointment";
 import RenderEventContent from "./RenderEventContent";
-
-type CalendarProps = {
-  appointments: Appointment[];
-};
-
-type CalendarEvent = {
-  id: string;
-  title: string;
-  start: string;
-  end: string;
-  color: string;
-  extendedProps: {
-    status: string;
-    patientName: string;
-    location: string;
-    isOnline: boolean;
-  };
-};
+import { CalendarEvent, CalendarProps } from "@/types/componentsTypes/calender";
 
 const Calendar: React.FC<CalendarProps> = ({ appointments }) => {
   const events = appointments.map(
@@ -47,7 +29,6 @@ const Calendar: React.FC<CalendarProps> = ({ appointments }) => {
   const getInitialView = () => {
     return window.innerWidth < 768 ? "timeGridDay" : "timeGridWeek";
   };
-  
 
   return (
     <div className="bg-white p-4 rounded-md shadow-md">

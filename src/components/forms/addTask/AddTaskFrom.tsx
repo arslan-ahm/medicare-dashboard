@@ -36,9 +36,9 @@ const AddTaskFrom = () => {
           <InputRow
             lable="Date and Time"
             setValue={handleChange}
-            value={formData.dateAndTime}
-            name="dateAndTime"
-            inputType="datetime-local"
+            value={formData.date}
+            name="date"
+            inputType="date"
             required
           />
           <InputSection title="Specialization">

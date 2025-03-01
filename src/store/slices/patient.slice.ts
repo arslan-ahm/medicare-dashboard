@@ -1,23 +1,5 @@
+import { Patient, PatientsType } from "@/types/slices/patient";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-
-interface Patient {
-  id: string;
-  forename: string;
-  surname: string;
-  phone?: string;
-  dateOfBirth: string;
-  gender: "male" | "female";
-  diagnosis: string;
-  status: "On Going" | "Recovered" | "Awaiting Surgery" | "On treatment";
-  notes?: string;
-  upcomingAppointmentId?: string;
-}
-
-interface PatientsType {
-  patients: Patient[];
-  loading: boolean;
-  error: string | null;
-}
 
 const initialState: PatientsType = {
   patients: [],

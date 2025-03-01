@@ -1,25 +1,7 @@
 import { AxiosError } from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import api from "@/lib/axiosInstance";
-
-interface Doctor {
-  id: string;
-  name: string;
-  email: string;
-  organization: string;
-  specialization: string;
-
-  patients: string[];
-  appointments: string[];
-  tasks: string[];
-}
-
-interface AuthState {
-  doctor: Doctor | null;
-  loading: boolean;
-  error: string | null;
-  successMessage: string | null;
-}
+import { AuthState, Doctor } from "@/types/slices/auth";
 
 const initialState: AuthState = {
   doctor: null,

@@ -1,19 +1,10 @@
 "use client";
 
+import { TabSwitcherProps } from "@/types/componentsTypes/tabSwitcher";
 import { useState } from "react";
 
-type Tab = {
-  id: string;
-  label: string;
-};
-
-interface TabSwitcherProps {
-  tabs: Tab[];
-  children: Record<string, React.ReactNode>; // Ensures dynamic tab content mapping
-}
-
 const TabSwitcher: React.FC<TabSwitcherProps> = ({ tabs, children }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.id || ""); // Initialize with first tab
+  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "");
 
   const handleTabClick = (tabId: string) => {
     setActiveTab(tabId);
@@ -27,7 +18,11 @@ const TabSwitcher: React.FC<TabSwitcherProps> = ({ tabs, children }) => {
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className={`relative select-none flex-1 text-center px-4 py-2 text-sm font-medium transition-all duration-300 ease-in-out
-              ${activeTab === tab.id ? "text-white bg-primary rounded-full" : "text-black"}`}
+              ${
+                activeTab === tab.id
+                  ? "text-white bg-primary rounded-full"
+                  : "text-black"
+              }`}
           >
             {tab.label}
           </button>

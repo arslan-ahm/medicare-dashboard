@@ -5,6 +5,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 
 const TasksList = () => {
   const tasks = useAppSelector((state) => state.tasks.tasks);
+  console.log('| => ', tasks)
   return (
     <>
       <ul className="space-y-4">
@@ -15,7 +16,7 @@ const TasksList = () => {
               title={task.title}
               date={task.date}
               description={task.description}
-              status={task.status}
+              status={task.status === "COMPLETED" ? true : false}
             />
           </li>
         ))}

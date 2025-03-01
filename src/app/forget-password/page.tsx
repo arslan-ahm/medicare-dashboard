@@ -7,7 +7,7 @@ export default function SignUpPage() {
     <FormLayout>
       <FormHeader
         title="Forget Password"
-        subhead="Let's try once more... "
+        subhead="Let's try once more | "
       />
       <ForgetPasswordForm />
     </FormLayout>

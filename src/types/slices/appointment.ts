@@ -1,4 +1,4 @@
-export interface Appointment {
+export type Appointment = {
   id: string;
   date: string;
   time: string;
@@ -11,7 +11,7 @@ export interface Appointment {
   patientId: string;
 }
 
-export interface AppointmentsType {
+export type AppointmentsType = {
   appointments: Appointment[];
   loading: boolean;
   error: string | null;

@@ -2,13 +2,7 @@ import React from "react";
 import Text from "../../Text";
 import IconButton from "../../pageTitlebar/IconButton";
 import { FiPlus } from "react-icons/fi";
-
-type ListHeaderProps = {
-  title: string;
-  icon?: React.ReactNode;
-  subtext?: string;
-  handleClick: () => void;
-};
+import { ListHeaderProps } from "@/types/componentsTypes/listHeader";
 
 const ListHeader: React.FC<ListHeaderProps> = ({
   title,

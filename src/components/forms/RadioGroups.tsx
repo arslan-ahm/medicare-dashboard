@@ -1,10 +1,5 @@
+import { RadioGroupProps } from "@/types/componentsTypes/radioGroup";
 
-type RadioGroupProps = {
-  name: string;
-  options: string[];
-  selectedValue: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
 
 const RadioGroup: React.FC<RadioGroupProps> = ({
   name,

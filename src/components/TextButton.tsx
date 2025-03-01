@@ -1,14 +1,6 @@
 "use client";
-
 import React from "react";
-
-type ButtonProps = {
-  variant?: "outline" | "filled";
-  text: string;
-  type?: "submit" | "button";
-  onClick?: () => void;
-  className?: string;
-};
+import { ButtonProps } from "@/types/componentsTypes/textButtons";
 
 const TextButton: React.FC<ButtonProps> = ({
   variant = "filled",

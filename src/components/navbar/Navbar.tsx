@@ -19,12 +19,11 @@ import { TODAYS_DATE } from "@/constants/menu";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-  const doctor = useAppSelector(store => store.auth.doctor);
+  const doctor = useAppSelector((store) => store.auth.doctor);
   const router = useRouter();
-  console.log("Doctor(Nabar.tsx) =>", doctor);
 
   useEffect(() => {
-    if (!doctor){
+    if (!doctor) {
       dispatch(fetchDoctor());
     }
   }, [dispatch, doctor]);

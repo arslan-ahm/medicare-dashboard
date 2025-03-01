@@ -1,14 +1,7 @@
 import { FaArrowUp } from "react-icons/fa";
 import Text from "../Text";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-
-type AppointmentChartProps = {
-  title: string;
-  value: string;
-  percentage?: string;
-  type?: "success" | "loss";
-  containerStyles?: string;
-};
+import { AppointmentChartProps } from "@/types/componentsTypes/appointmentCharts";
 
 const AppointmentChart: React.FC<AppointmentChartProps> = ({
   title,

@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const GET = async (req: NextRequest) => {
   try {
-    const doctorId = req.headers.get("doctorId");
+    const doctorId = req.headers.get("doctorid");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -61,7 +61,7 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const doctorId = req.headers.get("doctorId");
+    const doctorId = req.headers.get("doctorid");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -72,7 +72,7 @@ export const POST = async (req: NextRequest) => {
 
     const { title, description, date, status } = await req.json();
 
-    if (!title || !date || !status || !doctorId) {
+    if (!title || !date || !status) {
       return NextResponse.json(
         { status: "error", message: "Missing required fields.", ok: false },
         { status: 400 }
@@ -86,6 +86,13 @@ export const POST = async (req: NextRequest) => {
         date: new Date(date),
         status,
         doctorId,
+      },
+    });
+
+    await prisma.doctor.update({
+      where: { id: doctorId },
+      data: {
+        tasks: { connect: { id: newTask.id } },
       },
     });
 

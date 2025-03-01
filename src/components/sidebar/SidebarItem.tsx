@@ -1,13 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface SidebarItemProps {
-  label: string;
-  icon: React.ReactNode;
-  link: string;
-  handleText?: boolean | null;
-}
+import { SidebarItemProps } from "@/types/componentsTypes/menuTypes";
 
 const SidebarItem = ({ label, icon, link, handleText }: SidebarItemProps) => {
   const pathname = usePathname();

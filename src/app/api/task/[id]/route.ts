@@ -8,7 +8,7 @@ export const GET = async (
   try {
     const { id } = params;
     const task = await prisma.task.findUnique({ where: { id } });
-    const doctorId = req.headers.get("doctorId");
+    const doctorId = req.headers.get("doctorid");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -47,7 +47,7 @@ export const PUT = async (
   try {
     const { id } = params;
     const body = await req.json();
-    const doctorId = req.headers.get("doctorId");
+    const doctorId = req.headers.get("doctorid");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -83,7 +83,7 @@ export const DELETE = async (
 ) => {
   try {
     const { id } = params;
-    const doctorId = req.headers.get("doctorId");
+    const doctorId = req.headers.get("doctorid");
 
     if (!doctorId) {
       return NextResponse.json(

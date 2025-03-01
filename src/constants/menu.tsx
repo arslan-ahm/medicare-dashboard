@@ -1,14 +1,9 @@
+import { MenuItem } from "@/types/componentsTypes/menuTypes";
 import React from "react";
 import { BsPeople } from "react-icons/bs";
 import { FiCalendar } from "react-icons/fi";
 import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5";
 import { LuClipboardCheck, LuLayoutDashboard } from "react-icons/lu";
-
-export type MenuItem = {
-  label: string;
-  icon: React.ReactNode;
-  link: string;
-};
 
 export const menuItems: MenuItem[] = [
   { label: "Dashboard", icon: <LuLayoutDashboard />, link: "/dashboard" },
@@ -39,4 +34,4 @@ export const TODAYS_DATE = new Date().toLocaleDateString("en-US", {
   day: "2-digit",
   month: "long",
   year: "numeric",
-})
+});

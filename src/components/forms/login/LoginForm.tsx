@@ -35,7 +35,7 @@ const LoginForm = () => {
         <div className="flex justify-end">
           <Text text="Forget Password" type="span" link="/forget-password" />
         </div>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm font-semibold text-red">{error}</p>}
         <TextButton type="submit" text={loading ? "Loading..." : "Login"} />
       </form>
     </>
