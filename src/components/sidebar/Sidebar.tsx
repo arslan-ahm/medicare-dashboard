@@ -35,7 +35,7 @@ const Sidebar = () => {
         bg-gray-100 p-4 border-r border-gray-200 transition-all duration-300 sticky min-h-[400px] left-0 top-[77px]
       `}
     >
-      <div className="hidden sm:inline-block bg-white absolute top-4 right-[-15px] md:right-[-25px] lg:hidden">
+      <div className="hidden sm:inline-block bg-white absolute top-4 right-[-5px] md:right-[0px] lg:hidden">
         <IconButton
           handleClick={() => setIsOpen(!isOpen)}
           icon={isOpen ? <IoIosArrowBack /> : <IoIosArrowForward />}

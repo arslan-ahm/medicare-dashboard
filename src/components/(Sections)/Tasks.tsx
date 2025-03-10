@@ -1,19 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
 import ModelInterface from "@/components/models/ModelInterface";
-import AddTaskFrom from "@/components/forms/addTask/AddTaskFrom";
+import TaskForm from "@/components/forms/task/TaskFrom";
 import TasksList from "@/components/details/lists/TasksList";
-// import { fetchTasks } from "@/store/slices/task.slice";
-// import { useAppDispatch } from "@/hooks/useRedux";
+import { fetchTasks } from "@/store/slices/task.slice";
+import { useAppDispatch } from "@/hooks/useRedux";
 
 const TasksListSection = () => {
   const [modelOpen, setModelOpen] = useState(false);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchTasks());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, [dispatch]);
   return (
     <>
       <ListHeader
@@ -25,7 +25,7 @@ const TasksListSection = () => {
         <TasksList />
       </div>
       <ModelInterface title="Add Tasks" open={modelOpen} setOpen={setModelOpen}>
-        <AddTaskFrom />
+        <TaskForm />
       </ModelInterface>
     </>
   );

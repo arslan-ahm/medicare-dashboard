@@ -1,17 +1,16 @@
 import React from "react";
 import TextButton from "@/components/TextButton";
 import InputRow, { InputSection } from "../InputRow";
-import CustomSelect from "../CustomSelect";
-import { useAddTaskForm } from "./useAddTaskForm";
-import { TASK_STATUS } from "@/constants/formValues";
+import { useTaskForm } from "./useTaskForm";
+import type { TaskFormEditProp } from "@/types/componentsTypes/taskListItem";
 
-const AddTaskFrom = () => {
+const TaskForm = ({ existingTask }: { existingTask?: TaskFormEditProp }) => {
   const { formData, handleChange, handleSubmit, error, loading } =
-    useAddTaskForm();
+    useTaskForm(existingTask);
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-7 w-full mx-auto bg-white p-6 rounded-md shadow-sm mt-8"
+      className="space-y-7 w-full mx-auto bg-white p-6  rounded-md shadow-sm mt-2"
     >
       <table className="w-full border-separate border-spacing-y-3">
         <tbody>
@@ -38,15 +37,16 @@ const AddTaskFrom = () => {
             setValue={handleChange}
             value={formData.date}
             name="date"
-            inputType="date"
+            inputType="datetime-local"
             required
           />
-          <InputSection title="Specialization">
-            <CustomSelect
+          <InputSection title="Completed">
+            <input
+              type="checkbox"
               name="status"
-              value={formData.status}
+              checked={formData.status}
               onChange={handleChange}
-              options={TASK_STATUS}
+              className=" ml-2 mt-2 w-6 h-6 accent-blue-600 rounded-md border-gray-300 focus:ring-2 focus:ring-blue-400 checked:bg-primary checked:border-transparent"
             />
           </InputSection>
         </tbody>
@@ -57,4 +57,4 @@ const AddTaskFrom = () => {
   );
 };
 
-export default AddTaskFrom;
+export default TaskForm;

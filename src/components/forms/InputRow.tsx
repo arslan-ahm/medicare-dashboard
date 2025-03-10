@@ -33,7 +33,7 @@ export const InputSection: React.FC<{
 }> = ({ title, children }) => {
   return (
     <tr>
-      <td className="align-top pt-2 px-2">{title}</td>
+      <td className="align-top pt-2 px-8">{title}</td>
       <td>{children}</td>
     </tr>
   );

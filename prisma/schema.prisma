@@ -32,7 +32,7 @@ model Task {
   title       String
   description String?
   date        DateTime
-  status      TaskStatus
+  status      Boolean
   doctorId    String     @db.ObjectId
   doctor      Doctor     @relation(fields: [doctorId], references: [id])
 }
@@ -92,11 +92,6 @@ enum AppointmentType {
 enum AppointmentStatus {
   CONFIRMATION_REQUIRED
   CONFIRMED
-}
-
-enum TaskStatus {
-  COMPLETED
-  NOT_COMPLETED
 }
 
 enum PatientStatus {

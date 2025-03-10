@@ -1,6 +1,4 @@
-"use client";
-import TasksListSection from "@/components/(Sections)/taskList/TasksList";
-// import ListHeader from "@/components/details/lists/ListHeader";
+import TasksListSection from "@/components/(Sections)/Tasks";
 
 const Tasks = () => {
   return (

@@ -44,13 +44,13 @@ const RenderEventContent = (eventInfo: EventContentArg) => {
         className={`absolute top-[8px] left-[2px] w-1 h-[60%] rounded-full ${colors.border}`}
       />
 
-      <div className="flex justify-between px-2 z-10">
+      <div className="flex justify-between px-2">
         <p className="font-bold">{extendedProps.status}</p>
         <p>{dayjs(eventInfo.event.start).format("h:mm A")}</p>
       </div>
 
       <div
-        className={`absolute left-0 top-full mt-2 w-48 p-3 shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-[100] ${colors.hoverBg} ${colors.text}`}
+        className={`z-50 absolute left-0 top-full mt-2 w-48 p-3 shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${colors.hoverBg} ${colors.text}`}
       >
         <p className="font-bold">{extendedProps.status}</p>
         <p>Patient: {extendedProps.patientName}</p>

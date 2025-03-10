@@ -1,5 +1,5 @@
 import React from "react";
-import TasksListSection from "@/components/(Sections)/taskList/TasksList";
+import TasksListSection from "@/components/(Sections)/Tasks";
 import AppointmentChart from "@/components/chartHandlers/AppointmentChart";
 import AppointmentSection from "@/components/(Sections)/appointmentList/AppointmentList";
 

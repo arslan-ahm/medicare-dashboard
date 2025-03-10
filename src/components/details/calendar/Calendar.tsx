@@ -2,6 +2,7 @@
 import React from "react";
 import dayjs from "dayjs";
 import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import RenderEventContent from "./RenderEventContent";
@@ -27,20 +28,20 @@ const Calendar: React.FC<CalendarProps> = ({ appointments }) => {
   );
 
   const getInitialView = () => {
-    return window.innerWidth < 768 ? "timeGridDay" : "timeGridWeek";
+    return window.innerWidth < 768 ? "timeGridWeek" : "dayGridMonth"; // Default to month view on larger screens
   };
 
   return (
     <div className="bg-white p-4 rounded-md shadow-md">
-      <h2 className="text-lg font-semibold mb-4">Weekly Schedule</h2>
+      <h2 className="text-lg font-semibold mb-4">Weekly & Monthly Schedule</h2>
       <div className="overflow-x-auto overflow-y-hidden w-full h-[calc(100vh-150px)]">
         <FullCalendar
-          plugins={[timeGridPlugin, interactionPlugin]}
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]} // Added dayGridPlugin
           initialView={getInitialView()}
           headerToolbar={{
             left: "prev,next today",
             center: "title",
-            right: "timeGridWeek,timeGridDay",
+            right: "dayGridMonth,timeGridWeek", // Removed timeGridDay, added dayGridMonth
           }}
           slotMinTime="08:00:00"
           slotMaxTime="18:00:00"

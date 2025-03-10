@@ -16,7 +16,7 @@ const TasksList = () => {
               title={task.title}
               date={task.date}
               description={task.description}
-              status={task.status === "COMPLETED" ? true : false}
+              status={task.status}
             />
           </li>
         ))}

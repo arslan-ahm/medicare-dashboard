@@ -3,7 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
+    console.log("Step - 1");
     const doctorId = req.headers.get("doctorId");
+    console.log("Step - 2");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -11,28 +13,21 @@ export const GET = async (req: NextRequest) => {
         { status: 401 }
       );
     }
+    console.log("Step - 3");
 
     const user = await prisma.doctor.findUnique({
-        where: { id: doctorId },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          specialization: true,
-          organization: true,
-          patients: true,
-          appointments: true,
-          tasks: true,
-        },
-      });
+      where: { id: doctorId }
+    });
+    console.log("Step - 4");
 
-      
+
     return NextResponse.json({
       message: "Got the user successfully.",
       ok: true,
       user,
     });
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       { status: "error", message: "Internal Server Error", error },
       { status: 500 }

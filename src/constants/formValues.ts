@@ -6,10 +6,6 @@ export const SPECIALIZATION_LIST = [
   { label: "Pediatrics", value: "Pediatrics" },
   { label: "Psychiatry", value: "Psychiatry" },
 ];
-export const  TASK_STATUS = [
-  { label: "Completed", value: "COMPLETED" },
-  { label: "Not Completed", value: "NOT_COMPLETED" },
-];
 
 export const PATIENT_STATUS = [
   "On Going",

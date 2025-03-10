@@ -1,3 +1,5 @@
+import { AppointmentStatus } from "@prisma/client";
+
 export type Appointment = {
   id: string;
   date: string;
@@ -6,7 +8,7 @@ export type Appointment = {
   purpose: string;
   duration: number;
   type: string;
-  status: string;
+  status: AppointmentStatus;
   isOnline: boolean;
   patientId: string;
 }

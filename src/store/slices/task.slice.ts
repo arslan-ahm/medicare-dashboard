@@ -16,7 +16,7 @@ export const fetchTasks = createAsyncThunk<
 >("tasks/fetchTasks", async (_, { rejectWithValue }) => {
   try {
     const response = await api.get("/task");
-    return response.data;
+    return response.data.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(
@@ -33,7 +33,7 @@ export const addTask = createAsyncThunk<
 >("tasks/addTask", async (newTask, { rejectWithValue }) => {
   try {
     const response = await api.post("/task", newTask);
-    return response.data;
+    return response.data.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(
@@ -48,7 +48,7 @@ export const editTask = createAsyncThunk<Task, Task, { rejectValue: string }>(
   async (updatedTask, { rejectWithValue }) => {
     try {
       const response = await api.put(`/task/${updatedTask.id}`, updatedTask);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(
@@ -65,8 +65,8 @@ export const deleteTask = createAsyncThunk<
   { rejectValue: string }
 >("tasks/deleteTask", async (taskId, { rejectWithValue }) => {
   try {
-    await api.delete(`/task/${taskId}`);
-    return taskId;
+    const response = await api.delete(`/task/${taskId}`);
+    return response.data.data.id;
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.response?.data?.message);
@@ -101,12 +101,18 @@ const taskSlice = createSlice({
         state.error = action.payload || "Failed to load tasks";
       })
 
-      .addCase(addTask.pending, (state) => {
+      .addCase(addTask.pending, (state, action) => {
         state.loading = true;
+        state.tasks.push({
+          ...action.meta.arg,
+          id: crypto.randomUUID(),
+        });
       })
       .addCase(addTask.fulfilled, (state, action) => {
         state.loading = false;
-        state.tasks.push(action.payload);
+        state.tasks = state.tasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        );
       })
       .addCase(addTask.rejected, (state, action) => {
         state.loading = false;
@@ -127,12 +133,12 @@ const taskSlice = createSlice({
         state.error = action.payload || "Failed to update task";
       })
 
-      .addCase(deleteTask.pending, (state) => {
+      .addCase(deleteTask.pending, (state, action) => {
         state.loading = true;
+        state.tasks = state.tasks.filter((task) => task.id !== action.meta.arg);
       })
-      .addCase(deleteTask.fulfilled, (state, action) => {
+      .addCase(deleteTask.fulfilled, (state) => {
         state.loading = false;
-        state.tasks = state.tasks.filter((task) => task.id !== action.payload);
       })
       .addCase(deleteTask.rejected, (state, action) => {
         state.loading = false;

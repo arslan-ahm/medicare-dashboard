@@ -3,17 +3,15 @@
 import { CiFilter } from "react-icons/ci";
 import { IoAddOutline, IoSearchOutline } from "react-icons/io5";
 import IconButton from "./IconButton";
-import ModelInterface from "../models/ModelInterface";
-import AddAppointmentForm from "../forms/addAppointment/AddAppointmentForm";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const PatientActions = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const patientBarComponents = [
     {
       icon: <IoAddOutline />,
       handleClick: () => {
-        setIsOpen(true);
+       router.push("patients/add");
       },
       hide: false,
     },
@@ -33,8 +31,6 @@ const PatientActions = () => {
     },
   ];
 
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <ul className="flex space-x-2">
@@ -47,9 +43,6 @@ const PatientActions = () => {
           </li>
         ))}
       </ul>
-      <ModelInterface title="Add Appointment" open={isOpen} setOpen={setIsOpen}>
-        <AddAppointmentForm />
-      </ModelInterface>
     </>
   );
 };

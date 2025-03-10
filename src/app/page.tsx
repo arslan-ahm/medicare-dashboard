@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar/frontendNavbar/FrontendNavbar";
+import Navbar from "@/components/navbar/FrontendNavbar";
 import Text from "@/components/Text";
 import { IMAGES } from "@/constants/imgs";
 import Image from "next/image";

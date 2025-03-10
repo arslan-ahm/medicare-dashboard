@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 
 export const GET = async (req: NextRequest) => {
   try {
-    const doctorId = req.headers.get("doctorid");
+    const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -11,7 +11,7 @@ export const GET = async (req: NextRequest) => {
         { status: 401 }
       );
     }
-
+    
     const tasks = await prisma.task.findMany({
       where: { doctorId },
       orderBy: {
@@ -19,33 +19,9 @@ export const GET = async (req: NextRequest) => {
       },
     });
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const todayTasks = tasks.filter(
-      (task) => new Date(task.date).toDateString() === today.toDateString()
-    );
-
-    const pastUncompletedTasks = tasks.filter(
-      (task) => new Date(task.date) < today && task.status !== "COMPLETED"
-    );
-
-    const upcomingUncompletedTasks = tasks.filter(
-      (task) => new Date(task.date) > today && task.status !== "COMPLETED"
-    );
-
-    const upcomingCompletedTasks = tasks.filter(
-      (task) => new Date(task.date) > today && task.status === "COMPLETED"
-    );
-
     return NextResponse.json({
       status: "success",
-      data: {
-        todayTasks,
-        pastUncompletedTasks,
-        upcomingUncompletedTasks,
-        upcomingCompletedTasks,
-      },
+      data: tasks,
       message: "Fetched all tasks successfully.",
       ok: true,
     });
@@ -61,7 +37,7 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const doctorId = req.headers.get("doctorid");
+    const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -72,7 +48,8 @@ export const POST = async (req: NextRequest) => {
 
     const { title, description, date, status } = await req.json();
 
-    if (!title || !date || !status) {
+    if (!title || !date || status === undefined) {
+      console.log("Missing required fields", { title, description, date, status });
       return NextResponse.json(
         { status: "error", message: "Missing required fields.", ok: false },
         { status: 400 }

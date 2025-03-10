@@ -8,7 +8,7 @@ export const GET = async (
   try {
     const { id } = params;
     const task = await prisma.task.findUnique({ where: { id } });
-    const doctorId = req.headers.get("doctorid");
+    const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -44,10 +44,10 @@ export const PUT = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
+  const body = await req.json();
   try {
     const { id } = params;
-    const body = await req.json();
-    const doctorId = req.headers.get("doctorid");
+    const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -56,10 +56,20 @@ export const PUT = async (
       );
     }
 
+    console.log("PUT request - Step 4");
+    const { date, status, description, title } = body;
+
     const updatedTask = await prisma.task.update({
-      where: { id },
-      data: body,
+      where: { id }, // Use id for lookup
+      data: {
+        date:  new Date(date), 
+        status, 
+        description, 
+        title
+      },
     });
+
+    console.log("PUT request - Step 5", updatedTask);
 
     return NextResponse.json({
       status: "success",
@@ -68,6 +78,8 @@ export const PUT = async (
       ok: true,
     });
   } catch (error) {
+    console.log('Request message =>', body);
+    console.log('Error message =>', error);
     if (error instanceof Error) {
       return NextResponse.json(
         { status: "error", message: "Failed to update task.", ok: false },
@@ -83,12 +95,21 @@ export const DELETE = async (
 ) => {
   try {
     const { id } = params;
-    const doctorId = req.headers.get("doctorid");
+    const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
       return NextResponse.json(
         { status: "error", message: "Unauthorized access.", ok: false },
         { status: 401 }
+      );
+    }
+
+    const itemToDelete = await prisma.task.findUnique({ where: { id } });
+
+    if (!itemToDelete) {
+      return NextResponse.json(
+        { status: "error", message: "Task not found.", ok: false },
+        { status: 404 }
       );
     }
 
@@ -98,6 +119,7 @@ export const DELETE = async (
 
     return NextResponse.json({
       status: "success",
+      data: itemToDelete,
       message: "Task deleted successfully.",
       ok: true,
     });
