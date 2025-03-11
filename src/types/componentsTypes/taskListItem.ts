@@ -9,7 +9,6 @@ export type TaskListItemProps = {
 }
 
 export type OptionButtonProps = {
-    id: string;
     text: string;
     type: "edit" | "delete";
     handleClick: () => void;

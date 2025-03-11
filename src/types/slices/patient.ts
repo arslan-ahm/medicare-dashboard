@@ -2,13 +2,13 @@ export type Patient = {
     id: string;
     forename: string;
     surname: string;
-    phone?: string;
+    image?: string;
     dateOfBirth: string;
-    gender: "male" | "female";
+    gender: "MALE" | "FEMALE";
     diagnosis: string;
-    status: "On Going" | "Recovered" | "Awaiting Surgery" | "On treatment";
+    status: "OTHER" | "RECOVERED" | "AWAITING_SURGERY" | "ON_TREATMENT";
     notes?: string;
-    upcomingAppointmentId?: string;
+    upcomingAppointmentId?: Date | null;
 }
 
 export type PatientsType = {

@@ -1,17 +1,46 @@
+import { useAppDispatch } from "@/hooks/useRedux";
+import { addPatient, updatePatient } from "@/store/slices/patient.slice";
+import { Patient } from "@/types/slices/patient";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
-export const useAddPatientForm = () => {
-  const [formData, setFormData] = useState({
-    forename: "",
-    surname: "",
-    dateOfBirth: "",
-    gender: "",
-    diagnosis: "",
-    notes: "",
-    status: "",
-    upcomingAppointmentId: "",
-  });
+type PatientForm = {
+  image?: string;
+  forename: string;
+  surname: string;
+  dateOfBirth: string
+  notes: string;
+  diagnosis: string;
+  gender: "MALE" | "FEMALE";
+  status: "RECOVERED" | "AWAITING_SURGERY" | "ON_TREATMENT" | "OTHER";
+  upcomingAppointmentId: Date | null;
+}
+
+const initailState: PatientForm = {
+  image: "",
+  forename: "",
+  surname: "",
+  dateOfBirth: "",
+  gender: "MALE",
+  diagnosis: "",
+  notes: "",
+  status: "OTHER",
+  upcomingAppointmentId: null,
+}
+
+export const useAddPatientForm = (existingPatient?: Patient) => {
+  const dispatch = useAppDispatch();
+  const [formData, setFormData] = useState<PatientForm>(existingPatient ? {
+    forename: existingPatient.forename,
+    surname: existingPatient.surname,
+    dateOfBirth: existingPatient.dateOfBirth,
+    gender: existingPatient.gender,
+    notes: existingPatient.notes || "",
+    image: existingPatient.image || "",
+    diagnosis: existingPatient.diagnosis,
+    status: existingPatient.status,
+    upcomingAppointmentId: existingPatient.upcomingAppointmentId ?? null
+  } : initailState);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -25,52 +54,36 @@ export const useAddPatientForm = () => {
       ...prevData,
       [name]: value,
     }));
-    console.log(name, " => ", value);
     setError(null);
   };
-  const handleAddPatient = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Starting handleAddPatient...", formData);
+  const handleAddPatient = async () => {
     setLoading(true);
-    const { forename, diagnosis, gender, upcomingAppointmentId, surname } =
+    const { forename, diagnosis, gender, upcomingAppointmentId, dateOfBirth, status } =
       formData;
 
-    console.log("formData before validation:", formData);
     if (
       !forename ||
-      !diagnosis ||
+      !dateOfBirth ||
       !gender ||
-      !surname ||
+      !diagnosis ||
+      !status ||
       !upcomingAppointmentId
     ) {
-      console.log("Validation failed: Please fill all the fields");
       setLoading(false);
       return toast.error("Please fill all the fields");
     }
 
-    console.log("Validation passed: All fields are filled");
 
     try {
-      console.log("Adding...");
-      //   const res = await fetch("/api/patient/", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email,
-      //       password,
-      //       name,
-      //       specialization,
-      //     }),
-      //   });
-
-      //   if (res.ok) {
-      //     toast.success("Account created successfully");
-      //     router.push("/login");
-      //     return;
-      //   }
-      console.log("Patient added successfully...", formData);
+      if (existingPatient) {
+        await dispatch(updatePatient({ ...existingPatient, ...formData })).unwrap();
+        toast.success("Patient updated successfully");
+      } else {
+        await dispatch(addPatient(formData)).unwrap();
+        toast.success("Patient added successfully");
+      }
+    
+      setFormData(initailState);
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong");
@@ -78,8 +91,18 @@ export const useAddPatientForm = () => {
       setLoading(false);
     }
 
-    
+
   };
 
-  return { formData, handleChange, handleAddPatient, error, loading };
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setFormData((prevData) => ({
+        ...prevData,
+        image: URL.createObjectURL(file),
+      }));
+    }
+  };
+
+  return { formData, handleChange, handleAddPatient, handleImageChange, error, loading };
 };

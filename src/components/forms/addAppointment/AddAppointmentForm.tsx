@@ -5,7 +5,7 @@ import TextButton from "../../TextButton";
 import { useAddAppointmentForm } from "./useAddAppointmentForm";
 import InputRow, { InputSection } from "../InputRow";
 import CustomSelect from "../CustomSelect";
-import { SPECIALIZATION_LIST } from "@/constants/formValues";
+import { SPECIALIZATION_LIST } from "@/constants/formData";
 import { FaUserDoctor } from "react-icons/fa6";
 import { FaBusinessTime } from "react-icons/fa";
 import { FaMagnifyingGlassLocation } from "react-icons/fa6";

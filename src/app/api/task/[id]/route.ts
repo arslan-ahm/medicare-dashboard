@@ -44,8 +44,8 @@ export const PUT = async (
   req: NextRequest,
   { params }: { params: { id: string } }
 ) => {
-  const body = await req.json();
   try {
+    const body = await req.json();
     const { id } = params;
     const doctorId = req.headers.get("doctorId");
 
@@ -56,11 +56,10 @@ export const PUT = async (
       );
     }
 
-    console.log("PUT request - Step 4");
     const { date, status, description, title } = body;
 
     const updatedTask = await prisma.task.update({
-      where: { id }, // Use id for lookup
+      where: { id },
       data: {
         date:  new Date(date), 
         status, 
@@ -78,8 +77,6 @@ export const PUT = async (
       ok: true,
     });
   } catch (error) {
-    console.log('Request message =>', body);
-    console.log('Error message =>', error);
     if (error instanceof Error) {
       return NextResponse.json(
         { status: "error", message: "Failed to update task.", ok: false },

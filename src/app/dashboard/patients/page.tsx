@@ -1,15 +1,12 @@
-import PatientTable from "@/components/details/Table";
-import PageTitleBar from "@/components/pageTitlebar/PageTitieBar";
-import PatientActions from "@/components/pageTitlebar/PatientActions";
+import PatientHeader from "@/components/(Sections)/PatientHeader";
+import PatientTable from "@/components/details/table/Table";
 
 const PatientPage = () => {
   return (
-    <section className="flex flex-col w-full pt-2 overflow-x-auto">
-      <PageTitleBar title="Total Population" subtitle={`(${200})`}>
-        <PatientActions />
-      </PageTitleBar>
+    <section className="flex flex-col w-full pt-2">
+      <PatientHeader />
 
-      <div className="overflow-x-auto sm:w-[70vh] md:w-full">
+      <div className="relative overflow-auto custom-scroll shadow-md bg-white mt-3">
         <PatientTable />
       </div>
     </section>

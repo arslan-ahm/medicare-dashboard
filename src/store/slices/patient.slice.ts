@@ -1,5 +1,7 @@
+import api from "@/lib/axiosInstance";
 import { Patient, PatientsType } from "@/types/slices/patient";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
 
 const initialState: PatientsType = {
   patients: [],
@@ -11,11 +13,14 @@ export const fetchPatients = createAsyncThunk(
   "patients/fetchPatients",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("/api/patient");
-      if (!response.ok) throw new Error("Failed to fetch patients");
-      return await response.json();
+      const response = await api.get("/patient");
+      return response.data.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to fetch patient"
+        );
+      }
     }
   }
 );
@@ -24,16 +29,14 @@ export const addPatient = createAsyncThunk(
   "patients/addPatient",
   async (patientData: Omit<Patient, "id">, { rejectWithValue }) => {
     try {
-      const response = await fetch("/api/patient", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(patientData),
-      });
-
-      if (!response.ok) throw new Error("Failed to add patient");
-      return await response.json();
+      const response = await api.post("/patient", patientData);
+      return response.data.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to add Patient"
+        );
+      }
     }
   }
 );
@@ -41,20 +44,18 @@ export const addPatient = createAsyncThunk(
 export const updatePatient = createAsyncThunk(
   "patients/updatePatient",
   async (
-    { id, data }: { id: string; data: Partial<Patient> },
+    data: Partial<Patient>,
     { rejectWithValue }
   ) => {
     try {
-      const response = await fetch(`/api/patient/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) throw new Error("Failed to update patient");
-      return await response.json();
+      const response = await api.put(`/patient/${data.id}`, data);
+      return response.data.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to update Patient"
+        );
+      }
     }
   }
 );
@@ -63,11 +64,12 @@ export const deletePatient = createAsyncThunk(
   "patients/deletePatient",
   async (id: string, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/patient/${id}`, { method: "DELETE" });
-      if (!response.ok) throw new Error("Failed to delete patient");
-      return id;
+      const response = await api.delete(`/patient/${id}`);
+      return response.data.data.id;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data?.message || "Failed to Detele Patient");
+      }
     }
   }
 );
@@ -115,40 +117,34 @@ const patientSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      .addCase(updatePatient.pending, (state) => {
+      .addCase(updatePatient.pending, (state, action) => {
+        const index = state.patients.findIndex((p) => p.id === action.meta.arg.id);
+        if (index !== -1) {
+          state.patients[index] = { ...state.patients[index], ...action.meta.arg };
+        }
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        updatePatient.fulfilled,
-        (state, action: PayloadAction<Patient>) => {
-          state.loading = false;
-          const index = state.patients.findIndex(
-            (p) => p.id === action.payload.id
-          );
-          if (index !== -1) {
-            state.patients[index] = action.payload;
-          }
+      .addCase(updatePatient.fulfilled, (state, action: PayloadAction<Patient>) => {
+        state.loading = false;
+        const index = state.patients.findIndex((p) => p.id === action.payload.id);
+        if (index !== -1) {
+          state.patients[index] = action.payload;
         }
-      )
+      })
       .addCase(updatePatient.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       })
 
-      .addCase(deletePatient.pending, (state) => {
+      .addCase(deletePatient.pending, (state, action) => {
+        state.patients = state.patients.filter((p) => p.id !== action.meta.arg);
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        deletePatient.fulfilled,
-        (state, action: PayloadAction<string>) => {
-          state.loading = false;
-          state.patients = state.patients.filter(
-            (p) => p.id !== action.payload
-          );
-        }
-      )
+      .addCase(deletePatient.fulfilled, (state) => {
+        state.loading = false;
+      })
       .addCase(deletePatient.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;

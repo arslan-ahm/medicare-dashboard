@@ -5,7 +5,7 @@ import TextButton from "../../TextButton";
 import { useEditProfileForm } from "./useEditProfileForm";
 import InputRow, { InputSection } from "../InputRow";
 import CustomSelect from "../CustomSelect";
-import { SPECIALIZATION_LIST } from "@/constants/formValues";
+import { SPECIALIZATION_LIST } from "@/constants/formData";
 import FormHeader from "../FormHeader";
 
 const EditProfileForm = () => {

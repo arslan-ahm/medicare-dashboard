@@ -40,10 +40,9 @@ model Task {
 model Patient {
   id           String        @id @default(auto()) @map("_id") @db.ObjectId
   forename     String
-  surname      String
-  phone        String?
+  surname      String?
   dateOfBirth  DateTime
-  gender       Gender?
+  gender       Gender
   diagnosis    String
   status       PatientStatus
   notes        String?
@@ -81,7 +80,6 @@ model Appointment {
 enum Gender {
   MALE
   FEMALE
-  OTHER
 }
 
 enum AppointmentType {

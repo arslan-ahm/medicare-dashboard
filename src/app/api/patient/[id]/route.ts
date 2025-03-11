@@ -49,6 +49,7 @@ export const PUT = async (
   { params }: { params: { id: string } }
 ) => {
   try {
+    const body = await req.json();
     const { id } = params;
     const doctorId = req.headers.get("doctorId");
 
@@ -59,11 +60,20 @@ export const PUT = async (
       );
     }
 
-    const body = await req.json();
+    const { forename, surname, dateOfBirth, gender, diagnosis, status, notes, doctorId: bodyDoctorId } = body;
 
     const updatedPatient = await prisma.patient.update({
       where: { id },
-      data: body,
+      data: {
+      forename,
+      surname,
+      dateOfBirth: new Date(dateOfBirth),
+      gender,
+      diagnosis,
+      status,
+      notes,
+      doctorId: bodyDoctorId,
+      },
     });
 
     return NextResponse.json({
@@ -73,6 +83,8 @@ export const PUT = async (
       ok: true,
     });
   } catch (error) {
+    console.log("Message =>", error);
+
     if (error instanceof Error) {
       return NextResponse.json(
         { status: "error", message: "Failed to update patient.", ok: false },

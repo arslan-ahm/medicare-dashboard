@@ -4,7 +4,7 @@ import React from "react";
 import { useRegisterForm } from "./useRegisterForm";
 import InputField from "../../InputField";
 import TextButton from "../../TextButton";
-import { SPECIALIZATION_LIST } from "@/constants/formValues";
+import { SPECIALIZATION_LIST } from "@/constants/formData";
 import CustomSelect from "../CustomSelect";
 
 const RegisterForm = () => {

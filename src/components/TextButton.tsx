@@ -11,7 +11,11 @@ const TextButton: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      onClick={onClick}
+      onClick={(e) => {
+        if (!onClick) return;
+        e.preventDefault();
+        onClick();
+      }}
       type={type}
       className={`
         border-2 border-primary py-2 px-3 text-sm lg:text-md lg:text-lg rounded-md flex justify-center text-center items-center

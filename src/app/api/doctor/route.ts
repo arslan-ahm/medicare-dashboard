@@ -3,9 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
-    console.log("Step - 1");
     const doctorId = req.headers.get("doctorId");
-    console.log("Step - 2");
 
     if (!doctorId) {
       return NextResponse.json(
@@ -13,13 +11,10 @@ export const GET = async (req: NextRequest) => {
         { status: 401 }
       );
     }
-    console.log("Step - 3");
 
     const user = await prisma.doctor.findUnique({
       where: { id: doctorId }
     });
-    console.log("Step - 4");
-
 
     return NextResponse.json({
       message: "Got the user successfully.",

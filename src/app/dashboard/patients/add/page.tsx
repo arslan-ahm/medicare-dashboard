@@ -1,19 +1,12 @@
 import React from "react";
 import AddPatientForm from "@/components/forms/addPatient/AddPatientForm";
-import PageTitleBar from "@/components/pageTitlebar/PageTitieBar";
-import TextButton from "@/components/TextButton";
 
 const AddPatient = () => {
   return (
     <section>
-      <PageTitleBar title="Add Patients">
-        <ul className="flex gap-1 sm:gap-2 lg:gap-4">
-          <TextButton text="Cancel" variant="outline" />
-          <TextButton text={"Save"} />
-        </ul>
-      </PageTitleBar>
-
-      <AddPatientForm />
+      <div className="bg-white w-full md:w-[80%] mx-auto px-4 py-2 space-y-2 rounded-lg shadow-md mt-3 ">
+        <AddPatientForm />
+      </div>
     </section>
   );
 };

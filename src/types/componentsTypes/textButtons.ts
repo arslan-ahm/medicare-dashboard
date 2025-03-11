@@ -2,6 +2,6 @@ export type ButtonProps = {
     variant?: "outline" | "filled";
     text: string;
     type?: "submit" | "button";
-    onClick?: () => void;
+    onClick?: (() => void);
     className?: string;
   };
