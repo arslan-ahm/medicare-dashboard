@@ -9,6 +9,7 @@ const AppointmentChart: React.FC<AppointmentChartProps> = ({
   percentage,
   type = "success",
   containerStyles,
+  children,
 }) => {
   return (
     <div
@@ -51,7 +52,11 @@ const AppointmentChart: React.FC<AppointmentChartProps> = ({
               </div>
             )}
           </div>
-          <div className="bg-lime-100 w-32 h-32 rounded-full"></div>
+          {children ? (
+            <div className="w-[80%] h-full flex justify-end">{children}</div>
+          ) : (
+            <div className="bg-lime-100 w-32 h-32 rounded-full">{children}</div>
+          )}
         </div>
       </div>
     </div>

@@ -4,4 +4,5 @@ export type AppointmentChartProps = {
     percentage?: string;
     type?: "success" | "loss";
     containerStyles?: string;
+    children?: React.ReactNode;
   };
