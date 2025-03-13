@@ -7,7 +7,7 @@ import OptionButton from "../DropdownOptions";
 import ModelInterface from "@/components/models/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
 import AddPatientForm from "@/components/forms/addPatient/AddPatientForm";
-import { formatDate } from "@/lib/formatDate";
+import { formatDate } from "@/lib/timeHandler";
 import { PATIENT_STATUS } from "@/constants/formData";
 import { deletePatient } from "@/store/slices/patient.slice";
 import toast from "react-hot-toast";

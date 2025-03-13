@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import IconButton from "../../pageTitlebar/IconButton";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
-import { formatDate } from "@/lib/formatDate";
+import { formatDate } from "@/lib/timeHandler";
 import ModelInterface from "@/components/models/ModelInterface";
 import TaskForm from "@/components/forms/task/TaskFrom";
 import { deleteTask } from "@/store/slices/task.slice";

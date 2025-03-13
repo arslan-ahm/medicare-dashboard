@@ -22,7 +22,13 @@ ChartJS.register(
   Legend,
   Filler
 );
-const LineChart = ({ type }: { type: "success" | "loss" }) => {
+const LineChart = ({
+  type,
+  chartData,
+}: {
+  type: "success" | "loss";
+  chartData: number[];
+}) => {
   const createGradient = (
     ctx: CanvasRenderingContext2D,
     type: "success" | "loss"
@@ -30,9 +36,9 @@ const LineChart = ({ type }: { type: "success" | "loss" }) => {
     const colors =
       type === "success"
         ? [
-            "rgba(39, 174, 96, 1)",
-            "rgba(39, 174, 96, 0.2)",
-            "rgba(39, 174, 96, 0)",
+            "rgba(47, 128, 237, 1)",
+            "rgba(47, 128, 237, 0.2)",
+            "rgba(47, 128, 237, 0)",
           ]
         : [
             "rgba(235, 87, 87, 1)",
@@ -53,9 +59,9 @@ const LineChart = ({ type }: { type: "success" | "loss" }) => {
     datasets: [
       {
         label: "Online Consultations",
-        data: [96, 120, 85, 140, 100, 115, 80],
+        data: chartData,
         borderColor:
-          type === "success" ? "rgb(39, 174, 96)" : "rgb(235, 87, 87)",
+          type === "success" ? "rgb(47 128 237)" : "rgb(235, 87, 87)",
         borderWidth: 2,
         fill: true,
         backgroundColor: (context: {

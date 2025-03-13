@@ -8,6 +8,7 @@ export type Appointment = {
   type: "" | "FIRST_TIME" | "FOLLOW_UP" | "SURGERY";
   status: "CONFIRMED" | "NOT_CONFIRMED";
   isOnline: boolean;
+  createdAt?: string;
 }
 
 export type AppointmentsType = {
