@@ -27,3 +27,13 @@ export const PATIENT_TABLE_HEADERS = [
   "Next Appointment",
   "",
 ];
+
+export const APPOINTMENT_TYPE = [
+  { label: "First Time", value: "FIRST_TIME" },
+  { label: "Follow Up", value: "FOLLOW_UP" },
+  { label: "Surgery", value: "SURGERY" },
+];
+export const APPOINTMENT_STATUS = [
+  { label: "Confirmed", value: "CONFIRMED" },
+  { label: "Not Confirmed", value: "NOT_CONFIRMED" },
+];

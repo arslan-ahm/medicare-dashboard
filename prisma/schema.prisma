@@ -28,51 +28,47 @@ model Doctor {
 }
 
 model Task {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   description String?
   date        DateTime
   status      Boolean
-  doctorId    String     @db.ObjectId
-  doctor      Doctor     @relation(fields: [doctorId], references: [id])
+  doctorId    String   @db.ObjectId
+  doctor      Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 model Patient {
-  id           String        @id @default(auto()) @map("_id") @db.ObjectId
-  forename     String
-  surname      String?
-  dateOfBirth  DateTime
-  gender       Gender
-  diagnosis    String
-  status       PatientStatus
-  notes        String?
-  doctorId     String        @db.ObjectId
-  doctor       Doctor        @relation(fields: [doctorId], references: [id])
-  appointments Appointment[] @relation("PatientAppointments")
+  id                  String        @id @default(auto()) @map("_id") @db.ObjectId
+  forename            String
+  surname             String?
+  image               String?
+  dateOfBirth         DateTime
+  gender              Gender
+  diagnosis           String
+  status              PatientStatus
+  notes               String?
+  upcomingAppointment DateTime
+  doctorId            String        @db.ObjectId
+  doctor              Doctor        @relation(fields: [doctorId], references: [id])
 
-  lastAppointments     Appointment[] @relation(name: "LastAppointment")
-  upcomingAppointments Appointment[] @relation(name: "UpcomingAppointment")
+  lastAppointments Appointment[] @relation(name: "LastAppointment")
 
-  createdAt DateTime @default(now())
+  createdAt   DateTime      @default(now())
 }
 
 model Appointment {
-  id        String            @id @default(auto()) @map("_id") @db.ObjectId
-  date      DateTime
-  time      String
-  location  String
-  purpose   String
-  duration  Int
-  type      AppointmentType
-  status    AppointmentStatus
-  isOnline  Boolean
-  doctorId  String            @db.ObjectId
-  doctor    Doctor            @relation(fields: [doctorId], references: [id])
-  patientId String            @db.ObjectId
-  patient   Patient           @relation(fields: [patientId], references: [id], name: "PatientAppointments")
+  id          String            @id @default(auto()) @map("_id") @db.ObjectId
+  patientName String
+  start_time  String
+  end_time    String
+  purpose     String
+  type        AppointmentType
+  status      AppointmentStatus
+  isOnline    Boolean
+  doctorId    String            @db.ObjectId
+  doctor      Doctor            @relation(fields: [doctorId], references: [id])
 
   asLastAppointment     Patient? @relation(name: "LastAppointment", fields: [id], references: [id])
-  asUpcomingAppointment Patient? @relation(name: "UpcomingAppointment", fields: [id], references: [id])
 
   createdAt DateTime @default(now())
 }
@@ -85,10 +81,11 @@ enum Gender {
 enum AppointmentType {
   FIRST_TIME
   FOLLOW_UP
+  SURGERY
 }
 
 enum AppointmentStatus {
-  CONFIRMATION_REQUIRED
+  NOT_CONFIRMED
   CONFIRMED
 }
 

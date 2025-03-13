@@ -14,7 +14,6 @@ export const GET = async (req: NextRequest) => {
 
     const patients = await prisma.patient.findMany({
       where: { doctorId },
-      include: { appointments: true },
     });
 
     return NextResponse.json({
@@ -24,6 +23,7 @@ export const GET = async (req: NextRequest) => {
       ok: true,
     });
   } catch (error) {
+    console.error(error);
     if (error instanceof Error) {
       return NextResponse.json(
         { status: "error", message: "Failed to fetch patients.", ok: false },
@@ -117,14 +117,15 @@ export const POST = async (req: NextRequest) => {
 
     const newPatient = await prisma.patient.create({
       data: {
-        forename: body.forename,
-        surname: body.surname,
-        phone: body.phone,
-        dateOfBirth: new Date(body.dateOfBirth),
-        gender: body.gender,
-        diagnosis: body.diagnosis,
-        status: body.status,
-        notes: body.notes,
+        forename: body?.forename,
+        surname: body?.surname,
+        gender: body?.gender,
+        diagnosis: body?.diagnosis,
+        status: body?.status,
+        notes: body?.notes,
+        upcomingAppointment: body?.upcomingAppointment
+          ? new Date(body?.upcomingAppointment) : "",
+        dateOfBirth: new Date(body?.dateOfBirth),
         doctorId: doctorId,
       },
     });

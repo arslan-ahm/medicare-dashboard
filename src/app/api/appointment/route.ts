@@ -14,10 +14,6 @@ export const GET = async (req: NextRequest) => {
 
     const appointments = await prisma.appointment.findMany({
       where: { doctorId },
-      include: {
-        patient: true,
-      },
-      orderBy: { date: "asc" },
     });
 
     return NextResponse.json({
@@ -40,15 +36,13 @@ export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
     const {
-      date,
-      time,
-      location,
+      start_time,
+      end_time,
+      patientName,
       purpose,
-      duration,
       type,
       status,
       isOnline,
-      patientId,
     } = body;
     const doctorId = req.headers.get("doctorId");
 
@@ -60,14 +54,13 @@ export const POST = async (req: NextRequest) => {
     }
 
     if (
-      !date ||
-      !time ||
-      !location ||
+      !patientName ||
       !purpose ||
-      !duration ||
-      !type ||
+      !start_time ||
+      !end_time ||
       !status ||
-      !patientId
+      !type ||
+      isOnline === undefined
     ) {
       return NextResponse.json(
         { status: "error", message: "All required fields must be provided.", ok: false },
@@ -77,16 +70,14 @@ export const POST = async (req: NextRequest) => {
 
     const newAppointment = await prisma.appointment.create({
       data: {
-        date: new Date(date),
-        time,
-        location,
+        start_time,
+        end_time,
         purpose,
-        duration,
+        patientName,
         type,
         status,
         isOnline,
         doctor: { connect: { id: doctorId } },
-        patient: { connect: { id: patientId } },
       },
     });
 
@@ -99,7 +90,7 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     if (error instanceof Error) {
       return NextResponse.json(
-        { status: "error", message: "Failed to create appointment.", ok: false },
+        { status: "error", message: error.message, ok: false },
         { status: 500 }
       );
     }

@@ -18,9 +18,6 @@ export const GET = async (
 
     const appointment = await prisma.appointment.findUnique({
       where: { id },
-      include: {
-        patient: true,
-      },
     });
 
     if (!appointment) {
@@ -62,9 +59,19 @@ export const PUT = async (
       );
     }
 
+    const {start_time, end_time, patientName, purpose, type, status, isOnline} = body;
     const updatedAppointment = await prisma.appointment.update({
       where: { id },
-      data: body,
+      data: {
+        patientName,
+        start_time,
+        end_time,
+        purpose,
+        type,
+        status,
+        isOnline,
+        doctorId,
+      },
     });
 
     return NextResponse.json({
@@ -98,12 +105,17 @@ export const DELETE = async (
       );
     }
 
-    await prisma.appointment.delete({
-      where: { id },
-    });
+    const itemToDelete = await prisma.appointment.findUnique({ where: { id } });
 
+    if (!itemToDelete) {
+      return NextResponse.json(
+        { status: "error", message: "Task not found.", ok: false },
+        { status: 404 }
+      );
+    }
     return NextResponse.json({
       status: "success",
+      data: itemToDelete,
       message: "Appointment deleted successfully.",
       ok: true,
     });

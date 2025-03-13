@@ -14,6 +14,5 @@ export type CalendarEvent = {
         status: string;
         patientName: string;
         location: string;
-        isOnline: boolean;
     };
 };

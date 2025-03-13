@@ -6,7 +6,7 @@ import IconButton from "./IconButton";
 import { BsPrinter } from "react-icons/bs";
 import { useState } from "react";
 import ModelInterface from "../models/ModelInterface";
-import AddAppointmentForm from "../forms/addAppointment/AddAppointmentForm";
+import AppointmentForm from "../forms/Appointment/AppointmentForm";
 
 const ScheduleActions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +52,7 @@ const ScheduleActions = () => {
         ))}
       </ul>
       <ModelInterface title="Add Appointment" open={isOpen} setOpen={setIsOpen}>
-        <AddAppointmentForm />
+        <AppointmentForm />
       </ModelInterface>
     </>
   );

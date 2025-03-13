@@ -56,7 +56,7 @@ const RenderEventContent = (eventInfo: EventContentArg) => {
         <p>Patient: {extendedProps.patientName}</p>
         <p>Purpose: {eventInfo.event.title}</p>
         <p>
-          Location: {extendedProps.isOnline ? "Online" : extendedProps.location}
+          Location: {extendedProps.location ? "Online" : extendedProps.location}
         </p>
         <p>Time: {dayjs(eventInfo.event.start).format("h:mm A")}</p>
       </div>

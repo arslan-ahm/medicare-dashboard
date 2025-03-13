@@ -13,7 +13,7 @@ type PatientForm = {
   diagnosis: string;
   gender: "MALE" | "FEMALE";
   status: "RECOVERED" | "AWAITING_SURGERY" | "ON_TREATMENT" | "OTHER";
-  upcomingAppointmentId: Date | null;
+  upcomingAppointment: string | null;
 }
 
 const initailState: PatientForm = {
@@ -25,21 +25,23 @@ const initailState: PatientForm = {
   diagnosis: "",
   notes: "",
   status: "OTHER",
-  upcomingAppointmentId: null,
+  upcomingAppointment: null,
 }
 
 export const useAddPatientForm = (existingPatient?: Patient) => {
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<PatientForm>(existingPatient ? {
     forename: existingPatient.forename,
-    surname: existingPatient.surname,
+    surname: existingPatient.surname || "",
     dateOfBirth: existingPatient.dateOfBirth,
     gender: existingPatient.gender,
     notes: existingPatient.notes || "",
     image: existingPatient.image || "",
     diagnosis: existingPatient.diagnosis,
     status: existingPatient.status,
-    upcomingAppointmentId: existingPatient.upcomingAppointmentId ?? null
+    upcomingAppointment: existingPatient.upcomingAppointment
+      ? new Date(existingPatient.upcomingAppointment).toISOString().slice(0, 16)
+      : null,
   } : initailState);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -58,7 +60,7 @@ export const useAddPatientForm = (existingPatient?: Patient) => {
   };
   const handleAddPatient = async () => {
     setLoading(true);
-    const { forename, diagnosis, gender, upcomingAppointmentId, dateOfBirth, status } =
+    const { forename, diagnosis, gender, upcomingAppointment, dateOfBirth, status } =
       formData;
 
     if (
@@ -67,7 +69,7 @@ export const useAddPatientForm = (existingPatient?: Patient) => {
       !gender ||
       !diagnosis ||
       !status ||
-      !upcomingAppointmentId
+      !upcomingAppointment
     ) {
       setLoading(false);
       return toast.error("Please fill all the fields");
@@ -76,13 +78,23 @@ export const useAddPatientForm = (existingPatient?: Patient) => {
 
     try {
       if (existingPatient) {
-        await dispatch(updatePatient({ ...existingPatient, ...formData })).unwrap();
+        await dispatch(updatePatient({
+          ...existingPatient,
+          ...formData,
+          upcomingAppointment: formData.upcomingAppointment
+            ? new Date(formData.upcomingAppointment).toISOString()
+            : null
+
+        })).unwrap();
         toast.success("Patient updated successfully");
       } else {
-        await dispatch(addPatient(formData)).unwrap();
+        await dispatch(addPatient({
+          ...formData,
+          upcomingAppointment: formData.upcomingAppointment ? new Date(formData.upcomingAppointment) : null
+        })).unwrap();
         toast.success("Patient added successfully");
       }
-    
+
       setFormData(initailState);
     } catch (error) {
       console.error(error);

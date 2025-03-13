@@ -92,7 +92,9 @@ const AddPatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
               <input
                 type="date"
                 name="dateOfBirth"
-                value={formData.dateOfBirth ? formData.dateOfBirth.split("T")[0] : ""}
+                value={
+                  formData.dateOfBirth ? formData.dateOfBirth.split("T")[0] : ""
+                }
                 onChange={handleChange}
                 className="w-full border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:border-primary"
               />
@@ -110,10 +112,10 @@ const AddPatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
             <InputSection title="Appointment Date & Time">
               <input
                 type="datetime-local"
-                name="upcomingAppointmentId"
+                name="upcomingAppointment"
                 value={
-                  formData.upcomingAppointmentId
-                    ? formData.upcomingAppointmentId.toString()
+                  formData.upcomingAppointment
+                    ? formData.upcomingAppointment.toString()
                     : ""
                 }
                 onChange={handleChange}

@@ -1,5 +1,7 @@
-import { Appointment, AppointmentsType } from "@/types/slices/appointment";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
+import { Appointment, AppointmentsType } from "@/types/slices/appointment";
+import api from "@/lib/axiosInstance";
 
 
 const initialState: AppointmentsType = {
@@ -12,11 +14,14 @@ export const fetchAppointments = createAsyncThunk(
   "appointments/fetchAppointments",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("/api/appointment");
-      if (!response.ok) throw new Error("Failed to fetch appointments");
-      return await response.json();
+      const response = await api.get("/appointment");
+      return response.data.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to fetch Appointments"
+        );
+      }
     }
   }
 );
@@ -25,16 +30,14 @@ export const addAppointment = createAsyncThunk(
   "appointments/addAppointment",
   async (appointmentData: Omit<Appointment, "id">, { rejectWithValue }) => {
     try {
-      const response = await fetch("/api/appointment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(appointmentData),
-      });
-
-      if (!response.ok) throw new Error("Failed to add appointment");
-      return await response.json();
+      const response = await api.post("/appointment", appointmentData);
+      return response.data.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to add Appointment"
+        );
+      }
     }
   }
 );
@@ -42,20 +45,18 @@ export const addAppointment = createAsyncThunk(
 export const updateAppointment = createAsyncThunk(
   "appointments/updateAppointment",
   async (
-    { id, data }: { id: string; data: Partial<Appointment> },
+    updateData: Partial<Appointment>,
     { rejectWithValue }
   ) => {
     try {
-      const response = await fetch(`/api/appointment/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) throw new Error("Failed to update appointment");
-      return await response.json();
+      const response = await api.put(`/appointment/${updateData.id}`, updateData);
+      return response.data.data;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(
+          error.response?.data?.message || "Failed to update task"
+        );
+      }
     }
   }
 );
@@ -64,16 +65,17 @@ export const deleteAppointment = createAsyncThunk(
   "appointments/deleteAppointment",
   async (id: string, { rejectWithValue }) => {
     try {
-      const response = await fetch(`/api/appointment/${id}`, {
-        method: "DELETE",
-      });
-      if (!response.ok) throw new Error("Failed to delete appointment");
-      return id;
+      const response = await api.delete(`/appointment/${id}`);
+      console.log("API Response:", response.data);
+      return response.data.data.id;
     } catch (error) {
-      return rejectWithValue((error as Error).message);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data?.message || "Failed to Detele Appointment");
+      }
     }
   }
 );
+
 const appointmentSlice = createSlice({
   name: "appointments",
   initialState,
@@ -84,7 +86,6 @@ const appointmentSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-
       .addCase(fetchAppointments.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -138,23 +139,20 @@ const appointmentSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      .addCase(deleteAppointment.pending, (state) => {
+      .addCase(deleteAppointment.pending, (state, action) => {
         state.loading = true;
-        state.error = null;
+        state.appointments = state.appointments.filter(
+          (appt) => appt.id !== action.meta.arg
+        );
       })
-      .addCase(
-        deleteAppointment.fulfilled,
-        (state, action: PayloadAction<string>) => {
-          state.loading = false;
-          state.appointments = state.appointments.filter(
-            (a) => a.id !== action.payload
-          );
-        }
-      )
+      .addCase(deleteAppointment.fulfilled, (state) => {
+        state.loading = false;
+      })
       .addCase(deleteAppointment.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string;
+        state.error = (action.payload as string) || "Failed to delete appointment";
       });
+
   },
 });
 

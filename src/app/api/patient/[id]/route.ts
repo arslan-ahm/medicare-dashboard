@@ -18,7 +18,7 @@ export const GET = async (
 
     const patient = await prisma.patient.findUnique({
       where: { id },
-      include: { doctor: true, appointments: true },
+      include: { doctor: true },
     });
 
     if (!patient) {
@@ -60,19 +60,21 @@ export const PUT = async (
       );
     }
 
-    const { forename, surname, dateOfBirth, gender, diagnosis, status, notes, doctorId: bodyDoctorId } = body;
+    const {image, upcomingAppointment, forename, surname, dateOfBirth, gender, diagnosis, status, notes, doctorId: bodyDoctorId } = body;
 
     const updatedPatient = await prisma.patient.update({
       where: { id },
       data: {
-      forename,
-      surname,
-      dateOfBirth: new Date(dateOfBirth),
-      gender,
-      diagnosis,
-      status,
-      notes,
-      doctorId: bodyDoctorId,
+        image: image,
+        forename,
+        surname,
+        dateOfBirth: new Date(dateOfBirth),
+        gender,
+        diagnosis,
+        upcomingAppointment: new Date(upcomingAppointment),
+        status,
+        notes,
+        doctorId: bodyDoctorId,
       },
     });
 
@@ -83,8 +85,6 @@ export const PUT = async (
       ok: true,
     });
   } catch (error) {
-    console.log("Message =>", error);
-
     if (error instanceof Error) {
       return NextResponse.json(
         { status: "error", message: "Failed to update patient.", ok: false },

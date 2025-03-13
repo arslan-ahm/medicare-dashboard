@@ -14,8 +14,8 @@ import toast from "react-hot-toast";
 import { useAppDispatch } from "@/hooks/useRedux";
 
 const statusColor: { [key: string]: string } = {
-  "N/A": "bg-gray-100 text-gray-800",
   recovered: "bg-green-100 text-green-800",
+  "N/A": "bg-gray-100 text-gray-800",
   "awaiting surgery": "bg-blue-100 text-blue-800",
   "on treatment": "bg-red-100 text-red-800",
   "on going": "bg-yellow-100 text-yellow-800",
@@ -83,8 +83,8 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
       <TableDetail title={refinedStatus} style={statusBadgeColor} />
       <TableDetail
         title={
-          patient.upcomingAppointmentId
-            ? formatDate(patient.upcomingAppointmentId.toString())
+          patient.upcomingAppointment
+            ? formatDate(patient.upcomingAppointment.toString())
             : "N/A"
         }
       />
@@ -115,7 +115,7 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
         open={updatePatientState}
         setOpen={setUpdatePatientState}
       >
-          <AddPatientForm patient={patient} type="model" />
+        <AddPatientForm patient={patient} type="model" />
       </ModelInterface>
     </>
   );

@@ -18,6 +18,7 @@ import QuickIcon from "./QuickIcon";
 import { TODAYS_DATE } from "@/constants/menu";
 import { fetchPatients } from "@/store/slices/patient.slice";
 import { fetchTasks } from "@/store/slices/task.slice";
+import { fetchAppointments } from "@/store/slices/appointment.slice";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -32,7 +33,14 @@ const Navbar = () => {
 
   useEffect(() => {
     dispatch(fetchPatients());
+  }, [dispatch]);
+  
+  useEffect(() => {
     dispatch(fetchTasks());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchAppointments());
   }, [dispatch]);
 
   const handleLogout = async () => {

@@ -6,29 +6,28 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import RenderEventContent from "./RenderEventContent";
-import { CalendarEvent, CalendarProps } from "@/types/componentsTypes/calender";
+import { CalendarEvent } from "@/types/componentsTypes/calender";
+import { useAppSelector } from "@/hooks/useRedux";
 
-const Calendar: React.FC<CalendarProps> = ({ appointments }) => {
+const Calendar: React.FC = () => {
+  const { appointments } = useAppSelector((state) => state.apponitments);
   const events = appointments.map(
     (appt): CalendarEvent => ({
       id: appt.id,
       title: appt.purpose,
-      start: dayjs(`${appt.date}T${appt.time}`).toISOString(),
-      end: dayjs(`${appt.date}T${appt.time}`)
-        .add(appt.duration, "minute")
-        .toISOString(),
+      start: dayjs(`${appt.start_time}`).toISOString(),
+      end: dayjs(`${appt.end_time}`).toISOString(),
       color: "transparent",
       extendedProps: {
         status: appt.status,
-        patientName: `Patient ${appt.patientId}`,
-        location: appt.location,
-        isOnline: appt.isOnline,
+        patientName: `Patient ${appt.patientName}`,
+        location: appt.isOnline ? "Online" : "In-Person",
       },
     })
   );
 
   const getInitialView = () => {
-    return window.innerWidth < 768 ? "timeGridWeek" : "dayGridMonth"; // Default to month view on larger screens
+    return window.innerWidth < 768 ? "timeGridWeek" : "dayGridMonth";
   };
 
   return (

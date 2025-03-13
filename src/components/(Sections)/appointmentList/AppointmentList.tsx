@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
 import ModelInterface from "@/components/models/ModelInterface";
 import Appointment from "@/components/details/lists/AppointmentList";
-import AddAppointmentForm from "@/components/forms/addAppointment/AddAppointmentForm";
+import AppointmentForm from "@/components/forms/Appointment/AppointmentForm";
 
 const AppointmentSection = () => {
   const [modelOpen, setModelOpen] = useState(false);
@@ -23,7 +23,7 @@ const AppointmentSection = () => {
         open={modelOpen}
         setOpen={setModelOpen}
       >
-        <AddAppointmentForm />
+        <AppointmentForm />
       </ModelInterface>
     </>
   );
