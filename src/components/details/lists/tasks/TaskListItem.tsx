@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import IconButton from "../../pageTitlebar/IconButton";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
 import { formatDate } from "@/lib/timeHandler";
 import ModelInterface from "@/components/models/ModelInterface";
 import TaskForm from "@/components/forms/task/TaskFrom";
-import { deleteTask } from "@/store/slices/task.slice";
+import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import toast from "react-hot-toast";
-import OptionButton from "../DropdownOptions";
+import IconButton from "@/components/pageTitlebar/IconButton";
+import OptionButton from "../../DropdownOptions";
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
   id,
@@ -25,10 +25,12 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   const [formattedDate, setFormattedDate] = useState(formatDate(date));
   const dispatch = useAppDispatch();
 
-  const toggleStatus = () => {
-    setIsChecked((prev) => !prev);
+  const toggleStatus = async () => {
+    const newStatus = !isChecked;
+    setIsChecked(newStatus);
+    await dispatch(toggleTaskStatus({ id, status: newStatus }));
   };
-
+  
   useEffect(() => {
     if (isOpen && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
@@ -64,7 +66,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   //   return () => document.removeEventListener("mousedown", handleClickOutside);
   // }, []);
 
-  const handleDelete = async (_id:string) => {
+  const handleDelete = async (_id: string) => {
     try {
       console.log("Deleting task with id: ", _id);
       await dispatch(deleteTask(_id)).unwrap();
@@ -74,7 +76,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
       toast.error("Failed to delete task");
     }
   };
-  
+
   const handleEdit = () => {
     setUpdateTaskState(true);
     setIsOpen(false);
@@ -130,7 +132,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
                 type="edit"
               />
               <OptionButton
-                handleClick={() =>handleDelete(id)}
+                handleClick={() => handleDelete(id)}
                 text="Delete Task"
                 type="delete"
               />

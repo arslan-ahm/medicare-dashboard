@@ -40,19 +40,10 @@ const TaskForm = ({ existingTask }: { existingTask?: TaskFormEditProp }) => {
             inputType="datetime-local"
             required
           />
-          <InputSection title="Completed">
-            <input
-              type="checkbox"
-              name="status"
-              checked={formData.status}
-              onChange={handleChange}
-              className=" ml-2 mt-2 w-6 h-6 accent-blue-600 rounded-md border-gray-300 focus:ring-2 focus:ring-blue-400 checked:bg-primary checked:border-transparent"
-            />
-          </InputSection>
         </tbody>
       </table>
       {error && <p className="text-sm text-red-600">{error}</p>}
-      <TextButton type="submit" text={loading ? "Adding..." : "Add Task"} />
+      <TextButton type="submit" text={loading ? "Saving..." : "Save Task"} />
     </form>
   );
 };

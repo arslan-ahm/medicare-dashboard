@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import toast from "react-hot-toast";
@@ -19,11 +19,36 @@ import { TODAYS_DATE } from "@/constants/menu";
 import { fetchPatients } from "@/store/slices/patient.slice";
 import { fetchTasks } from "@/store/slices/task.slice";
 import { fetchAppointments } from "@/store/slices/appointment.slice";
+import { fetchNotifications } from "@/store/slices/notification.slice";
+import Link from "next/link";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const [isNotificationShow, setIsNotificationShow] = useState(false);
+  const [position, setPosition] = useState({ top: 0, left: 0 });
+  const buttonRef = useRef<HTMLSpanElement | null>(null);
   const doctor = useAppSelector((store) => store.auth.doctor);
+  const messages = useAppSelector((store) => store.notification.notifications);
   const router = useRouter();
+
+  const hasUnreadMessages = messages.some((msg) => !msg.isRead);
+
+  useEffect(() => {
+    if (isNotificationShow && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const dropdownHeight = 80;
+
+      let top = rect.bottom + 5;
+      const left = rect.left - 150;
+
+      if (rect.bottom + dropdownHeight > viewportHeight) {
+        top = rect.top - dropdownHeight - 5;
+      }
+
+      setPosition({ top, left });
+    }
+  }, [isNotificationShow]);
 
   useEffect(() => {
     if (!doctor) {
@@ -34,13 +59,17 @@ const Navbar = () => {
   useEffect(() => {
     dispatch(fetchPatients());
   }, [dispatch]);
-  
+
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchAppointments());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchNotifications());
   }, [dispatch]);
 
   const handleLogout = async () => {
@@ -64,7 +93,6 @@ const Navbar = () => {
         </span>
       </div>
 
-      {/* Search Bar (Optional) */}
       <div className="flex justify-end lg:justify-between xl:justify-end items-center space-x-4 sm:w-[70%] md:w-[80%]">
         <div className="hidden lg:flex max-w-[350px] xl:max-w-[80vh] w-[80%]">
           <InputField
@@ -91,17 +119,47 @@ const Navbar = () => {
               <QuickIcon
                 icon={<CiMail />}
                 cursor="not-allowed"
-                handleClick={() => console.log("Mail clicked...")}
+                handleClick={() => {}}
               />
             </span>
-            <QuickIcon
-              icon={<IoNotificationsOutline />}
-              handleClick={() => console.log("Notification clicked...")}
-            />
+            <span className="relative" ref={buttonRef}>
+              <QuickIcon
+                icon={<IoNotificationsOutline />}
+                handleClick={() => setIsNotificationShow((prev) => !prev)}
+              />
+              {hasUnreadMessages && !isNotificationShow && (
+                <span className="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] font-semibold rounded-full px-1">
+                  {messages.length}
+                </span>
+              )}
+            </span>
             <QuickIcon icon={<RxExit />} handleClick={handleLogout} />
           </div>
         </div>
       </div>
+      {isNotificationShow && (
+        <ul
+          className="fixed max-h-[450px] overflow-y-auto custom-scroll bg-white shadow-md rounded-md border border-gray-200 z-50 w-40 p-4"
+          style={{ top: position.top, left: position.left }}
+        >
+          {hasUnreadMessages ? (
+            messages.map((msg, index) => (
+              <li
+                key={index}
+                className="p-2 hover:bg-slate-50 cursor-pointer rounded-r-md border-l-2 mb-2 border-rose-500"
+              >
+                <Link href="/dashboard/notifications">
+                  <p className="text-[12px] text-gray-500 font-medium">{msg.title}</p>
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li>
+              <p className="text-[12px] font-semibold text-gray-500 capitalize">No notifications</p>
+            </li>
+          )}
+        </ul>
+      )}
     </nav>
   );
 };

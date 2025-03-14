@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
 import ModelInterface from "@/components/models/ModelInterface";
-import Appointment from "@/components/details/lists/AppointmentList";
+import Appointment from "@/components/details/lists/appointments/AppointmentList";
 import AppointmentForm from "@/components/forms/Appointment/AppointmentForm";
 
 const AppointmentSection = () => {

@@ -59,7 +59,11 @@ export const PUT = async (
       );
     }
 
-    const {start_time, end_time, patientName, purpose, type, status, isOnline} = body;
+    const oldAppointment = await prisma.appointment.findUnique({
+      where: { id },
+    });
+
+    const { start_time, end_time, patientName, purpose, type, status, isOnline } = body;
     const updatedAppointment = await prisma.appointment.update({
       where: { id },
       data: {
@@ -71,6 +75,31 @@ export const PUT = async (
         status,
         isOnline,
         doctorId,
+      },
+    });
+
+    const formatDate = (date: string) => new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    });
+
+    const changes = [];
+    if (oldAppointment?.patientName !== patientName) changes.push(`Patient Name: ${oldAppointment?.patientName} → ${patientName}`);
+    if (oldAppointment?.start_time && oldAppointment.start_time !== start_time) changes.push(`Start Time: ${formatDate(oldAppointment.start_time)} → ${formatDate(start_time)}`);
+    if (oldAppointment?.end_time && oldAppointment?.end_time !== end_time) changes.push(`End Time: ${formatDate(oldAppointment?.end_time)} → ${formatDate(end_time)}`);
+    if (oldAppointment?.purpose !== purpose) changes.push(`Purpose: ${oldAppointment?.purpose} → ${purpose}`);
+    if (oldAppointment?.type !== type) changes.push(`Type: ${oldAppointment?.type} → ${type}`);
+    if (oldAppointment?.status !== status) changes.push(`Status: ${oldAppointment?.status} → ${status}`);
+    if (oldAppointment?.isOnline !== isOnline) changes.push(`Online: ${oldAppointment?.isOnline ? "Yes" : "No"} → ${isOnline ? "Yes" : "No"}`);
+
+    await prisma.notification.create({
+      data: {
+        title: "Appointment Updated",
+        text: `Your appointment with ${patientName} has been updated. Changes: ${changes.length > 0 ? changes.join(", ") : "No significant changes."}`,
+        isRead: false,
+        time: new Date().toISOString(),
+        doctorId: updatedAppointment.doctorId,
       },
     });
 

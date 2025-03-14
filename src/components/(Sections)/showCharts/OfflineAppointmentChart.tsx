@@ -16,7 +16,7 @@ const OnfflineAppointmentChart = () => {
   );
 
   const offlineAppointments = appointments.filter((appt) => !appt.isOnline);
-  const weeklyOfflineData = getWeeklyAppointments(offlineAppointments, false);
+  const weeklyOfflineData = getWeeklyAppointments(offlineAppointments);
 
   const totalOfflineAppointments = offlineAppointments.length;
   const thisWeekOfflineAppointments = weeklyOfflineData.reduce(

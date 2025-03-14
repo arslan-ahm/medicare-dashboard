@@ -36,6 +36,8 @@ const DoughnutChart = () => {
         enabled: true,
         mode: "nearest" as const,
         intersect: false,
+        // Add z-index to tooltip
+        z: 9999,
       },
     },
     cutout: "75%",
@@ -49,7 +51,11 @@ const DoughnutChart = () => {
   return (
     <div className="relative w-36 h-36">
       <Doughnut data={data} options={options} className="z-10" />
-      <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-gray-700 w-16 h-16 text-sm">
+      <div
+        className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 
+   flex flex-col items-center justify-center text-gray-700 w-16 h-16 text-sm 
+   pointer-events-none z-[1]"
+      >
         <p>
           {femaleCount} <span className="text-red">Female</span>
         </p>

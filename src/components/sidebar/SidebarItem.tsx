@@ -2,13 +2,25 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SidebarItemProps } from "@/types/componentsTypes/menuTypes";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 
 const SidebarItem = ({ label, icon, link, handleText }: SidebarItemProps) => {
+  const [noti, setNoti] = useState(0);
+  const dispatch = useAppDispatch();
+  const messages = useAppSelector((store) => store.notification.notifications);
   const pathname = usePathname();
   const isActive = pathname === link;
 
+  useEffect(() => {
+    if (label === "Notification") {
+      console.log("Notification", messages);
+      setNoti(messages.length);
+    }
+  }, [dispatch]);
+
   return (
-    <li className="mb-2">
+    <li className="mb-2 flex justify-between items-center">
       <Link
         href={link}
         className={` flex items-center gap-2 p-2 rounded transition-all ${
@@ -28,6 +40,11 @@ const SidebarItem = ({ label, icon, link, handleText }: SidebarItemProps) => {
           {label}
         </span>
       </Link>
+      {noti > 0 && (
+        <span className="bg-red rounded-full text-white px-[0.45rem] ">
+          {noti}
+        </span>
+      )}
     </li>
   );
 };

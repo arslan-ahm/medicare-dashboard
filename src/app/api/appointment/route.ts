@@ -81,6 +81,23 @@ export const POST = async (req: NextRequest) => {
       },
     });
 
+    const formattedDate = new Date(start_time).toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    });
+    
+
+    await prisma.notification.create({
+      data: {
+        title: "New Appointment Created",
+        text: `Just created an appointment for Patient: '${patientName}', to held on ${formattedDate}. (For ${purpose}) and is ${isOnline ? "Online" : "face-to-face"} checkup.`,
+        isRead: false,
+        time: new Date().toISOString(),
+        doctorId,
+      },
+    });
+
     return NextResponse.json({
       status: "success",
       data: newAppointment,

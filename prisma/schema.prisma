@@ -22,9 +22,10 @@ model Doctor {
 
   organization String?
 
-  patients     Patient[]
-  appointments Appointment[]
-  tasks        Task[]
+  patients      Patient[]
+  appointments  Appointment[]
+  tasks         Task[]
+  notifications Notification[]
 }
 
 model Task {
@@ -53,7 +54,7 @@ model Patient {
 
   lastAppointments Appointment[] @relation(name: "LastAppointment")
 
-  createdAt   DateTime      @default(now())
+  createdAt DateTime @default(now())
 }
 
 model Appointment {
@@ -68,9 +69,19 @@ model Appointment {
   doctorId    String            @db.ObjectId
   doctor      Doctor            @relation(fields: [doctorId], references: [id])
 
-  asLastAppointment     Patient? @relation(name: "LastAppointment", fields: [id], references: [id])
+  asLastAppointment Patient? @relation(name: "LastAppointment", fields: [id], references: [id])
 
   createdAt DateTime @default(now())
+}
+
+model Notification {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  text     String
+  isRead   Boolean  @default(false)
+  time     DateTime @default(now())
+  doctorId String   @db.ObjectId
+  doctor   Doctor   @relation(fields: [doctorId], references: [id])
 }
 
 enum Gender {

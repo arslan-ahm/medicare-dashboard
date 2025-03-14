@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
 import ModelInterface from "@/components/models/ModelInterface";
 import TaskForm from "@/components/forms/task/TaskFrom";
-import TasksList from "@/components/details/lists/TasksList";
+import TasksList from "@/components/details/lists/tasks/TasksList";
 const TasksListSection = () => {
   const [modelOpen, setModelOpen] = useState(false);
 

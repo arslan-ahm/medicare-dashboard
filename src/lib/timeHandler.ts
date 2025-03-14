@@ -45,25 +45,25 @@ export const formatDate = (dateString: string): string => {
 
 export const getWeeklyAppointments = (appointments: Appointment[]) => {
     const weeklyData = new Array(7).fill(0);
-  
+
     const today = new Date();
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - ((today.getDay() + 6) % 7));
     startOfWeek.setHours(0, 0, 0, 0);
-  
+
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 6);
     endOfWeek.setHours(23, 59, 59, 999);
-  
+
     appointments.forEach((appt) => {
-      if (!appt.createdAt) return;
-  
-      const apptDate = new Date(appt.createdAt);
-      if (apptDate >= startOfWeek && apptDate <= endOfWeek) {
-        const dayIndex = (apptDate.getDay() + 6) % 7; // Ensuring Mon-Sun order
-        weeklyData[dayIndex] += 1;
-      }
+        if (!appt.createdAt) return;
+
+        const apptDate = new Date(appt.createdAt);
+        if (apptDate >= startOfWeek && apptDate <= endOfWeek) {
+            const dayIndex = (apptDate.getDay() + 6) % 7;
+            weeklyData[dayIndex] += 1;
+        }
     });
-  
+
     return weeklyData;
-  };
+};

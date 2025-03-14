@@ -2,6 +2,7 @@ export type MenuItem = {
   label: string;
   icon: React.ReactNode;
   link: string;
+  noti?: number;
 };
 
 
@@ -17,5 +18,6 @@ export type SidebarItemProps = {
     icon: React.ReactNode;
     link: string;
     handleText?: boolean | null;
+    noti?: number;
   }
   

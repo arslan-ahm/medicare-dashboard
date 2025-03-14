@@ -61,9 +61,9 @@ export const PUT = async (
     const updatedTask = await prisma.task.update({
       where: { id },
       data: {
-        date:  new Date(date), 
-        status, 
-        description, 
+        date: new Date(date),
+        status,
+        description,
         title
       },
     });
@@ -85,6 +85,57 @@ export const PUT = async (
     }
   }
 };
+
+export const PATCH = async (
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) => {
+  const body = await req.json();
+  try {
+    const { id } = params;
+    const doctorId = req.headers.get("doctorId");
+
+    if (!doctorId) {
+      return NextResponse.json(
+        { status: "error", message: "Unauthorized access.", ok: false },
+        { status: 401 }
+      );
+    }
+
+    const existingTask = await prisma.task.findUnique({ where: { id } });
+    if (!existingTask) {
+      return NextResponse.json(
+        { status: "error", message: "Task not found.", ok: false },
+        { status: 404 }
+      );
+    }
+
+    const updatedTask = await prisma.task.update({
+      where: { id },
+      data: {
+        ...body,
+      },
+    });
+
+    return NextResponse.json({
+      status: "success",
+      data: updatedTask,
+      message: "Task updated successfully.",
+      ok: true,
+    });
+  } catch (error) {
+    console.log("Error", error);
+    console.log("Request Body => ", body);
+
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { status: "error", message: error.message || "Failed to update task.", ok: false },
+        { status: 500 }
+      );
+    }
+  }
+};
+
 
 export const DELETE = async (
   req: NextRequest,

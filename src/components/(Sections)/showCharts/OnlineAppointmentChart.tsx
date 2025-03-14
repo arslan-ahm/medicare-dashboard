@@ -18,7 +18,10 @@ const OnlineAppointmentChart = () => {
   const weeklyData = getWeeklyAppointments(onlineAppointments);
 
   const totalAppointments = onlineAppointments.length;
-  const thisWeekAppointments = weeklyData.reduce((sum, count) => sum + count, 0);
+  const thisWeekAppointments = weeklyData.reduce(
+    (sum, count) => sum + count,
+    0
+  );
 
   const percentage = totalAppointments
     ? `${((thisWeekAppointments / totalAppointments) * 100).toFixed(1)}%`

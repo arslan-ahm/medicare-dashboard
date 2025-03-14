@@ -59,6 +59,24 @@ export const editTask = createAsyncThunk<Task, Task, { rejectValue: string }>(
   }
 );
 
+export const toggleTaskStatus = createAsyncThunk<
+  Task,
+  { id: string; status: boolean },
+  { rejectValue: string }
+>("tasks/toggleTaskStatus", async ({ id, status }, { rejectWithValue }) => {
+  try {
+    const response = await api.patch(`/task/${id}`, { status });
+    return response.data.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to update task status"
+      );
+    }
+  }
+});
+
+
 export const deleteTask = createAsyncThunk<
   string,
   string,
@@ -133,6 +151,15 @@ const taskSlice = createSlice({
         state.error = action.payload || "Failed to update task";
       })
 
+      .addCase(toggleTaskStatus.fulfilled, (state, action) => {
+        state.tasks = state.tasks.map((task) =>
+          task.id === action.payload.id ? { ...task, status: action.payload.status } : task
+        );
+      })
+      .addCase(toggleTaskStatus.rejected, (state, action) => {
+        state.error = action.payload || "Failed to update task status";
+      })
+      
       .addCase(deleteTask.pending, (state, action) => {
         state.loading = true;
         state.tasks = state.tasks.filter((task) => task.id !== action.meta.arg);
