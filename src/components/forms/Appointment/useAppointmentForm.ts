@@ -15,7 +15,7 @@ const initialFormData: AppointmentFormData = {
   isOnline: false,
 };
 
-export const useAddAppointmentForm = (existingAppt?: Appointment) => {
+export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: () => void) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -88,6 +88,7 @@ export const useAddAppointmentForm = (existingAppt?: Appointment) => {
       }
 
       setFormData(initialFormData);
+      if (onSuccess) { onSuccess(); }
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong");

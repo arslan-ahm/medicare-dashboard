@@ -3,7 +3,7 @@ import { CiEdit } from "react-icons/ci";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoPersonOutline } from "react-icons/io5";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import IconButton from "@/components/pageTitlebar/IconButton";
+import IconButton from "@/components/titlebarActions/IconButton";
 import { Appointment } from "@/types/slices/appointment";
 import ModelInterface from "@/components/models/ModelInterface";
 import toast from "react-hot-toast";
@@ -15,7 +15,7 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   const dispatch = useAppDispatch();
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
-  const isCurrent = false;
+  const isCurrent = true;
 
   
   const handleDelete = async () => {
@@ -43,11 +43,11 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
       ></div>
 
       <div
-        className={`flex justify-between px-3  items-center ${
-          isCurrent ? "text-black border-b border-gray-400" : "text-gray-600"
-        }`}
+        className={`flex justify-between px-1  items-center 
+          ${isCurrent ? "text-black  rounded-md border border-gray-200" : "text-gray-600"}
+        `}
       >
-        <div className="flex items-center text-sm gap-2 py-1">
+        <div className="flex items-center justify-between text-sm gap-2 py-1">
           <span className="font-semibold">
             {appt.start_time
               ? new Date(appt.start_time)
@@ -62,8 +62,7 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
           <span>{appt.patientName}</span>
         </div>
         {isCurrent && (
-          <div className="flex items-center gap-2">
-            <span className="text-xs">pending...</span>
+          <div className="flex items-center">
             <IconButton
               size="sm"
               icon={<IoIosArrowDown />}
@@ -79,7 +78,7 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
             isAccordionOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="flex flex-col gap-2 mt-2 p-4 border-b border-gray-300">
+          <div className="flex flex-col gap-2 mt-2 p-2 sm:p-4 border-b border-gray-300">
             <p className="text-sm font-semibold">
               Patient: <span className="font-medium">{appt.patientName}</span>
             </p>
@@ -119,7 +118,7 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
               <span className="text-xs text-gray-600">{appt.purpose}</span>
             </p>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col-reverse xs:flex-row gap-1 xs:justify-between items-center">
             <ul className="flex items-center gap-2">
               <li>
                 <IconButton
@@ -143,7 +142,7 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
                 />
               </li>
             </ul>
-            <button className="mt-2 bg-primary px-3 text-white text-xs py-2 rounded">
+            <button className="mt-2 bg-primary px-1 sm:px-3 text-white text-[10px] sm:text-xs py-1 sm:py-2 rounded">
               Begin Appointment
             </button>
           </div>

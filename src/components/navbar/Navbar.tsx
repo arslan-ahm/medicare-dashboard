@@ -93,8 +93,8 @@ const Navbar = () => {
         </span>
       </div>
 
-      <div className="flex justify-end lg:justify-between xl:justify-end items-center space-x-4 sm:w-[70%] md:w-[80%]">
-        <div className="hidden lg:flex max-w-[350px] xl:max-w-[80vh] w-[80%]">
+      <div className="flex justify-end lg:justify-between items-center space-x-4 sm:w-[70%] md:w-[80%]">
+        <div className="hidden lg:flex max-w-[350px] xl:max-w-[70vh] w-[80%]">
           <InputField
             label={<IoIosSearch />}
             fieldType="search"

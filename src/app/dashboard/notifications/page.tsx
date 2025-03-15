@@ -1,6 +1,6 @@
 import NotificationList from "@/components/details/lists/notifications/NotificationList";
-import NotificationActions from "@/components/pageTitlebar/NotificationActions";
-import PageTitleBar from "@/components/pageTitlebar/PageTitieBar";
+import NotificationActions from "@/components/titlebarActions/NotificationActions";
+import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 
 const Notification = () => {
   return (

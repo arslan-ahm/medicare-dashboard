@@ -27,6 +27,9 @@ export default {
         "md_varient_yellow": "#fff3cd",
         "light_varient_yellow": "#f9f1d8",
       },
+      screens: {
+        xs: "400px",
+      },
     },
   },
   plugins: [],

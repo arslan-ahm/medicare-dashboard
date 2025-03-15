@@ -22,18 +22,20 @@ const AppointmentTimeline = () => {
   //   );
 
   return (
-    <div className="flex flex-col w-full max-w-lg pt-2 px-6 mx-auto bg-white shadow-md rounded-lg">
+    <div className="flex flex-col w-full max-w-lg py-2 px-3 sm:px-6 mx-auto bg-white rounded-lg">
       {appointments.length > 0 ? (
-        <ul className="relative flex flex-col gap-2 ">
+        <div className="space-y-4">
           <ViewAllButton path="/dashboard/schedule" subtext="View all" />
-          {appointments.map((appt, index) => {
-            return (
-              <li key={index} className="relative mb-4">
-                <AppointmentListItem appt={appt} />
-              </li>
-            );
-          })}
-        </ul>
+          <ul className="relative flex flex-col gap-2 ">
+            {appointments.map((appt, index) => {
+              return (
+                <li key={index} className="relative mb-4">
+                  <AppointmentListItem appt={appt} />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       ) : (
         <p className="text-center text-slate-600"> No Appointments Yet</p>
       )}

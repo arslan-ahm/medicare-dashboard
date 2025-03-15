@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import SidebarSection from "./SidebarSection";
 import { generalItems, menuItems } from "@/constants/menu";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import IconButton from "../pageTitlebar/IconButton";
+import IconButton from "../titlebarActions/IconButton";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);

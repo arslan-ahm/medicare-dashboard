@@ -11,7 +11,7 @@ const initialState = {
   status: false,
 };
 
-export const useTaskForm = (existingTask?: TaskFormEditProp) => {
+export const useTaskForm = (existingTask?: TaskFormEditProp, onSuccess?: () => void) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
@@ -63,6 +63,10 @@ export const useTaskForm = (existingTask?: TaskFormEditProp) => {
       }
 
       setFormData(initialState);
+      
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong");

@@ -23,7 +23,7 @@ const AppointmentSection = () => {
         open={modelOpen}
         setOpen={setModelOpen}
       >
-        <AppointmentForm />
+        <AppointmentForm onSuccess={() => setModelOpen(false)} />
       </ModelInterface>
     </>
   );

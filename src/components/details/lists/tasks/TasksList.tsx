@@ -11,7 +11,6 @@ const TasksList = () => {
     <>
     {
       tasks.length > 0 ?(
-
         <ul className="space-y-4">
         <ViewAllButton path="/dashboard/tasks" subtext="View all tasks" />
         {tasks.map((task, index) => (

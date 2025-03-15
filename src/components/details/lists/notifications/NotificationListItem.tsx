@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import IconButton from "@/components/pageTitlebar/IconButton";
+import IconButton from "@/components/titlebarActions/IconButton";
 import Text from "@/components/Text";
 import { LuDelete } from "react-icons/lu";
 import { Notification } from "@/types/slices/notification";

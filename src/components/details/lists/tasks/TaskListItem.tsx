@@ -7,7 +7,7 @@ import TaskForm from "@/components/forms/task/TaskFrom";
 import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import toast from "react-hot-toast";
-import IconButton from "@/components/pageTitlebar/IconButton";
+import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../../DropdownOptions";
 
 const TaskListItem: React.FC<TaskListItemProps> = ({

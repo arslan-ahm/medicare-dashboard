@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
-import IconButton from "@/components/pageTitlebar/IconButton";
+import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../DropdownOptions";
 import ModelInterface from "@/components/models/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
@@ -11,7 +11,7 @@ import { PATIENT_STATUS } from "@/constants/formData";
 import { deletePatient } from "@/store/slices/patient.slice";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "@/hooks/useRedux";
-import AddPatientForm from "@/components/forms/patient/PatientForm";
+import PatientForm from "@/components/forms/patient/PatientForm";
 
 const statusColor: { [key: string]: string } = {
   recovered: "bg-green-100 text-green-800",
@@ -115,7 +115,7 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
         open={updatePatientState}
         setOpen={setUpdatePatientState}
       >
-        <AddPatientForm patient={patient} type="model" />
+        <PatientForm patient={patient} type="model" />
       </ModelInterface>
     </>
   );

@@ -11,9 +11,10 @@ import { Appointment } from "@/types/slices/appointment";
 
 type AppointmentFormProps = {
   appt?: Appointment;
+  onSuccess?: () => void;
 };
 
-const AppointmentForm: React.FC<AppointmentFormProps> = ({ appt }) => {
+const AppointmentForm: React.FC<AppointmentFormProps> = ({ appt, onSuccess }) => {
   const {
     formData,
     handleChange,
@@ -22,7 +23,7 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appt }) => {
     handleCheck,
     error,
     loading,
-  } = useAddAppointmentForm(appt);
+  } = useAddAppointmentForm(appt, onSuccess);
 
   return (
     <>

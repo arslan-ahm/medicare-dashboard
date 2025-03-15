@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
-import PageTitleBar from '../pageTitlebar/PageTitieBar'
-import PatientActions from '../pageTitlebar/PatientActions'
+import PageTitleBar from '../titlebarActions/PageTitieBar'
+import PatientActions from '../titlebarActions/PatientActions'
 import { useAppSelector } from '@/hooks/useRedux';
 
 const PatientHeader = () => {

@@ -1,4 +1,4 @@
-import IconButton from "@/components/pageTitlebar/IconButton";
+import IconButton from "@/components/titlebarActions/IconButton";
 import Text from "@/components/Text";
 import React from "react";
 import { FiPlus } from "react-icons/fi";

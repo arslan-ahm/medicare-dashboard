@@ -4,16 +4,24 @@ import InputRow, { InputSection } from "../InputRow";
 import { useTaskForm } from "./useTaskForm";
 import type { TaskFormEditProp } from "@/types/componentsTypes/taskListItem";
 
-const TaskForm = ({ existingTask }: { existingTask?: TaskFormEditProp }) => {
-  const { formData, handleChange, handleSubmit, error, loading } =
-    useTaskForm(existingTask);
+const TaskForm = ({
+  existingTask,
+  onSuccess,
+}: {
+  existingTask?: TaskFormEditProp;
+  onSuccess?: () => void;
+}) => {
+  const { formData, handleChange, handleSubmit, error, loading } = useTaskForm(
+    existingTask,
+    onSuccess
+  );
   return (
     <form
       onSubmit={handleSubmit}
       className="space-y-7 w-full mx-auto bg-white p-6  rounded-md shadow-sm mt-2"
     >
-      <table className="w-full border-separate border-spacing-y-3">
-        <tbody>
+      <div className="w-full border-separate border-spacing-y-3">
+        <div>
           <InputRow
             lable="Title"
             setValue={handleChange}
@@ -40,8 +48,8 @@ const TaskForm = ({ existingTask }: { existingTask?: TaskFormEditProp }) => {
             inputType="datetime-local"
             required
           />
-        </tbody>
-      </table>
+        </div>
+      </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
       <TextButton type="submit" text={loading ? "Saving..." : "Save Task"} />
     </form>

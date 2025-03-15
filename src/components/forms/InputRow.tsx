@@ -32,10 +32,10 @@ export const InputSection: React.FC<{
   children: React.ReactNode;
 }> = ({ title, children }) => {
   return (
-    <tr>
-      <td className="align-top pt-2 px-8">{title}</td>
-      <td>{children}</td>
-    </tr>
+    <div className="flex flex-col sm:flex-row justify-between my-1 items-start sm:items-center gap-2">
+      <div className="align-top font-medium pt-2 sm:px-8 ">{title}</div>
+      <div className="w-full sm:w-[55%]">{children}</div>
+    </div>
   );
 };
 

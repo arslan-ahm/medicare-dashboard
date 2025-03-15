@@ -18,7 +18,7 @@ const TasksListSection = () => {
         <TasksList />
       </div>
       <ModelInterface title="Add Tasks" open={modelOpen} setOpen={setModelOpen}>
-        <TaskForm />
+        <TaskForm onSuccess={() => setModelOpen(false)} />
       </ModelInterface>
     </>
   );

@@ -5,7 +5,7 @@ import { usePatientForm } from "./usePatientForm";
 import RadioGroup from "../RadioGroups";
 import InputRow, { InputSection } from "../InputRow";
 import { GENDER_OPTIONS, PATIENT_STATUS } from "@/constants/formData";
-import PageTitleBar from "@/components/pageTitlebar/PageTitieBar";
+import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import TextButton from "@/components/TextButton";
 import Image from "next/image";
 import { RiImageEditLine } from "react-icons/ri";
@@ -16,7 +16,7 @@ type PatientForm = {
   patient?: Patient;
 };
 
-const AddPatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
+const PatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
   const { formData, handleChange, error, handleAddPatient, handleImageChange } =
     usePatientForm(patient);
 
@@ -159,4 +159,4 @@ const AddPatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
   );
 };
 
-export default AddPatientForm;
+export default PatientForm;

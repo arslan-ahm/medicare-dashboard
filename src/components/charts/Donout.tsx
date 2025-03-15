@@ -36,7 +36,6 @@ const DoughnutChart = () => {
         enabled: true,
         mode: "nearest" as const,
         intersect: false,
-        // Add z-index to tooltip
         z: 9999,
       },
     },
