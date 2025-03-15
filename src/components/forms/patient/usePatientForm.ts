@@ -58,6 +58,28 @@ export const usePatientForm = (existingPatient?: Patient) => {
     }));
     setError(null);
   };
+
+  const handleUploadImage = async (file: File) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const res = await fetch("/api/upload-image", {
+        method: "POST",
+        body: formData,
+      })
+      if (!res.ok) {
+        toast.error("Failed to upload image");
+        throw new Error("'handleUploadImage'... failed");
+      }
+      const data = await res.json();
+      return data.url;
+    } catch (error) {
+      toast.error("Opps, Something went wrong");
+      console.error(error);
+    }
+  }
+
+
   const handleAddPatient = async () => {
     setLoading(true);
     const { forename, diagnosis, gender, upcomingAppointment, dateOfBirth, status } =
@@ -77,21 +99,26 @@ export const usePatientForm = (existingPatient?: Patient) => {
 
 
     try {
-      if (existingPatient) {
-        await dispatch(updatePatient({
-          ...existingPatient,
-          ...formData,
-          upcomingAppointment: formData.upcomingAppointment
-            ? new Date(formData.upcomingAppointment).toISOString()
-            : null
+      let uploadedImageUrl = formData.image;
+      
+      if (formData.image && formData.image.startsWith("blob")) {
+        const file = await fetch(formData.image).then((res) => res.blob());
+        uploadedImageUrl = await handleUploadImage(file as File);
+      }
 
-        })).unwrap();
+      const updatedPatientData = {
+        ...formData,
+        image: uploadedImageUrl,
+        upcomingAppointment: formData.upcomingAppointment
+        ? new Date(formData.upcomingAppointment).toISOString()
+        : null,
+      };
+      
+      if (existingPatient) {
+        await dispatch(updatePatient({ ...existingPatient, ...updatedPatientData })).unwrap();
         toast.success("Patient updated successfully");
       } else {
-        await dispatch(addPatient({
-          ...formData,
-          upcomingAppointment: formData.upcomingAppointment ? new Date(formData.upcomingAppointment) : null
-        })).unwrap();
+        await dispatch(addPatient(updatedPatientData)).unwrap();
         toast.success("Patient added successfully");
       }
 

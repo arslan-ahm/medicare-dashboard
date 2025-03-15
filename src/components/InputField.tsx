@@ -50,7 +50,7 @@ const InputField: React.FC<InputFieldProps> = ({
         required={required}
         placeholder={defaultPlaceholder}
         name={name}
-        value={value}
+        value={value instanceof Date ? value.toISOString().split('T')[0] : value}
         onChange={setValue}
         type={fieldType}
       />

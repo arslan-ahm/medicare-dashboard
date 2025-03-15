@@ -13,25 +13,11 @@ import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
 
 const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   const dispatch = useAppDispatch();
-  // const [currentTime, setCurrentTime] = useState(true);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
   const isCurrent = false;
 
-  //   useEffect(() => {
-  //     const updateTime = () => {
-  //       const now = new Date();
-  //       const formattedTime = `${now.getHours()}:${now
-  //         .getMinutes()
-  //         .toString()
-  //         .padStart(2, "0")}`;
-  //       setCurrentTime(formattedTime);
-  //     };
-  //     updateTime();
-  //     const interval = setInterval(updateTime, 60000);
-  //     return () => clearInterval(interval);
-  //   }, []);
-
+  
   const handleDelete = async () => {
     try {
       console.log("Deleting task with id: ", appt.id);
@@ -57,8 +43,8 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
       ></div>
 
       <div
-        className={`flex justify-between border-2 border-gray-300 px-3 rounded-lg  items-center ${
-          isCurrent ? "text-black" : "text-gray-600"
+        className={`flex justify-between px-3  items-center ${
+          isCurrent ? "text-black border-b border-gray-400" : "text-gray-600"
         }`}
       >
         <div className="flex items-center text-sm gap-2 py-1">

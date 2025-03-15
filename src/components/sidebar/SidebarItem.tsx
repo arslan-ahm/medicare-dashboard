@@ -14,8 +14,8 @@ const SidebarItem = ({ label, icon, link, handleText }: SidebarItemProps) => {
 
   useEffect(() => {
     if (label === "Notification") {
-      console.log("Notification", messages);
-      setNoti(messages.length);
+      const unReadCount = messages.filter((msg) => msg.isRead === false);
+      setNoti(unReadCount.length);
     }
   }, [dispatch]);
 
