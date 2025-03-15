@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useAddPatientForm } from "./useAddPatientForm";
+import { usePatientForm } from "./usePatientForm";
 import RadioGroup from "../RadioGroups";
 import InputRow, { InputSection } from "../InputRow";
 import { GENDER_OPTIONS, PATIENT_STATUS } from "@/constants/formData";
@@ -18,7 +18,7 @@ type PatientForm = {
 
 const AddPatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
   const { formData, handleChange, error, handleAddPatient, handleImageChange } =
-    useAddPatientForm(patient);
+    usePatientForm(patient);
 
   return (
     <>

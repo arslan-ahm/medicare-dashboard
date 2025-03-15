@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
 import ModelInterface from "@/components/models/ModelInterface";
-import Appointment from "@/components/details/lists/appointments/AppointmentList";
-import AppointmentForm from "@/components/forms/Appointment/AppointmentForm";
+import AppointmentList from "@/components/details/lists/appointments/AppointmentList";
+import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
 
 const AppointmentSection = () => {
   const [modelOpen, setModelOpen] = useState(false);
@@ -16,7 +16,7 @@ const AppointmentSection = () => {
         handleClick={() => setModelOpen(true)}
       />
       <div className="max-h-[40vh] overflow-y-auto custom-scroll px-2">
-        <Appointment />
+        <AppointmentList />
       </div>
       <ModelInterface
         title="Add Appointment"

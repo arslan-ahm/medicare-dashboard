@@ -1,4 +1,4 @@
-import PatientHeader from "@/components/(Sections)/PatientHeader";
+import PatientHeader from "@/components/(sections)/PatientHeader";
 import PatientTable from "@/components/details/table/Table";
 
 const PatientPage = () => {

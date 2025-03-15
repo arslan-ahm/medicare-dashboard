@@ -28,7 +28,7 @@ const initailState: PatientForm = {
   upcomingAppointment: null,
 }
 
-export const useAddPatientForm = (existingPatient?: Patient) => {
+export const usePatientForm = (existingPatient?: Patient) => {
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<PatientForm>(existingPatient ? {
     forename: existingPatient.forename,

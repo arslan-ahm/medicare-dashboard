@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { useAuth } from "@/hooks/useAuth";
 
 export const useRegisterForm = () => {
-  useAuth(true);
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -64,8 +61,8 @@ export const useRegisterForm = () => {
       });
 
       if (res.ok) {
-        toast.success("Account created successfully");
         router.push("/login");
+        toast.success("Account created successfully");
         return;
       }
     } catch (error) {

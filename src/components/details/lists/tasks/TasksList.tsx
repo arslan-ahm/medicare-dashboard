@@ -9,8 +9,11 @@ const TasksList = () => {
 
   return (
     <>
-      <ViewAllButton path="/dashboard/tasks" subtext="View all tasks" />
-      <ul className="space-y-4">
+    {
+      tasks.length > 0 ?(
+
+        <ul className="space-y-4">
+        <ViewAllButton path="/dashboard/tasks" subtext="View all tasks" />
         {tasks.map((task, index) => (
           <li key={index}>
             <TaskListItem
@@ -19,10 +22,14 @@ const TasksList = () => {
               date={task.date}
               description={task.description}
               status={task.status}
-            />
+              />
           </li>
         ))}
       </ul>
+      ) : (
+        <p className="text-center text-slate-600"> No Tasks Yet</p>
+      )
+    }
     </>
   );
 };

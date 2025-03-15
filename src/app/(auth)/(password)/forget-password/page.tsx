@@ -1,5 +1,5 @@
 import FormHeader from "@/components/forms/FormHeader";
-import ForgetPasswordForm from "@/components/forms/forgetPassword/ForgetPasswordForm";
+import ForgetPasswordForm from "@/components/forms/manage-password/forgetPassword/ForgetPasswordForm";
 import FormLayout from "@/components/layouts/AuthFormLayout";
 
 export default function SignUpPage() {

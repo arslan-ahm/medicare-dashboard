@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
-  const authRoutes = ["/login", "/register"];
+  const authRoutes = ["/login", "/register", "/forget-password"];
   const protectedRoutes = [
     "/dashboard",
     "/dashboard/patients",
@@ -43,5 +43,3 @@ export const config = {
     "/dashboard/notifications",
   ],
 };
-
-// export const middleware = () => {};

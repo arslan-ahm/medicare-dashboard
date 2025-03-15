@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useForgetPasswordForm } from "./useForgetPasswordForm";
-import InputField from "../../InputField";
-import TextButton from "../../TextButton";
+import InputField from "../../../InputField";
+import TextButton from "../../../TextButton";
 
 const LoginForm = () => {
   const { email, handleChange, handleForgetPassword, error, loading } =
@@ -20,8 +20,9 @@ const LoginForm = () => {
           fieldType="email"
           required
         />
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm text-rose-600">{error}</p>}
         <TextButton
+          type="submit"
           text={loading ? "Making magic link..." : "Send me Magic Link"}
         />
       </form>

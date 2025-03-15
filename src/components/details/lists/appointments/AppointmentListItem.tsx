@@ -6,17 +6,17 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import IconButton from "@/components/pageTitlebar/IconButton";
 import { Appointment } from "@/types/slices/appointment";
 import ModelInterface from "@/components/models/ModelInterface";
-import AppointmentForm from "@/components/forms/Appointment/AppointmentForm";
 import toast from "react-hot-toast";
 import { deleteAppointment } from "@/store/slices/appointment.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
+import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
 
 const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   const dispatch = useAppDispatch();
   // const [currentTime, setCurrentTime] = useState(true);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [modelOpen, setModelOpen] = useState(false);
-  const isCurrent = true;
+  const isCurrent = false;
 
   //   useEffect(() => {
   //     const updateTime = () => {

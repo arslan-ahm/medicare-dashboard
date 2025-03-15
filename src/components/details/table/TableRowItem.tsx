@@ -6,12 +6,12 @@ import IconButton from "@/components/pageTitlebar/IconButton";
 import OptionButton from "../DropdownOptions";
 import ModelInterface from "@/components/models/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
-import AddPatientForm from "@/components/forms/addPatient/AddPatientForm";
 import { formatDate } from "@/lib/timeHandler";
 import { PATIENT_STATUS } from "@/constants/formData";
 import { deletePatient } from "@/store/slices/patient.slice";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "@/hooks/useRedux";
+import AddPatientForm from "@/components/forms/patient/PatientForm";
 
 const statusColor: { [key: string]: string } = {
   recovered: "bg-green-100 text-green-800",

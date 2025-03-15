@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import TextButton from "../../TextButton";
-import InputRow from "../InputRow";
-import FormHeader from "../FormHeader";
+import TextButton from "../../../TextButton";
+import InputRow from "../../InputRow";
+import FormHeader from "../../FormHeader";
 import { useChangePasswordForm } from "./useChangePasswordForm";
 
 const ChangePasswordForm = () => {
