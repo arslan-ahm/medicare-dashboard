@@ -21,5 +21,4 @@ export type TaskFormEditProp = {
     description: string;
     date: string;
     status: boolean;
-    callback: () => void;
 };

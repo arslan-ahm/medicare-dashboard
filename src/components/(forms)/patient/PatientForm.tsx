@@ -14,11 +14,12 @@ import { Patient } from "@/types/slices/patient";
 type PatientForm = {
   type?: "page" | "model";
   patient?: Patient;
+  onSuccess?: () => void;
 };
 
-const PatientForm: React.FC<PatientForm> = ({ type = "page", patient }) => {
+const PatientForm: React.FC<PatientForm> = ({ type = "page", patient, onSuccess }) => {
   const { formData, handleChange, error, handleAddPatient, handleImageChange } =
-    usePatientForm(patient);
+    usePatientForm(patient, type === "model" ? onSuccess : undefined);
 
   return (
     <>

@@ -22,7 +22,7 @@ const NotificationList = () => {
   }, [dispatch]);
 
   return (
-    <ul>
+    <ul className="space-y-2">
       {notifications.length > 0 ? (
         notifications.map((notification: Notification) => (
           <li key={notification.id}>

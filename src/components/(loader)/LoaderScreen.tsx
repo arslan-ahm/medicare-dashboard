@@ -1,21 +1,21 @@
 "use client";
 import Lottie from "lottie-react";
-import animationData from "../../public/loader.json";
+import animationData from "../../../public/loader/loader_screen.json";
 
-const Loader = ({size}: {size: 'sm' | 'md' | 'lg'}) => {
+const LoaderScreen = ({size}: {size: 'sm' | 'md' | 'lg'}) => {
   let width;
   switch (size) {
     case 'sm':
-      width = 'w-20';
+      width = 'w-30';
       break;
     case 'md':
-      width = 'w-60';
+      width = 'w-65';
       break;
     case 'lg':
       width = 'w-80';
       break;
     default:
-      width = 'w-40';
+      width = 'w-55';
   }
 
   return (
@@ -25,4 +25,4 @@ const Loader = ({size}: {size: 'sm' | 'md' | 'lg'}) => {
   );
 };
 
-export default Loader;
+export default LoaderScreen;

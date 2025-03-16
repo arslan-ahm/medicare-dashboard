@@ -160,12 +160,12 @@ const taskSlice = createSlice({
         state.error = action.payload || "Failed to update task status";
       })
       
-      .addCase(deleteTask.pending, (state, action) => {
+      .addCase(deleteTask.pending, (state) => {
         state.loading = true;
-        state.tasks = state.tasks.filter((task) => task.id !== action.meta.arg);
       })
-      .addCase(deleteTask.fulfilled, (state) => {
+      .addCase(deleteTask.fulfilled, (state, action) => {
         state.loading = false;
+        state.tasks = state.tasks.filter((task) => task.id !== action.meta.arg);
       })
       .addCase(deleteTask.rejected, (state, action) => {
         state.loading = false;

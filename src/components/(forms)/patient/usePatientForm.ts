@@ -28,7 +28,7 @@ const initailState: PatientForm = {
   upcomingAppointment: null,
 }
 
-export const usePatientForm = (existingPatient?: Patient) => {
+export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void) => {
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState<PatientForm>(existingPatient ? {
     forename: existingPatient.forename,
@@ -100,7 +100,7 @@ export const usePatientForm = (existingPatient?: Patient) => {
 
     try {
       let uploadedImageUrl = formData.image;
-      
+
       if (formData.image && formData.image.startsWith("blob")) {
         const file = await fetch(formData.image).then((res) => res.blob());
         uploadedImageUrl = await handleUploadImage(file as File);
@@ -110,10 +110,10 @@ export const usePatientForm = (existingPatient?: Patient) => {
         ...formData,
         image: uploadedImageUrl,
         upcomingAppointment: formData.upcomingAppointment
-        ? new Date(formData.upcomingAppointment).toISOString()
-        : null,
+          ? new Date(formData.upcomingAppointment).toISOString()
+          : null,
       };
-      
+
       if (existingPatient) {
         await dispatch(updatePatient({ ...existingPatient, ...updatedPatientData })).unwrap();
         toast.success("Patient updated successfully");
@@ -123,6 +123,9 @@ export const usePatientForm = (existingPatient?: Patient) => {
       }
 
       setFormData(initailState);
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong");

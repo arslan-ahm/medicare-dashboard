@@ -45,9 +45,9 @@ const FormHeader = () => {
       {APPOINTMENT_DETAILS.map((option, index) => (
         <div
           key={index}
-          className="flex flex-col justify-center items-center space-x-4"
+          className="flex flex-col justify-center items-center space-x-2 sm:space-x-4"
         >
-          <div className="flex items-center justify-center ml-4 w-10 h-10 bg-primary rounded-full text-white">
+          <div className="flex items-center justify-center ml-4 h-8 w-8 sm:w-10 sm:h-10 bg-primary rounded-full text-white">
             {option.icon}
           </div>
           <div className="text-center">
@@ -57,13 +57,13 @@ const FormHeader = () => {
               className="text-primary capitalize mt-2"
             />
             {option.subtitle && (
-              <Text text={option.subtitle} type="h6" className="text-md_gray" />
+              <Text text={option.subtitle} type="h6" className="text-sm sm:text-base text-md_gray" />
             )}
             {option.bold_text && (
               <Text
                 text={option.bold_text}
                 type="p"
-                className="text-gray-400"
+                className="text-gray-400 sm:inline-block hidden"
               />
             )}
           </div>

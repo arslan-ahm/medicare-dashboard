@@ -12,7 +12,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
       {options.map((option) => (
         <label
           key={option.label}
-          className={`cursor-pointer px-4 py-2 border-2 rounded-md transition-colors duration-200 ${
+          className={`cursor-pointer text-xs flex justify-center items-center sm:text-base px-4 py-2 border-2 rounded-md transition-colors duration-200 ${
             selectedValue === option.value
               ? "border-primary bg-primary text-white"
               : "border-gray-300"

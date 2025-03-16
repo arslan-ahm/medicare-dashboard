@@ -13,7 +13,7 @@ const AppointmentChart: React.FC<AppointmentChartProps> = ({
 }) => {
   return (
     <div
-      className={`bg-white shadow-md rounded-lg p-4 flex flex-col gap-2 ${containerStyles}`}
+      className={`bg-white shadow-md rounded-lg p-4 flex flex-col justify-between  gap-2 ${containerStyles}`}
     >
       <div className="flex items-center justify-between w-full">
         <Text text={title} type="h5" className="font-[600]" />
@@ -53,7 +53,9 @@ const AppointmentChart: React.FC<AppointmentChartProps> = ({
             )}
           </div>
           {children ? (
-            <div className="w-[80%] h-full flex justify-end">{children}</div>
+            <div className="w-[80%] h-full flex justify-end">
+              {Number(value) !== 0 && children}
+            </div>
           ) : (
             <div className="bg-lime-100 w-32 h-32 rounded-full">{children}</div>
           )}

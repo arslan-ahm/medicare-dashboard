@@ -1,5 +1,5 @@
-import ChangePasswordForm from "@/components/forms/manage-password/changePassword/ChangePasswordForm";
-import EditProfileForm from "@/components/forms/profile/EditProfileForm";
+import ChangePasswordForm from "@/components/(forms)/manage-password/changePassword/ChangePasswordForm";
+import EditProfileForm from "@/components/(forms)/profile/EditProfileForm";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import SettingsActions from "@/components/titlebarActions/SettingsActions";
 import TabSwitcher from "@/components/TabSwitcher";

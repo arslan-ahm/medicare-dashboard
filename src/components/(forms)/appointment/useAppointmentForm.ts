@@ -18,7 +18,6 @@ const initialFormData: AppointmentFormData = {
 export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: () => void) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
   const dispatch = useAppDispatch();
 
   const [formData, setFormData] = useState<AppointmentFormData>(
@@ -42,10 +41,16 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
       }
       : initialFormData
   );
-
+  const [isChecked, setIsChecked] = useState(formData.isOnline);
 
   const handleCheck = () => {
-    setIsChecked(!isChecked);
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+    setFormData((prevData) => ({
+      ...prevData,
+      isOnline: newCheckedState,
+    }));
+    console.log("formData => ", formData.isOnline);
   };
 
   const handleChange = (
@@ -63,6 +68,7 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
       ...prevData,
       [name]: newValue,
     }));
+
 
     setError(null);
   };

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useLoginForm } from "../login/useLoginForm";
+import { useLoginForm } from "./useLoginForm";
 import InputField from "../../InputField";
 import TextButton from "../../TextButton";
 import Text from "../../Text";

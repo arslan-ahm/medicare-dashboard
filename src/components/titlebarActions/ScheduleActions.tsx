@@ -6,7 +6,7 @@ import IconButton from "./IconButton";
 import { BsPrinter } from "react-icons/bs";
 import { useState } from "react";
 import ModelInterface from "../models/ModelInterface";
-import AppointmentForm from "../forms/Appointment/AppointmentForm";
+import AppointmentForm from "../(forms)/Appointment/AppointmentForm";
 
 const ScheduleActions = () => {
   const [isOpen, setIsOpen] = useState(false);

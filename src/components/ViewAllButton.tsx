@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
-import ListSideHeader from "./details/lists/ListSideHeader";
+import ListSideHeader from "./(details)/lists/ListSideHeader";
 import { IoIosArrowForward } from "react-icons/io";
 
 type ViewAllButtonProps = {

@@ -3,12 +3,13 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
 import { formatDate } from "@/lib/timeHandler";
 import ModelInterface from "@/components/models/ModelInterface";
-import TaskForm from "@/components/forms/task/TaskFrom";
+import TaskForm from "@/components/(forms)/task/TaskFrom";
 import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import toast from "react-hot-toast";
 import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../../DropdownOptions";
+import Loader from "@/components/(loader)/Loader";
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
   id,
@@ -18,6 +19,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   date,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(status);
   const [updateTaskState, setUpdateTaskState] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
@@ -66,14 +68,17 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   //   return () => document.removeEventListener("mousedown", handleClickOutside);
   // }, []);
 
-  const handleDelete = async (_id: string) => {
+  const handleDelete = async () => {
     try {
-      console.log("Deleting task with id: ", _id);
-      await dispatch(deleteTask(_id)).unwrap();
+      setIsDeleteLoading(true);
+      setIsOpen(false);
+      await dispatch(deleteTask(id)).unwrap();
       toast.success("Task deleted successfully");
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete task");
+    } finally {
+      setIsDeleteLoading(false);
     }
   };
 
@@ -85,8 +90,13 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-row items-center justify-between relative border-b border-gray-200 py-2">
-        <div className="flex items-center space-x-4">
-          <input
+        {
+          isDeleteLoading ? (
+            <Loader size="sm" />
+          ) : (
+            <>
+            <div className="flex items-center space-x-4">
+            <input
             type="checkbox"
             name="status"
             checked={isChecked}
@@ -108,8 +118,10 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
                   : description}
               </p>
             )}
-          </div>
-        </div>
+            </div>
+            </div>
+            </>
+        )}
 
         <div className="flex justify-between sm:justify-end w-full items-center space-x-2 relative">
           <span className="text-sm text-gray-500">{formattedDate}</span>
@@ -132,7 +144,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
                 type="edit"
               />
               <OptionButton
-                handleClick={() => handleDelete(id)}
+                handleClick={handleDelete}
                 text="Delete Task"
                 type="delete"
               />

@@ -1,4 +1,4 @@
-import NotificationList from "@/components/details/lists/notifications/NotificationList";
+import NotificationList from "@/components/(details)/lists/notifications/NotificationList";
 import NotificationActions from "@/components/titlebarActions/NotificationActions";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 

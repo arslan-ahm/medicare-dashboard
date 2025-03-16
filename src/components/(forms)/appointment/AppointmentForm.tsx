@@ -29,13 +29,13 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appt, onSuccess }) =>
     <>
       <form
         onSubmit={handleSubmit}
-        className="space-y-4 w-full mx-auto bg-white p-6 rounded-md shadow-sm"
+        className="space-y-4 w-full mx-auto bg-white p-4 sm:p-6 rounded-md shadow-sm"
       >
-        <div className="flex justify-between items-center px-8 space-x-4">
+        <div className="flex justify-center xs:justify-between items-center flex-wrap sm:px-8  xs:space-x-4">
           <FormHeader />
         </div>
-        <table className="w-full max-h-[20vh] overflow-y-auto custom-scroll border-separate border-spacing-y-3">
-          <tbody className="space-y-5">
+        <div className="w-full max-h-[50vh] overflow-y-auto custom-scroll border-separate border-spacing-y-3">
+          <div className="space-y-1 sm:space-y-4">
             <InputRow
               lable="Patient Name"
               setValue={handleChange}
@@ -116,8 +116,8 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({ appt, onSuccess }) =>
                 </div>
               </label>
             </InputSection>
-          </tbody>
-        </table>
+          </div>
+        </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
         <TextButton

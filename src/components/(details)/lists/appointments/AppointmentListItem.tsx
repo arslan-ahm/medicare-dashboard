@@ -9,7 +9,7 @@ import ModelInterface from "@/components/models/ModelInterface";
 import toast from "react-hot-toast";
 import { deleteAppointment } from "@/store/slices/appointment.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
-import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
+import AppointmentForm from "@/components/(forms)/appointment/AppointmentForm";
 
 const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,6 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   const [modelOpen, setModelOpen] = useState(false);
   const isCurrent = true;
 
-  
   const handleDelete = async () => {
     try {
       console.log("Deleting task with id: ", appt.id);
@@ -44,7 +43,11 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
 
       <div
         className={`flex justify-between px-1  items-center 
-          ${isCurrent ? "text-black  rounded-md border border-gray-200" : "text-gray-600"}
+          ${
+            isCurrent
+              ? "text-black  rounded-md border border-gray-200"
+              : "text-gray-600"
+          }
         `}
       >
         <div className="flex items-center justify-between text-sm gap-2 py-1">
@@ -153,7 +156,7 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
         open={modelOpen}
         setOpen={setModelOpen}
       >
-        <AppointmentForm appt={appt} />
+        <AppointmentForm onSuccess={() => setModelOpen(false)} appt={appt} />
       </ModelInterface>
     </>
   );
