@@ -32,10 +32,7 @@ const PatientTable = () => {
         <tbody>
           {patients.map((patient, index) => (
             <tr key={index} className="bg-white border-b border-gray-200">
-              <TableRowItem
-                id={patient.id}
-                patient={patient}
-              />
+              <TableRowItem id={patient.id} patient={patient} />
             </tr>
           ))}
         </tbody>

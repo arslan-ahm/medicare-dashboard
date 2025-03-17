@@ -60,7 +60,7 @@ export const PUT = async (
       );
     }
 
-    const {image, upcomingAppointment, forename, surname, dateOfBirth, gender, diagnosis, status, notes, doctorId: bodyDoctorId } = body;
+    const { image, upcomingAppointment, forename, surname, dateOfBirth, gender, diagnosis, status, notes, doctorId: bodyDoctorId } = body;
 
     const updatedPatient = await prisma.patient.update({
       where: { id },

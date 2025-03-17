@@ -7,7 +7,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 
 const FormHeader = () => {
   const doctor = useAppSelector((state) => state.auth.doctor);
-  
+
   const formattedDate = new Date().toLocaleDateString("en-GB", {
     weekday: "short",
     day: "2-digit",
@@ -57,7 +57,11 @@ const FormHeader = () => {
               className="text-primary capitalize mt-2"
             />
             {option.subtitle && (
-              <Text text={option.subtitle} type="h6" className="text-sm sm:text-base text-md_gray" />
+              <Text
+                text={option.subtitle}
+                type="h6"
+                className="text-sm sm:text-base text-md_gray"
+              />
             )}
             {option.bold_text && (
               <Text

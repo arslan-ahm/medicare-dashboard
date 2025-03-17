@@ -49,7 +49,7 @@ export const POST = async (req: Request) => {
         }
 
         const resetLink = `${process.env.NEXTAUTH_URL}/reset-password/?token=${resetToken}`;
-console.log('resetLink', resetLink)
+
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
@@ -59,7 +59,6 @@ console.log('resetLink', resetLink)
                 <h2 style="color: #333;font-size:18px;font-weight:600;">Reset Your Password</h2>
                 <p style="color: #555;">Hi There,</p>
                 <p style="color: #555;">We received a request to reset your password. Click the button below to reset it:</p>
-                <p>${resetLink}</p>
                 <a href="${resetLink}" style="display: inline-block; padding: 10px 20px; margin: 20px 0; font-size: 16px; color: #fff; background-color: #007bff; border-radius: 5px; text-decoration: none;">Reset Password</a>
                 <p style="color: #555;">If you did not request a password reset, please ignore this email or contact support if you have questions.</p>
                 <p style="color: #555;">Thank you,<br/>The Medicare Dashboard Team.</p>

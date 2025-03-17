@@ -9,7 +9,9 @@ const DoughnutChart = dynamic(() => import("@/components/charts/Donout"), {
 });
 
 const GenderChart = () => {
-    const totalPatients = useAppSelector((state) => state.patients.patients.length);
+  const totalPatients = useAppSelector(
+    (state) => state.patients.patients.length
+  );
   return (
     <>
       <AppointmentChart

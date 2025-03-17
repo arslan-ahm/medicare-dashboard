@@ -47,7 +47,7 @@ export const useResetPasswordForm = () => {
           token: new URLSearchParams(window.location.search).get("token"),
         }),
       });
-  
+
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message || "Password update failed");
@@ -55,9 +55,9 @@ export const useResetPasswordForm = () => {
       setFormData(initialState);
       router.push("/login");
       toast.success("Password updated successfully 🎉");
-      } catch (error) {
-        console.log("=>", error);
-        toast.error("Password Update Failed");
+    } catch (error) {
+      console.log("=>", error);
+      toast.error("Password Update Failed");
     } finally {
       setLoading(false);
     }

@@ -11,7 +11,7 @@ export const GET = async (req: NextRequest) => {
         { status: 401 }
       );
     }
-    
+
     const tasks = await prisma.task.findMany({
       where: { doctorId },
       orderBy: {

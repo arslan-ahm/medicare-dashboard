@@ -6,20 +6,6 @@ import AppointmentListItem from "./AppointmentListItem";
 
 const AppointmentTimeline = () => {
   const { appointments } = useAppSelector((store) => store.apponitments);
-  // const todayDate = moment().format("YYYY-MM-DD");
-
-  // const todayAppointments = appointments
-  //   .filter(
-  //     (appointment) =>
-  //       moment(appointment.start_time, "YYYY-MM-DD HH:mm").format(
-  //         "YYYY-MM-DD"
-  //       ) === todayDate
-  //   )
-  //   .sort((a, b) =>
-  //     moment(a.start_time, "YYYY-MM-DD HH:mm").diff(
-  //       moment(b.start_time, "YYYY-MM-DD HH:mm")
-  //     )
-  //   );
 
   return (
     <div className="flex flex-col w-full max-w-lg py-2 px-3 sm:px-6 mx-auto bg-white rounded-lg">

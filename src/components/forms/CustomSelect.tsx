@@ -1,8 +1,13 @@
 import React from "react";
 import { CustomSelectProps } from "@/types/componentsTypes/customSelect";
 
-
-const CustomSelect: React.FC<CustomSelectProps> = ({ name, value, onChange, options, id }) => {
+const CustomSelect: React.FC<CustomSelectProps> = ({
+  name,
+  value,
+  onChange,
+  options,
+  id,
+}) => {
   return (
     <div className="relative">
       <select
@@ -19,13 +24,16 @@ const CustomSelect: React.FC<CustomSelectProps> = ({ name, value, onChange, opti
           Select Specialization
         </option>
         {options.map((option) => (
-          <option key={option.value} value={option.value} className="text-gray-700">
+          <option
+            key={option.value}
+            value={option.value}
+            className="text-gray-700"
+          >
             {option.label}
           </option>
         ))}
       </select>
 
-      {/* Custom dropdown styling */}
       <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
         <svg
           className="w-4 h-4 text-gray-500"

@@ -1,4 +1,4 @@
-import HeroSection from "@/components/(sections)/frontend/HeroSection";
+import HeroSection from "@/components/frontend/HeroSection";
 import Navbar from "@/components/navbar/FrontendNavbar";
 import Text from "@/components/Text";
 import { IMAGES } from "@/constants/imgs";

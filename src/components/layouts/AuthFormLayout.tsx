@@ -4,8 +4,6 @@ import Image from "next/image";
 import { IMAGES } from "@/constants/imgs";
 import { FormLayoutProps } from "@/types/componentsTypes/layout";
 
-
-
 const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
   return (
     <div className="w-full h-screen bg-white grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-center">

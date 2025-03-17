@@ -63,7 +63,7 @@ export const useTaskForm = (existingTask?: TaskFormEditProp, onSuccess?: () => v
       }
 
       setFormData(initialState);
-      
+
       if (onSuccess) {
         onSuccess();
       }

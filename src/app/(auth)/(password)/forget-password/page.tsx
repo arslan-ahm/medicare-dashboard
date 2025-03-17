@@ -5,10 +5,7 @@ import FormLayout from "@/components/layouts/AuthFormLayout";
 export default function SignUpPage() {
   return (
     <FormLayout>
-      <FormHeader
-        title="Forget Password"
-        subhead="Let's try once more | "
-      />
+      <FormHeader title="Forget Password" subhead="Let's try once more | " />
       <ForgetPasswordForm />
     </FormLayout>
   );

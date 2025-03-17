@@ -11,7 +11,7 @@ const PatientActions = () => {
     {
       icon: <IoAddOutline />,
       handleClick: () => {
-       router.push("patients/add");
+        router.push("patients/add");
       },
       hide: false,
     },

@@ -20,7 +20,7 @@ const ResetPasswordForm = () => {
           labelStyle="text-[13px]"
           fieldType="password"
           required
-          />
+        />
         <InputField
           label="Confirm Password"
           inputType="primary"

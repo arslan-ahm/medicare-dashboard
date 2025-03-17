@@ -86,7 +86,7 @@ export const POST = async (req: NextRequest) => {
       day: "2-digit",
       year: "numeric",
     });
-    
+
 
     await prisma.notification.create({
       data: {

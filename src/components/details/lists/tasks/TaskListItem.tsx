@@ -32,7 +32,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
     setIsChecked(newStatus);
     await dispatch(toggleTaskStatus({ id, status: newStatus }));
   };
-  
+
   useEffect(() => {
     if (isOpen && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();
@@ -90,37 +90,36 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-row items-center justify-between relative border-b border-gray-200 py-2">
-        {
-          isDeleteLoading ? (
-            <Loader size="sm" />
-          ) : (
-            <>
+        {isDeleteLoading ? (
+          <Loader size="sm" />
+        ) : (
+          <>
             <div className="flex items-center space-x-4">
-            <input
-            type="checkbox"
-            name="status"
-            checked={isChecked}
-            onChange={toggleStatus}
-            className="w-6 h-6 accent-blue-600 rounded-md border-gray-300 focus:ring-2 focus:ring-blue-400 checked:bg-primary checked:border-transparent"
-          />
-          <div>
-            <h3
-              className={`text-md md:text-lg font-semibold ${
-                isChecked ? "line-through text-gray-400" : ""
-              }`}
-            >
-              {title}
-            </h3>
-            {description && (
-              <p className="text-[12px] md:text-sm text-gray-500">
-                {description?.length > 50
-                  ? `${description.slice(0, 50)}...`
-                  : description}
-              </p>
-            )}
+              <input
+                type="checkbox"
+                name="status"
+                checked={isChecked}
+                onChange={toggleStatus}
+                className="w-6 h-6 accent-blue-600 rounded-md border-gray-300 focus:ring-2 focus:ring-blue-400 checked:bg-primary checked:border-transparent"
+              />
+              <div>
+                <h3
+                  className={`text-md md:text-lg font-semibold ${
+                    isChecked ? "line-through text-gray-400" : ""
+                  }`}
+                >
+                  {title}
+                </h3>
+                {description && (
+                  <p className="text-[12px] md:text-sm text-gray-500">
+                    {description?.length > 50
+                      ? `${description.slice(0, 50)}...`
+                      : description}
+                  </p>
+                )}
+              </div>
             </div>
-            </div>
-            </>
+          </>
         )}
 
         <div className="flex justify-between sm:justify-end w-full items-center space-x-2 relative">

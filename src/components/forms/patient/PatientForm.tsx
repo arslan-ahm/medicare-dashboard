@@ -17,7 +17,11 @@ type PatientForm = {
   onSuccess?: () => void;
 };
 
-const PatientForm: React.FC<PatientForm> = ({ type = "page", patient, onSuccess }) => {
+const PatientForm: React.FC<PatientForm> = ({
+  type = "page",
+  patient,
+  onSuccess,
+}) => {
   const { formData, handleChange, error, handleAddPatient, handleImageChange } =
     usePatientForm(patient, type === "model" ? onSuccess : undefined);
 

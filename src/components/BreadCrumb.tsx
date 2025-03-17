@@ -28,7 +28,9 @@ const Breadcrumb: React.FC = () => {
                   <span>/</span>
                 </>
               ) : (
-                <span className="text-gray-500">{decodeURIComponent(formattedSegment)}</span>
+                <span className="text-gray-500">
+                  {decodeURIComponent(formattedSegment)}
+                </span>
               )}
             </li>
           );

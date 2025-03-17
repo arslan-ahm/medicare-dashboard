@@ -15,11 +15,11 @@ const Navbar = () => {
   };
 
   const NavList = [
-    {text: 'Home', link: '#home'},
-    {text: 'About', link: '#about'},
-    {text: 'Contact', link: '#contact'},
-    {text: 'Our Work', link: '#our_work'},
-  ]
+    { text: "Home", link: "#home" },
+    { text: "About", link: "#about" },
+    { text: "Contact", link: "#contact" },
+    { text: "Our Work", link: "#our_work" },
+  ];
   return (
     <nav className="bg-white py-4 px-4 sm:px-6 flex justify-between items-center border-b border-gray-200 sticky top-0 left-0 w-full z-40">
       <div className="flex gap-2 items-center text-xl text-gray-500 font-bold sm:w-[30%] md:w-[20%]">
@@ -31,13 +31,11 @@ const Navbar = () => {
 
       <div className="hidden lg:flex max-w-[350px] xl:max-w-[80vh] w-[80%]">
         <ul className="flex space-x-8">
-          {
-            NavList.map((item,i)=> (
-              <li key={i}>
-                <NavItem text={item.text} link={item.link} />
-              </li>
-              ))
-          }
+          {NavList.map((item, i) => (
+            <li key={i}>
+              <NavItem text={item.text} link={item.link} />
+            </li>
+          ))}
         </ul>
       </div>
       <div className="flex items-center space-x-4">
@@ -52,8 +50,13 @@ const Navbar = () => {
   );
 };
 
-const NavItem = ({text, link}:{text:string, link:string})=> (
-  <Link className="relative hover:before:w-full before:w-0 before:duration-200  before:h-[1px] before:rounded-full before:absolute before:bg-primary before:-bottom-1 before:left-[50%] before:-translate-x-1/2 before:transform before:transition-all" href={link}>{text}</Link>
-)
+const NavItem = ({ text, link }: { text: string; link: string }) => (
+  <Link
+    className="relative hover:before:w-full before:w-0 before:duration-200  before:h-[1px] before:rounded-full before:absolute before:bg-primary before:-bottom-1 before:left-[50%] before:-translate-x-1/2 before:transform before:transition-all"
+    href={link}
+  >
+    {text}
+  </Link>
+);
 
 export default Navbar;

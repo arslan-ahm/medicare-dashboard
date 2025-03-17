@@ -149,13 +149,17 @@ const Navbar = () => {
                 className="p-2 hover:bg-slate-50 cursor-pointer rounded-r-md border-l-2 mb-2 border-rose-500"
               >
                 <Link href="/dashboard/notifications">
-                  <p className="text-[12px] text-gray-500 font-medium">{msg.title}</p>
+                  <p className="text-[12px] text-gray-500 font-medium">
+                    {msg.title}
+                  </p>
                 </Link>
               </li>
             ))
           ) : (
             <li>
-              <p className="text-[12px] font-semibold text-gray-500 capitalize">No notifications</p>
+              <p className="text-[12px] font-semibold text-gray-500 capitalize">
+                No notifications
+              </p>
             </li>
           )}
         </ul>

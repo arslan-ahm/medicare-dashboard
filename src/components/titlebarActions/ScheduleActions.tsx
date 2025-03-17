@@ -6,7 +6,7 @@ import IconButton from "./IconButton";
 import { BsPrinter } from "react-icons/bs";
 import { useState } from "react";
 import ModelInterface from "../models/ModelInterface";
-import AppointmentForm from "../forms/Appointment/AppointmentForm";
+import AppointmentForm from "../forms/appointment/AppointmentForm";
 
 const ScheduleActions = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +46,7 @@ const ScheduleActions = () => {
     <>
       <ul className="flex space-x-2">
         {patientBarComponents.map(({ icon, handleClick, hide }, ind) => (
-          <li key={ind} className={`${hide && 'cursor-not-allowed'}`}>
+          <li key={ind} className={`${hide && "cursor-not-allowed"}`}>
             <IconButton icon={icon} handleClick={handleClick} />
           </li>
         ))}

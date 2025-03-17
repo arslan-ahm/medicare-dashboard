@@ -14,7 +14,10 @@ type AppointmentFormProps = {
   onSuccess?: () => void;
 };
 
-const AppointmentForm: React.FC<AppointmentFormProps> = ({ appt, onSuccess }) => {
+const AppointmentForm: React.FC<AppointmentFormProps> = ({
+  appt,
+  onSuccess,
+}) => {
   const {
     formData,
     handleChange,

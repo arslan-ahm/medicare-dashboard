@@ -159,7 +159,7 @@ const taskSlice = createSlice({
       .addCase(toggleTaskStatus.rejected, (state, action) => {
         state.error = action.payload || "Failed to update task status";
       })
-      
+
       .addCase(deleteTask.pending, (state) => {
         state.loading = true;
       })
