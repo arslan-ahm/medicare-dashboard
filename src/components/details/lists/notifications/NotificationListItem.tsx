@@ -9,7 +9,7 @@ import { formatDate } from "@/lib/timeHandler";
 import { deleteNotification } from "@/store/slices/notification.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import toast from "react-hot-toast";
-import Loader from "@/components/(loader)/Loader";
+import Loader from "@/components/loader/Loader";
 
 type NotificationListItemProps = {
   notification: Notification;

@@ -1,5 +1,5 @@
 import React from "react";
-import PatientForm from "@/components/(forms)/patient/PatientForm";
+import PatientForm from "@/components/forms/patient/PatientForm";
 
 const AddPatient = () => {
   return (

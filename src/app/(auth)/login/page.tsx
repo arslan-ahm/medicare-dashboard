@@ -1,6 +1,6 @@
 import FormLayout from "@/components/layouts/AuthFormLayout";
-import LoginForm from "@/components/(forms)/login/LoginForm";
-import FormHeader from "@/components/(forms)/FormHeader";
+import LoginForm from "@/components/forms/login/LoginForm";
+import FormHeader from "@/components/forms/FormHeader";
 
 export default function SignInPage() {
   return (

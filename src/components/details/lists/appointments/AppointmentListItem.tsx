@@ -9,7 +9,7 @@ import ModelInterface from "@/components/models/ModelInterface";
 import toast from "react-hot-toast";
 import { deleteAppointment } from "@/store/slices/appointment.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
-import AppointmentForm from "@/components/(forms)/appointment/AppointmentForm";
+import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
 
 const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   const dispatch = useAppDispatch();

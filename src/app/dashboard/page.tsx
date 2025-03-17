@@ -1,9 +1,9 @@
 import React from "react";
-import TasksListSection from "@/components/(sections)/Tasks";
-import AppointmentSection from "@/components/(sections)/appointmentList/AppointmentList";
-import GenderChart from "@/components/(sections)/showCharts/GenderChart";
-import OnlineAppointmentChart from "@/components/(sections)/showCharts/OnlineAppointmentChart";
-import OnfflineAppointmentChart from "@/components/(sections)/showCharts/OfflineAppointmentChart";
+import TasksListSection from "@/components/sections/Tasks";
+import AppointmentSection from "@/components/sections/appointmentList/AppointmentList";
+import GenderChart from "@/components/sections/showCharts/GenderChart";
+import OnlineAppointmentChart from "@/components/sections/showCharts/OnlineAppointmentChart";
+import OnfflineAppointmentChart from "@/components/sections/showCharts/OfflineAppointmentChart";
 
 const Page = () => {
   return (

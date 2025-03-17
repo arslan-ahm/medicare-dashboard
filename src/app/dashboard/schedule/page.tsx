@@ -1,4 +1,4 @@
-import Calendar from "@/components/(details)/calendar/Calendar";
+import Calendar from "@/components/details/calendar/Calendar";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import ScheduleActions from "@/components/titlebarActions/ScheduleActions";
 

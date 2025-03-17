@@ -11,7 +11,7 @@ import { PATIENT_STATUS } from "@/constants/formData";
 import { deletePatient } from "@/store/slices/patient.slice";
 import toast from "react-hot-toast";
 import { useAppDispatch } from "@/hooks/useRedux";
-import PatientForm from "@/components/(forms)/patient/PatientForm";
+import PatientForm from "@/components/forms/patient/PatientForm";
 
 const statusColor: { [key: string]: string } = {
   recovered: "bg-green-100 text-green-800",

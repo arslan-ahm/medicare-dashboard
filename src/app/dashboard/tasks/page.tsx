@@ -1,4 +1,4 @@
-import TasksListSection from "@/components/(sections)/Tasks";
+import TasksListSection from "@/components/sections/Tasks";
 
 const Tasks = () => {
   return (

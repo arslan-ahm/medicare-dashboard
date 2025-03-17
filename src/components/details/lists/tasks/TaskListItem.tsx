@@ -3,13 +3,13 @@ import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
 import { formatDate } from "@/lib/timeHandler";
 import ModelInterface from "@/components/models/ModelInterface";
-import TaskForm from "@/components/(forms)/task/TaskFrom";
+import TaskForm from "@/components/forms/task/TaskFrom";
 import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
 import toast from "react-hot-toast";
 import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../../DropdownOptions";
-import Loader from "@/components/(loader)/Loader";
+import Loader from "@/components/loader/Loader";
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
   id,
