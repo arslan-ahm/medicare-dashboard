@@ -39,9 +39,9 @@ const PatientForm: React.FC<PatientForm> = ({
           </ul>
         </PageTitleBar>
       )}
-      <div className="w-full custom-scroll overflow-y-auto max-h-[70vh]">
+      <div className="w-full custom-scroll overflow-y-auto max-h-[70vh] p-2 sm:p-4">
         {type === "model" && (
-          <div className="p-3 flex justify-between items-center">
+          <div className="pl-8 flex justify-between items-center">
             <div className="relative flex items-center justify-center rounded-full w-[50px] h-[50px] overflow-hidden bg-gray-200 cursor-pointer">
               <label
                 htmlFor="profile-upload"
@@ -125,7 +125,7 @@ const PatientForm: React.FC<PatientForm> = ({
                 }
                 onChange={handleChange}
                 required
-                className="w-full border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:border-primary"
+                className="w-full  border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:border-primary"
               />
             </InputSection>
             <InputRow
@@ -138,7 +138,7 @@ const PatientForm: React.FC<PatientForm> = ({
               required
             />
             <InputSection title="Status">
-              <div className="flex gap-2">
+              <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
                 <RadioGroup
                   name="status"
                   options={PATIENT_STATUS}

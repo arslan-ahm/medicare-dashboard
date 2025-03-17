@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import IconButton from "@/components/titlebarActions/IconButton";
@@ -14,11 +14,10 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import PatientForm from "@/components/forms/patient/PatientForm";
 
 const statusColor: { [key: string]: string } = {
-  recovered: "bg-green-100 text-green-800",
-  "N/A": "bg-gray-100 text-gray-800",
-  "awaiting surgery": "bg-blue-100 text-blue-800",
-  "on treatment": "bg-red-100 text-red-800",
-  "on going": "bg-yellow-100 text-yellow-800",
+  recovered: "bg-md_varient_green text-green",
+  "awaiting surgery": "bg-md_varient_blue text-blue",
+  "on treatment": "bg-md_varient_red text-red",
+  "on going": "bg-md_varient_yellow text-yellow",
 };
 
 const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
@@ -30,7 +29,9 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
   const refinedStatus =
     PATIENT_STATUS.find((status) => status.value === patient.status)?.label ||
     "N/A";
-  const statusBadgeColor = statusColor[refinedStatus.toLowerCase()];
+  const statusBadgeColor =
+    statusColor[refinedStatus.toLowerCase()] || "bg-gray-100 text-gray-800";
+    console.log("Patient: ", refinedStatus, " => ", statusBadgeColor);
 
   useEffect(() => {
     if (isOpen && buttonRef.current) {
@@ -80,7 +81,13 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
         </div>
       </td>
       <TableDetail title={patient.diagnosis} />
-      <TableDetail title={refinedStatus} style={statusBadgeColor} />
+      <TableDetail
+        title={
+          <span className={`px-3 py-1 rounded-full text-nowrap ${statusBadgeColor}`}>
+            {refinedStatus}
+          </span>
+        }
+      />
       <TableDetail
         title={
           patient.upcomingAppointment
@@ -125,9 +132,15 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
   );
 };
 
-const TableDetail = ({ title, style }: { title: string; style?: string }) => {
+const TableDetail = ({
+  title,
+  style,
+}: {
+  title: string | ReactNode;
+  style?: string;
+}) => {
   return (
-    <td className={`px-6 py-4 ${style && style + " rounded-xl "}`}>{title}</td>
+    <td className={`px-6 py-4 text-[12px] lg:text-base ${style && style + " rounded-xl "}`}>{title}</td>
   );
 };
 
