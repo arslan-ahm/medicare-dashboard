@@ -4,7 +4,7 @@ import Image from "next/image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../DropdownOptions";
-import ModelInterface from "@/components/models/ModelInterface";
+import ModelInterface from "@/components/modals/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
 import { formatDate } from "@/lib/timeHandler";
 import { PATIENT_STATUS } from "@/constants/formData";
@@ -31,7 +31,6 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
     "N/A";
   const statusBadgeColor =
     statusColor[refinedStatus.toLowerCase()] || "bg-gray-100 text-gray-800";
-    console.log("Patient: ", refinedStatus, " => ", statusBadgeColor);
 
   useEffect(() => {
     if (isOpen && buttonRef.current) {

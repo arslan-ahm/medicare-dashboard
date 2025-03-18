@@ -5,7 +5,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import IconButton from "@/components/titlebarActions/IconButton";
 import { Appointment } from "@/types/slices/appointment";
-import ModelInterface from "@/components/models/ModelInterface";
+import ModelInterface from "@/components/modals/ModelInterface";
 import toast from "react-hot-toast";
 import { deleteAppointment } from "@/store/slices/appointment.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
@@ -19,7 +19,6 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
 
   const handleDelete = async () => {
     try {
-      console.log("Deleting task with id: ", appt.id);
       await dispatch(deleteAppointment(appt.id)).unwrap();
       toast.success("Appointment Removed, Successfully... 🙂");
     } catch (error) {
@@ -29,7 +28,6 @@ const AppointmentListItem = ({ appt }: { appt: Appointment }) => {
   };
 
   const handleEdit = () => {
-    console.log("Editing task with id: ", appt);
     setModelOpen(true);
   };
 

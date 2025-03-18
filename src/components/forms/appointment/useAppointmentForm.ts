@@ -50,7 +50,6 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
       ...prevData,
       isOnline: newCheckedState,
     }));
-    console.log("formData => ", formData.isOnline);
   };
 
   const handleChange = (
@@ -80,7 +79,6 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
     const { patientName, purpose, start_time, end_time } = formData;
 
     if (!patientName || !purpose || !start_time || !end_time) {
-      console.log("Please fill all the fields");
       return toast.error("Important fields are missing... 🙄");
     }
 

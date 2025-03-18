@@ -30,7 +30,6 @@ export const useResetPasswordForm = () => {
     const { password, confirmPassword } = formData;
 
     if (!password || !confirmPassword) {
-      console.log("Please fill all the fields");
       return toast.error("Must fill all the fields... 🙄");
     }
     
@@ -56,7 +55,7 @@ export const useResetPasswordForm = () => {
       router.push("/login");
       toast.success("Password Updated Successfully... 🎉");
     } catch (error) {
-      console.log("=>", error);
+      console.error("=>", error);
       toast.error("Something went wrong... 😔");
     } finally {
       setLoading(false);

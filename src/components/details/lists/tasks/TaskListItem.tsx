@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
 import { formatDate } from "@/lib/timeHandler";
-import ModelInterface from "@/components/models/ModelInterface";
+import ModelInterface from "@/components/modals/ModelInterface";
 import TaskForm from "@/components/forms/task/TaskFrom";
 import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
 import { useAppDispatch } from "@/hooks/useRedux";
@@ -57,16 +57,6 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
 
     return () => clearInterval(interval);
   }, [date]);
-
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     if (!buttonRef.current?.contains(event.target as Node)) {
-  //       setIsOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => document.removeEventListener("mousedown", handleClickOutside);
-  // }, []);
 
   const handleDelete = async () => {
     try {

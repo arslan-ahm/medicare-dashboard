@@ -11,8 +11,8 @@ const LineChart = dynamic(() => import("@/components/charts/LineChart"), {
 });
 
 const OnfflineAppointmentChart = () => {
-  const appointments = useAppSelector(
-    (state) => state.apponitments.appointments
+  const { appointments, loading } = useAppSelector(
+    (state) => state.apponitments
   );
 
   const offlineAppointments = appointments.filter((appt) => !appt.isOnline);
@@ -34,6 +34,7 @@ const OnfflineAppointmentChart = () => {
     <AppointmentChart
       title="Offline Consultations"
       percentage={percentage}
+      loader={loading}
       type="success"
       value={totalOfflineAppointments.toString()}
       containerStyles="col-span-6 sm:col-span-3 lg:col-span-2"

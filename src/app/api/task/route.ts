@@ -49,7 +49,6 @@ export const POST = async (req: NextRequest) => {
     const { title, description, date, status } = await req.json();
 
     if (!title || !date || status === undefined) {
-      console.log("Missing required fields", { title, description, date, status });
       return NextResponse.json(
         { status: "error", message: "Missing required fields.", ok: false },
         { status: 400 }

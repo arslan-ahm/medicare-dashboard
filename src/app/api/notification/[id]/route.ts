@@ -3,9 +3,9 @@ import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 
 
-export async function PATCH(req: Request, { params }: { params: { id: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const { id } = params;
+        const { id } = await params;
         const doctorId = req.headers.get("doctorId");
 
         if (!doctorId) {
@@ -48,9 +48,9 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 }
 
 
-export async function DELETE(req: Request, { params }: { params: { id: string } }) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
     try {
-        const { id } = params;
+        const { id } = await params;
         const doctorId = req.headers.get("doctorId");
 
         if (!doctorId) {

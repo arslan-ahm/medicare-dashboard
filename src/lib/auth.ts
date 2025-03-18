@@ -45,7 +45,6 @@ export const authOptions: AuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        console.log("Authorized User:", doctor);
         return { id: doctor.id, name: doctor.name, email: doctor.email };
       },
     }),
@@ -60,18 +59,15 @@ export const authOptions: AuthOptions = {
   debug: process.env.NODE_ENV !== "production",
   callbacks: {
     async session({ session, token }) {
-      console.log("Session Token:", token);
       if (token && session.user) {
         session.user.id = token.id as string;
       }
-      console.log("Session User:", session.user);
       return session;
     },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
       }
-      console.log("JWT Token:", token);
       return token;
     },
   },

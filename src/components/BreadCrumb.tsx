@@ -1,4 +1,4 @@
-"use client"; // Ensuring it's a client component
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -14,7 +14,6 @@ const Breadcrumb: React.FC = () => {
           const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
           const isLast = index === pathSegments.length - 1;
 
-          // Capitalizing each segment
           const formattedSegment =
             segment.charAt(0).toUpperCase() + segment.slice(1);
 

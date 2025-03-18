@@ -119,7 +119,6 @@ const patientSlice = createSlice({
 
       .addCase(updatePatient.pending, (state, action) => {
         const index = state.patients.findIndex((p) => p.id === action.meta.arg.id);
-        console.log(action.meta.arg);
 
         if (index !== -1) {
           state.patients[index] = { ...state.patients[index], ...action.meta.arg };

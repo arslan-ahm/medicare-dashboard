@@ -3,10 +3,10 @@ import { prisma } from "@/lib/prisma";
 
 export const GET = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   try {
-    const { id } = params;
+    const { id } = await params;
     const task = await prisma.task.findUnique({ where: { id } });
     const doctorId = req.headers.get("doctorId");
 
@@ -42,11 +42,11 @@ export const GET = async (
 
 export const PUT = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   try {
     const body = await req.json();
-    const { id } = params;
+    const { id } = await params;
     const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
@@ -68,8 +68,6 @@ export const PUT = async (
       },
     });
 
-    console.log("PUT request - Step 5", updatedTask);
-
     return NextResponse.json({
       status: "success",
       data: updatedTask,
@@ -88,11 +86,11 @@ export const PUT = async (
 
 export const PATCH = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   const body = await req.json();
   try {
-    const { id } = params;
+    const { id } = await params;
     const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {
@@ -124,9 +122,6 @@ export const PATCH = async (
       ok: true,
     });
   } catch (error) {
-    console.log("Error", error);
-    console.log("Request Body => ", body);
-
     if (error instanceof Error) {
       return NextResponse.json(
         { status: "error", message: error.message || "Failed to update task.", ok: false },
@@ -139,10 +134,10 @@ export const PATCH = async (
 
 export const DELETE = async (
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) => {
   try {
-    const { id } = params;
+    const { id } = await params;
     const doctorId = req.headers.get("doctorId");
 
     if (!doctorId) {

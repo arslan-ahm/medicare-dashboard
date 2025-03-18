@@ -32,7 +32,6 @@ export const useRegisterForm = () => {
     const { name, email, password, organization, specialization } = formData;
 
     if (!name || !email || !password) {
-      console.log("Please fill all the fields");
       return toast.error("Important fields are missing... 😶");
     }
 
@@ -45,7 +44,6 @@ export const useRegisterForm = () => {
     }
 
     try {
-      console.log("Registering...");
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: {

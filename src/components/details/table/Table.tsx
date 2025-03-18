@@ -15,8 +15,6 @@ const PatientTable = () => {
     );
   }
 
-  console.log("Patients: ", patients);
-
   return (
     <>
       <div className="relative overflow-x-auto max-w-[82vw] xs:max-w-[85vw] min-[485px]:max-w-[95vw] md:max-w-[90vw] custom-scroll shadow-md">

@@ -5,4 +5,5 @@ export type AppointmentChartProps = {
     type?: "success" | "loss";
     containerStyles?: string;
     children?: React.ReactNode;
+    loader?: boolean;
   };

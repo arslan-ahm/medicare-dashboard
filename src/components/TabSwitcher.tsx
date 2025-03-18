@@ -38,7 +38,6 @@ const TabSwitcher: React.FC<TabSwitcherProps> = ({ tabs, children }) => {
         />
       </div>
 
-      {/* Tab Content with Fade Animation */}
       <div className="w-full mt-3 bg-white rounded-lg shadow relative overflow-hidden">
         {tabs.map((tab) => (
           <div

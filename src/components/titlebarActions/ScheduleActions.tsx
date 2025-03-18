@@ -5,7 +5,7 @@ import { IoAddOutline, IoHelpCircleOutline } from "react-icons/io5";
 import IconButton from "./IconButton";
 import { BsPrinter } from "react-icons/bs";
 import { useState } from "react";
-import ModelInterface from "../models/ModelInterface";
+import ModelInterface from "../modals/ModelInterface";
 import AppointmentForm from "../forms/appointment/AppointmentForm";
 
 const ScheduleActions = () => {
@@ -21,23 +21,14 @@ const ScheduleActions = () => {
     },
     {
       icon: <CiFilter />,
-      handleClick: () => {
-        console.log("Filter");
-      },
       hide: false,
     },
     {
       icon: <BsPrinter />,
-      handleClick: () => {
-        console.log("Save");
-      },
       hide: true,
     },
     {
       icon: <IoHelpCircleOutline />,
-      handleClick: () => {
-        console.log("Help");
-      },
       hide: true,
     },
   ];
@@ -52,7 +43,10 @@ const ScheduleActions = () => {
               hide && "sm:inline-block hidden"
             }`}
           >
-            <IconButton icon={icon} handleClick={handleClick} />
+            <IconButton
+              icon={icon}
+              handleClick={handleClick ? handleClick : () => {}}
+            />
           </li>
         ))}
       </ul>

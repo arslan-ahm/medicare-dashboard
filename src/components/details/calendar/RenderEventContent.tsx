@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { EventContentArg } from "@fullcalendar/core";
 
-// Map status to Tailwind color classes
 const STATUS_COLORS: Record<
   string,
   { text: string; bg: string; border: string; hoverBg: string }
@@ -38,19 +37,18 @@ const RenderEventContent = (eventInfo: EventContentArg) => {
 
   return (
     <div
-      className={`p-2 rounded-md text-xs font-medium relative group ${colors.bg} ${colors.text}`}
+      className={`inline-block p-2 rounded-md text-xs font-medium relative group ${colors.bg} ${colors.text}`}
     >
       <div
-        className={`absolute top-[8px] left-[2px] w-1 h-[60%] rounded-full ${colors.border}`}
+        className={`absolute hidden xs:inline-block top-[8px] left-[2px] w-1 h-[60%] rounded-full ${colors.border}`}
       />
-
-      <div className="flex justify-between px-2">
-        <p className="font-bold">{extendedProps.status}</p>
+      <div className="flex justify-between sm:px-2">
+        <p className="font-bold hidden md:inline-block">{extendedProps.patientName}</p>
         <p>{dayjs(eventInfo.event.start).format("h:mm A")}</p>
       </div>
 
       <div
-        className={`z-50 absolute left-0 top-full mt-2 w-48 p-3 shadow-lg rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${colors.hoverBg} ${colors.text}`}
+        className={`z-50 absolute left-0 top-full mt-2 w-48 p-3 shadow-lg rounded-md transition-opacity duration-300 ${colors.hoverBg} ${colors.text} hidden group-hover:inline-block`}
       >
         <p className="font-bold">{extendedProps.status}</p>
         <p>Patient: {extendedProps.patientName}</p>
@@ -59,6 +57,11 @@ const RenderEventContent = (eventInfo: EventContentArg) => {
           Location: {extendedProps.location ? "Online" : extendedProps.location}
         </p>
         <p>Time: {dayjs(eventInfo.event.start).format("h:mm A")}</p>
+      </div>
+
+      <div className="sm:hidden">
+        <p>{eventInfo.event.title}</p>
+        <p>{extendedProps.patientName}</p>
       </div>
     </div>
   );

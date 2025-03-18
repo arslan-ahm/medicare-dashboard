@@ -66,7 +66,6 @@ export const deleteAppointment = createAsyncThunk(
   async (id: string, { rejectWithValue }) => {
     try {
       const response = await api.delete(`/appointment/${id}`);
-      console.log("API Response:", response.data);
       return response.data.data.id;
     } catch (error) {
       if (error instanceof AxiosError) {

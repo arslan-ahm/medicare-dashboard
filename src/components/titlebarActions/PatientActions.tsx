@@ -1,4 +1,4 @@
-"use client"; // ✅ This makes it a client component
+"use client";
 
 import { CiFilter } from "react-icons/ci";
 import { IoAddOutline, IoSearchOutline } from "react-icons/io5";
@@ -17,16 +17,10 @@ const PatientActions = () => {
     },
     {
       icon: <IoSearchOutline />,
-      handleClick: () => {
-        console.log("Search");
-      },
       hide: true,
     },
     {
       icon: <CiFilter />,
-      handleClick: () => {
-        console.log("Filter");
-      },
       hide: true,
     },
   ];
@@ -39,7 +33,10 @@ const PatientActions = () => {
             key={ind}
             className={`${!hide ? "inline-block" : "hidden"} sm:inline-block`}
           >
-            <IconButton icon={icon} handleClick={handleClick} />
+            <IconButton
+              icon={icon}
+              handleClick={handleClick ? handleClick : () => {}}
+            />
           </li>
         ))}
       </ul>

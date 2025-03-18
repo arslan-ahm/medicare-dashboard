@@ -5,9 +5,9 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import RenderEventContent from "./RenderEventContent";
 import { CalendarEvent } from "@/types/componentsTypes/calender";
 import { useAppSelector } from "@/hooks/useRedux";
+import RenderEventContent from "./RenderEventContent";
 
 const Calendar: React.FC = () => {
   const { appointments } = useAppSelector((state) => state.apponitments);
@@ -23,39 +23,57 @@ const Calendar: React.FC = () => {
     };
 
     handleResize();
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const events = appointments.map(
-    (appt): CalendarEvent => ({
+  const groupedEvents: Record<string, CalendarEvent[]> = {};
+
+  appointments.forEach((appt) => {
+    const startTime = dayjs(appt.start_time).toISOString();
+    if (!groupedEvents[startTime]) {
+      groupedEvents[startTime] = [];
+    }
+    groupedEvents[startTime].push({
       id: appt.id,
       title: appt.purpose,
-      start: dayjs(`${appt.start_time}`).toISOString(),
-      end: dayjs(`${appt.end_time}`).toISOString(),
+      start: startTime,
+      end: dayjs(appt.end_time).toISOString(),
       color: "transparent",
       extendedProps: {
         status: appt.status,
         patientName: `Patient ${appt.patientName}`,
         location: appt.isOnline ? "Online" : "In-Person",
       },
-    })
-  );
+    });
+  });
+
+  const events = Object.entries(groupedEvents).map(([start, appts]) => {
+    if (appts.length === 1) {
+      return appts[0];
+    }
+    return {
+      id: `group-${start}`,
+      title: `${appts.length} Appointments`,
+      start,
+      end: appts[0].end,
+      extendedProps: { appointments: appts },
+    };
+  });
 
   return (
     <div className="bg-white p-4 rounded-md shadow-md">
       <h2 className="text-[10px] xs:text-sm md:text-lg font-semibold mb-4">
         Weekly & Monthly Schedule
       </h2>
-      <div className="relative overflow-x-auto max-w-[82vw] xs:max-w-[85vw] min-[485px]:max-w-[95vw] md:max-w-[90vw] custom-scroll w-full h-[calc(100vh-150px)]">
+      <div>
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView={initialView}
           headerToolbar={{
             left: window.innerWidth < 768 ? "" : "prev,next today",
             center: "title",
-            right: "dayGridMonth,timeGridWeek",
+            right: window.innerWidth < 768 ? "" : "dayGridMonth,timeGridWeek",
           }}
           slotMinTime="08:00:00"
           slotMaxTime="18:00:00"

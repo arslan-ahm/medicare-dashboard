@@ -42,10 +42,6 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    console.log(
-      "Doctor created successfully..." + body.name + "(" + body.email + ")"
-    );
-
     return NextResponse.json(
       {
         message: "Doctor created successfully.",

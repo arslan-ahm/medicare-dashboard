@@ -50,7 +50,6 @@ export const useTaskForm = (existingTask?: TaskFormEditProp, onSuccess?: () => v
     const { title, date } = formData;
 
     if (!title || !date) {
-      console.log("Please fill all the fields", formData);
       return toast.error("Important fields are missing... 😶");
     }
     try {

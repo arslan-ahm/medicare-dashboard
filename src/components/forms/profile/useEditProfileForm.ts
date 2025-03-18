@@ -34,7 +34,6 @@ export const useEditProfileForm = () => {
     const { name, email, specialization, organization } = formData;
 
     if (!name || !email || !specialization || !organization) {
-      console.log("Please fill all the fields");
       return toast.error("Important fields are missing... 😶");
     }
 
@@ -44,7 +43,6 @@ export const useEditProfileForm = () => {
 
     try {
       await dispatch(updateProfile(formData));
-      console.log("Profile Updated Successfully");
       toast.success("Edit Profile Successfully... 😊");
     } catch (error) {
       console.error(error);

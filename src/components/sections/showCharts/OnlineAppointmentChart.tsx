@@ -11,8 +11,8 @@ const LineChart = dynamic(() => import("@/components/charts/LineChart"), {
 });
 
 const OnlineAppointmentChart = () => {
-  const appointments = useAppSelector(
-    (state) => state.apponitments.appointments
+  const {appointments, loading} = useAppSelector(
+    (state) => state.apponitments
   );
   const onlineAppointments = appointments.filter((appt) => appt.isOnline);
   const weeklyData = getWeeklyAppointments(onlineAppointments);
@@ -31,6 +31,7 @@ const OnlineAppointmentChart = () => {
     <AppointmentChart
       title="Online Consultations"
       percentage={percentage}
+      loader={loading}
       type="loss"
       value={totalAppointments.toString()}
       containerStyles="col-span-6 sm:col-span-3 lg:col-span-2"

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
-import ModelInterface from "@/components/models/ModelInterface";
+import ModelInterface from "@/components/modals/ModelInterface";
 import AppointmentList from "@/components/details/lists/appointments/AppointmentList";
 import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
 

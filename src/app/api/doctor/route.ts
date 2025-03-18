@@ -22,7 +22,6 @@ export const GET = async (req: NextRequest) => {
       user,
     });
   } catch (error) {
-    console.log(error)
     return NextResponse.json(
       { status: "error", message: "Internal Server Error", error },
       { status: 500 }
