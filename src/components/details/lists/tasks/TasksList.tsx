@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import TaskListItem from "./TaskListItem";
+import TaskListItem from "./item/TaskListItem";
 import { useAppSelector } from "@/hooks/useRedux";
 import ViewAllButton from "@/components/ViewAllButton";
 import LoaderScreen from "@/components/loader/LoaderScreen";

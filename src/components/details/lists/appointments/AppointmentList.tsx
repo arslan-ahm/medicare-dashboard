@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useAppSelector } from "@/hooks/useRedux";
 import ViewAllButton from "@/components/ViewAllButton";

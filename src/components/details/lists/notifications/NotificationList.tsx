@@ -1,26 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
-import NotificationListItem from "./NotificationListItem";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import React from "react";
+import NotificationListItem from "./item/NotificationListItem";
 import { Notification } from "@/types/slices/notification";
-import { markAllNotificationsAsRead } from "@/store/slices/notification.slice";
+import useNotification from "./useNotification";
 
 const NotificationList = () => {
-  const { notifications } = useAppSelector((store) => store.notification);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const timeout = setTimeout(async () => {
-      try {
-        await dispatch(markAllNotificationsAsRead()).unwrap();
-      } catch (error) {
-        console.error(error);
-      }
-    }, 3000);
-
-    return () => clearTimeout(timeout);
-  }, [dispatch]);
-
+  const { notifications } = useNotification();
   return (
     <ul className="space-y-2">
       {notifications.length > 0 ? (

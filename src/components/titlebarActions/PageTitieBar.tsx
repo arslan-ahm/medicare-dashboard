@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import Text from "../Text";
 import { PageTitleBarProps } from "@/types/componentsTypes/pageComponentType";
@@ -21,7 +20,6 @@ const PageTitleBar: React.FC<PageTitleBarProps> = ({
           />
         )}
       </div>
-
       {children}
     </div>
   );

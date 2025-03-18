@@ -1,15 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+"use client";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
-import { formatDate } from "@/lib/timeHandler";
 import ModelInterface from "@/components/modals/ModelInterface";
 import TaskForm from "@/components/forms/task/TaskFrom";
-import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
-import { useAppDispatch } from "@/hooks/useRedux";
-import toast from "react-hot-toast";
 import IconButton from "@/components/titlebarActions/IconButton";
-import OptionButton from "../../DropdownOptions";
+import OptionButton from "../../../DropdownOptions";
 import Loader from "@/components/loader/Loader";
+import useTaskItem from "./useTaskItem";
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
   id,
@@ -18,64 +15,20 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   description,
   date,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  const [isChecked, setIsChecked] = useState(status);
-  const [updateTaskState, setUpdateTaskState] = useState(false);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
-  const buttonRef = useRef<HTMLDivElement | null>(null);
-  const [formattedDate, setFormattedDate] = useState(formatDate(date));
-  const dispatch = useAppDispatch();
-
-  const toggleStatus = async () => {
-    const newStatus = !isChecked;
-    setIsChecked(newStatus);
-    await dispatch(toggleTaskStatus({ id, status: newStatus }));
-  };
-
-  useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const dropdownHeight = 80;
-
-      let top = rect.bottom + 5;
-      const left = rect.left - 100;
-
-      if (rect.bottom + dropdownHeight > viewportHeight) {
-        top = rect.top - dropdownHeight - 5;
-      }
-
-      setPosition({ top, left });
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFormattedDate(formatDate(date));
-    }, 60000);
-
-    return () => clearInterval(interval);
-  }, [date]);
-
-  const handleDelete = async () => {
-    try {
-      setIsDeleteLoading(true);
-      setIsOpen(false);
-      await dispatch(deleteTask(id)).unwrap();
-      toast.success("Task Removed, Successfully... 🙂");
-    } catch (error) {
-      console.error(error);
-      toast.error("Cannot delete task, Please try again... 😟");
-    } finally {
-      setIsDeleteLoading(false);
-    }
-  };
-
-  const handleEdit = () => {
-    setUpdateTaskState(true);
-    setIsOpen(false);
-  };
+  const {
+    isDeleteLoading,
+    isChecked,
+    isOpen,
+    toggleStatus,
+    buttonRef,
+    formattedDate,
+    position,
+    handleDelete,
+    handleEdit,
+    updateTaskState,
+    setUpdateTaskState,
+    setIsOpen,
+  } = useTaskItem({ id, status, date });
 
   return (
     <>

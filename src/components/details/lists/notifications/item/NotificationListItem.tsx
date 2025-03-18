@@ -1,40 +1,20 @@
 "use client";
-
 import React from "react";
 import IconButton from "@/components/titlebarActions/IconButton";
 import Text from "@/components/Text";
 import { LuDelete } from "react-icons/lu";
 import { Notification } from "@/types/slices/notification";
 import { formatDate } from "@/lib/timeHandler";
-import { deleteNotification } from "@/store/slices/notification.slice";
-import { useAppDispatch } from "@/hooks/useRedux";
-import toast from "react-hot-toast";
 import Loader from "@/components/loader/Loader";
+import useNotificationItem from "./useNotificationItem";
 
-type NotificationListItemProps = {
-  notification: Notification;
-};
-
-const NotificationListItem: React.FC<NotificationListItemProps> = ({
+const NotificationListItem = ({
   notification,
+}: {
+  notification: Notification;
 }) => {
-  const isUnread = !notification.isRead;
-  const dispatch = useAppDispatch();
-  const [isloading, setIsLoading] = React.useState(false);
-
-  const handleDelete = async () => {
-    try {
-      setIsLoading(true);
-      await dispatch(deleteNotification(notification.id)).unwrap();
-      toast.success("Notification Removed, Successfully... 🙂");
-    } catch (error) {
-      console.error(error);
-      toast.error("Cannot delete notification, Please try again... 😟");
-    } finally {
-      setIsLoading(true);
-    }
-  };
-
+  const { isUnread, isloading, handleDelete } =
+    useNotificationItem(notification);
   return (
     <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between md:items-center rounded-lg shadow-sm px-4 py-2 border border-gray-200">
       <div
