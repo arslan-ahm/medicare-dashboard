@@ -22,9 +22,9 @@ const ContactUs = () => {
         </div>
       </div>
 
-      <ul className="w-full flex items-stretch justify-center gap-4 flex-wrap">
+      <ul className="w-full flex items-center justify-center gap-4 flex-wrap">
         {CONTACT_US_CARDS.map((item, index) => (
-          <li key={index} className="w-[30%]">
+          <li key={index} className="">
             <div
               className={`flex w-full ${item.color} p-8 rounded-lg shadow-md gap-9 flex-col items-start`}
             >

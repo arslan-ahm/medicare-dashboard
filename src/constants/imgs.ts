@@ -1,9 +1,13 @@
 
 
 export const IMAGES = {
-  AuthScreenDashboardPreview: "/imgs/auth_layout_image.png",
+  DASHBOARD_IMAGE: "/imgs/auth_layout_image.webp",
   HeroSectionBanner: "/imgs/herosection.jpg",
-  logo: "/imgs/logo.png",
-  notFound: "/imgs/not_found.webp",
-  blob: '/svgs/blob.svg'
+  LOGO: "/imgs/logo.png",
+  NOT_FOUND: "/imgs/not_found.webp",
+  BLOB: '/svgs/blob.svg',
+  MEDICARE_1: "/imgs/medicare_1.webp",
+  MEDICARE_2: "/imgs/medicare_2.webp",
+  MEDICARE_3: "/imgs/medicare_3.webp",
+  MEDICARE_4: "/imgs/medicare_4.webp",
 };

@@ -10,7 +10,7 @@ const Page = () => {
     <section className="flex flex-col justify-center items-center h-screen bg-white">
       <div className="w-[min(450px,85%)] px-8 text-center">
         <Image
-          src={IMAGES.notFound}
+          src={IMAGES.NOT_FOUND}
           alt="Page Not Found"
           layout="responsive"
           width={400}

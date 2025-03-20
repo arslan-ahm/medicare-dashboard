@@ -1,9 +1,10 @@
-import ContactUs from "@/components/frontend/ContactUs";
+import Navbar from "@/components/navbar/FrontendNavbar";
 import HeroSection from "@/components/frontend/HeroSection";
 import ServicesSection from "@/components/frontend/Services";
 import SpecialitySection from "@/components/frontend/SpecialitySection";
 import SupportSection from "@/components/frontend/SupportSection";
-import Navbar from "@/components/navbar/FrontendNavbar";
+import ContactUs from "@/components/frontend/ContactUs";
+import TreatmentSection from "@/components/frontend/Treatment";
 
 export default function Page() {
   return (
@@ -14,6 +15,7 @@ export default function Page() {
         <ServicesSection />
         <SpecialitySection />
         <SupportSection />
+        <TreatmentSection />
         <ContactUs />
       </main>
     </>

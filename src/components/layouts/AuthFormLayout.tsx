@@ -12,7 +12,7 @@ const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
         <Text text="ALL IN ONE DASHBOARD" type="h3" />
         <div className="w-[90%] lg:w-3/5 px-8">
           <Image
-            src={IMAGES.AuthScreenDashboardPreview}
+            src={IMAGES.DASHBOARD_IMAGE}
             alt="Dashboard Preview"
             layout="responsive"
             width={200}

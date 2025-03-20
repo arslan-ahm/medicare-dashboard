@@ -9,7 +9,7 @@ export const SERVICES_CARDS = [
     title: "Online Appointment",
     description:
       "Book an appointment with your doctor online and get a reminder before the appointment.",
-    image: IMAGES.AuthScreenDashboardPreview,
+    image: IMAGES.DASHBOARD_IMAGE,
   },
   {
     title: "Patient Management",
@@ -21,7 +21,7 @@ export const SERVICES_CARDS = [
     title: "Medication Reminder",
     description:
       "Get a reminder for your medication and never miss a dose of your medicine.",
-    image: IMAGES.blob,
+    image: IMAGES.BLOB,
   },
 ];
 
@@ -43,6 +43,24 @@ export const SPECIALITY_TABS = [
     title: "Access Control",
     text: "Authorized & Secure",
     color: "bg-light_varient_green",
+  },
+];
+
+export const TREATMENT_TABS = [
+  {
+    icon: <MdWorkHistory />,
+    title: "Diabetes Management",
+    text: "Comprehensive care plans to manage diabetes effectively.",
+  },
+  {
+    icon: <MdAdminPanelSettings />,
+    title: "Cardiac Care",
+    text: "Advanced treatments and monitoring for heart diseases.",
+  },
+  {
+    icon: <TbLockAccess />,
+    title: "Cancer Treatment",
+    text: "Innovative therapies and personalized treatment plans for cancer patients.",
   },
 ];
 

@@ -2,30 +2,36 @@ import React from "react";
 import Text from "../Text";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { SUPPORT_LIST } from "@/constants/frontend";
+import Image from "next/image";
+import { IMAGES } from "@/constants/imgs";
 
 const SupportSection = () => {
   return (
-    <section className="flex flex-col-reverse items-center justify-center gap-10 md:flex-row py-20 px-5 sm:px-10">
-      <div className="grid grid-cols-2 grid-rows-2 w-[55%]">
-        {/* <Image
-          src={IMAGES.HeroSectionBanner}
-          alt="hero"
-          width={500}
-          height={500}
-          className="object-cover"
-        /> */}
-        <div className="bg-red w-full h-full flex justify-center text-white items-center">
-          1
-        </div>
-        <div className="bg-green w-full h-full flex justify-center text-white items-center">
-          2
-        </div>
-        <div className="bg-blue w-full h-full flex justify-center text-white items-center">
-          3
-        </div>
-        <div className="bg-yellow w-full h-full flex justify-center text-white items-center">
-          4
-        </div>
+    <section className="flex flex-col-reverse sm:flex-col items-center justify-center gap-10 lg:flex-row py-20 px-5 sm:px-10">
+      <div className="grid grid-cols-2 gap-4 grid-rows-2 w-full sm:w-[75%] lg:w-[55%]">
+        {[
+          IMAGES.MEDICARE_1,
+          IMAGES.MEDICARE_2,
+          IMAGES.MEDICARE_3,
+          IMAGES.MEDICARE_4,
+        ].map((path, index) => (
+          <div
+            key={index}
+            className={`bg-red aspect-[1/1] ${
+              index % 2 !== 0
+                ? "rounded-[50%_50%_50%_1%]"
+                : "rounded-[50%_1%_50%_50%]"
+            } overflow-hidden`}
+          >
+            <Image
+              src={path}
+              alt="hero"
+              width={400}
+              height={400}
+              className="object-fill"
+            />
+          </div>
+        ))}
       </div>
       <div className="space-y-3 w-full lg:w-[45%]">
         <div>
