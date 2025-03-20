@@ -5,7 +5,7 @@ import SettingsActions from "@/components/titlebarActions/SettingsActions";
 import TabSwitcher from "@/components/TabSwitcher";
 import { SETTINGS_TABS } from "@/constants/menu";
 
-const Settings = () => {
+const Page = () => {
   return (
     <section className="flex flex-col w-full mt-2">
       <PageTitleBar title="Settings">
@@ -22,4 +22,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default Page;

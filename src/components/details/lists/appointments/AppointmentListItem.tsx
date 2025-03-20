@@ -5,7 +5,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import IconButton from "@/components/titlebarActions/IconButton";
 import { Appointment } from "@/types/slices/appointment";
-import ModelInterface from "@/components/modals/ModelInterface";
+import ModelInterface from "@/components/modal/ModelInterface";
 import toast from "react-hot-toast";
 import { deleteAppointment } from "@/store/slices/appointment.slice";
 import { useAppDispatch } from "@/hooks/useRedux";

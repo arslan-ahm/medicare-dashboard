@@ -4,7 +4,7 @@ import Image from "next/image";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../DropdownOptions";
-import ModelInterface from "@/components/modals/ModelInterface";
+import ModelInterface from "@/components/modal/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
 import { formatDate } from "@/lib/timeHandler";
 import { PATIENT_STATUS } from "@/constants/formData";

@@ -2,7 +2,7 @@ import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import NotificationActions from "@/components/titlebarActions/NotificationActions";
 import NotificationList from "@/components/details/lists/notifications/NotificationList";
 
-const Notification = () => {
+const Page = () => {
   return (
     <section className="sm:px-4">
       <div className="mt-2">
@@ -10,6 +10,7 @@ const Notification = () => {
           <NotificationActions />
         </PageTitleBar>
       </div>
+      
       <div className="sm:p-4 mt-4 bg-white">
         <NotificationList />
       </div>
@@ -17,4 +18,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default Page;

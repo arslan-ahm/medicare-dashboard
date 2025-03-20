@@ -11,7 +11,7 @@ const Page = () => {
       <div className="grid grid-cols-6 gap-4 pt-2">
         <OnfflineAppointmentChart />
         <OnlineAppointmentChart />
-        <GenderChart />
+        <GenderChart /> 
 
         <div className="bg-white shadow-sm p-4 order-last sm:order-none col-span-6 sm:col-span-4">
           <TasksListSection />

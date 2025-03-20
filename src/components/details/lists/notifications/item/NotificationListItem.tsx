@@ -1,11 +1,10 @@
 "use client";
 import React from "react";
 import IconButton from "@/components/titlebarActions/IconButton";
-import Text from "@/components/Text";
 import { LuDelete } from "react-icons/lu";
 import { Notification } from "@/types/slices/notification";
 import { formatDate } from "@/lib/timeHandler";
-import Loader from "@/components/loader/Loader";
+// import Loader from "@/components/loader/Loader";
 import useNotificationItem from "./useNotificationItem";
 
 const NotificationListItem = ({
@@ -15,6 +14,7 @@ const NotificationListItem = ({
 }) => {
   const { isUnread, isloading, handleDelete } =
     useNotificationItem(notification);
+
   return (
     <div className="flex flex-col-reverse md:flex-row justify-center md:justify-between md:items-center rounded-lg shadow-sm px-4 py-2 border border-gray-200">
       <div
@@ -23,21 +23,20 @@ const NotificationListItem = ({
         }`}
       >
         {isloading ? (
-          <Loader size="sm" />
+          // <Loader size="sm" />
+          <p>Loading...</p>
         ) : (
           <>
-            <Text
-              type="h4"
-              className={`font-semibold ${
+            <h4
+              className={`text-md sm:text-lg md:text-xl font-[500] ${
                 isUnread ? "text-rose-500" : "text-slate-700"
               }`}
-              text={notification.title}
-            />
-            <Text
-              type="h6"
-              className={`text-sm md:text-md xl:text-lg sm:text-justify font-medium text-slate-500`}
-              text={notification.text}
-            />
+            >
+              {notification.title}
+            </h4>
+            <h6 className="text-sm md:text-md xl:text-lg sm:text-justify font-medium text-slate-500">
+              {notification.text}
+            </h6>
           </>
         )}
       </div>

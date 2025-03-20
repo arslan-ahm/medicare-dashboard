@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import AppointmentChart from "@/components/chartHandlers/AppointmentChart";
+import AppointmentChart from "@/components/ChartCotainer";
 import { useAppSelector } from "@/hooks/useRedux";
 import { getWeeklyAppointments } from "@/lib/timeHandler";
 

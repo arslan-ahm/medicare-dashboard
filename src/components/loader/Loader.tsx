@@ -1,8 +1,10 @@
 "use client";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
 import animationData from "../../../public/loader/loader.json";
 
+
 const Loader = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
+  const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
   let width;
   switch (size) {
     case "sm":

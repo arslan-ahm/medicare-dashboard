@@ -1,8 +1,8 @@
-import Calendar from "@/components/details/calendar/Calendar";
+// import Calendar from "@/components/details/calendar/Calendar";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import ScheduleActions from "@/components/titlebarActions/ScheduleActions";
 
-const Schedule = () => {
+const Page = () => {
   const currentDate = new Date();
   const month = currentDate.toLocaleString("default", { month: "long" });
   const year = currentDate.getFullYear();
@@ -14,10 +14,10 @@ const Schedule = () => {
       </PageTitleBar>
 
       <div className="mt-4 lg:h-[60vh] overflow-auto custom-scroll p-2">
-        <Calendar />
+        {/* <Calendar /> */}
       </div>
     </section>
   );
 };
 
-export default Schedule;
+export default Page;

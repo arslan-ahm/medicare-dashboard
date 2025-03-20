@@ -12,6 +12,7 @@ const NotificationList = () => {
         notifications.map((notification: Notification) => (
           <li key={notification.id}>
             <NotificationListItem notification={notification} />
+            <p>{notification.text}</p>
           </li>
         ))
       ) : (

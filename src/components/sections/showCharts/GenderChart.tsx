@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
-import AppointmentChart from "@/components/chartHandlers/AppointmentChart";
+import AppointmentChart from "@/components/ChartCotainer";
 import { useAppSelector } from "@/hooks/useRedux";
 
 const DoughnutChart = dynamic(() => import("@/components/charts/Donout"), {

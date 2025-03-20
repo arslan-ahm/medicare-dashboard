@@ -1,7 +1,7 @@
 "use client";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
-import ModelInterface from "@/components/modals/ModelInterface";
+import ModelInterface from "@/components/modal/ModelInterface";
 import TaskForm from "@/components/forms/task/TaskFrom";
 import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../../../DropdownOptions";

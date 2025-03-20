@@ -1,8 +1,8 @@
 import { FaArrowUp } from "react-icons/fa";
-import Text from "../Text";
+import Text from "./Text";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { AppointmentChartProps } from "@/types/componentsTypes/appointmentCharts";
-import LoaderScreen from "../loader/LoaderScreen";
+import LoaderScreen from "./loader/LoaderScreen";
 
 const AppointmentChart: React.FC<AppointmentChartProps> = ({
   title,

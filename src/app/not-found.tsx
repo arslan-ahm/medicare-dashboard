@@ -5,7 +5,7 @@ import Text from "@/components/Text";
 import { IMAGES } from "@/constants/imgs";
 import { IoIosArrowBack } from "react-icons/io";
 
-const NotFoundPage = () => {
+const Page = () => {
   return (
     <section className="flex flex-col justify-center items-center h-screen bg-white">
       <div className="w-[min(450px,85%)] px-8 text-center">
@@ -39,4 +39,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default Page;
