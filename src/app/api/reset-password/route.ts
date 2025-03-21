@@ -40,15 +40,7 @@ export const POST = async (req: Request) => {
             },
         });
 
-        if (!process.env.NEXTAUTH_URL) {
-            return NextResponse.json({
-                success: false,
-                status: 500,
-                message: "'NEXTAUTH_URL' or 'Domain' is not defined in the environment variables properly.",
-            });
-        }
-
-        const resetLink = `${process.env.NEXTAUTH_URL}/reset-password/?token=${resetToken}`;
+        const resetLink = `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/reset-password/?token=${resetToken}`;
 
         const mailOptions = {
             from: process.env.EMAIL_USER,

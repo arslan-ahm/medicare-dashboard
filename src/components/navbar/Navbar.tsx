@@ -55,6 +55,7 @@ const Navbar = () => {
     if (!doctor) {
       dispatch(fetchDoctor());
     }
+    console.log("=>", process.env.NEXTAUTH_URL);
   }, [dispatch, doctor]);
 
   useEffect(() => {
