@@ -1,11 +1,9 @@
 "use client";
-
+import useBreadCrumb from "@/hooks/useBreadCrumb";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const Breadcrumb: React.FC = () => {
-  const pathname = usePathname();
-  const pathSegments = pathname.split("/").filter((segment) => segment);
+  const { pathSegments } = useBreadCrumb();
 
   return (
     <nav aria-label="breadcrumb" className="text-gray-600 text-sm">

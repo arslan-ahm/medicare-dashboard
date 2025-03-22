@@ -1,15 +1,9 @@
 "use client";
-
+import useTabSwitcher from "@/hooks/useTabSwitcher";
 import { TabSwitcherProps } from "@/types/componentsTypes/tabSwitcher";
-import { useState } from "react";
 
 const TabSwitcher: React.FC<TabSwitcherProps> = ({ tabs, children }) => {
-  const [activeTab, setActiveTab] = useState(tabs[0]?.id || "");
-
-  const handleTabClick = (tabId: string) => {
-    setActiveTab(tabId);
-  };
-
+  const { handleTabClick, activeTab } = useTabSwitcher(tabs);
   return (
     <div className="w-full max-w-lg mx-auto">
       <div className="relative flex bg-gray-200 rounded-full p-1 mt-2 overflow-hidden">

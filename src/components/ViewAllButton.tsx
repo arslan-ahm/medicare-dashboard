@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { usePathname, useRouter } from "next/navigation";
 import ListSideHeader from "./details/lists/ListSideHeader";
 import { IoIosArrowForward } from "react-icons/io";
+import useViewAllButton from "@/hooks/useViewAllButton";
 
 type ViewAllButtonProps = {
   subtext?: string;
@@ -10,16 +10,8 @@ type ViewAllButtonProps = {
 };
 
 const ViewAllButton: React.FC<ViewAllButtonProps> = ({ subtext, path }) => {
-  const router = useRouter();
-  const currentPath = usePathname();
-
-  if (currentPath === path) {
-    return null;
-  }
-
-  const handleViewAll = () => {
-    router.push(path);
-  };
+  const viewAllButton = useViewAllButton({ path });
+  const handleViewAll = viewAllButton ? viewAllButton.handleViewAll : () => {};
 
   return (
     <>
