@@ -5,7 +5,7 @@ import FormLayout from "@/components/layouts/AuthFormLayout";
 export default function SignUpPage() {
   return (
     <FormLayout>
-      <FormHeader title="Register Me" subhead="Already have an Account" />
+      <FormHeader title="Welcome to MediCare" subhead="Tell us about your Company | " />
       <RegisterForm />
     </FormLayout>
   );

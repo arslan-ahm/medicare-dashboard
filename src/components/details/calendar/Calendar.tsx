@@ -14,18 +14,17 @@ const Calendar: React.FC = () => {
   const [initialView, setInitialView] = useState<string>("dayGridMonth");
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setInitialView("timeGridWeek");
-      } else {
-        setInitialView("dayGridMonth");
-      }
-    };
+  if (typeof window === "undefined") return;
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const handleResize = () => {
+    setInitialView(window.innerWidth < 768 ? "timeGridWeek" : "dayGridMonth");
+  };
+
+  handleResize();
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
 
   const groupedEvents: Record<string, CalendarEvent[]> = {};
 
@@ -42,7 +41,7 @@ const Calendar: React.FC = () => {
       color: "transparent",
       extendedProps: {
         status: appt.status,
-        patientName: `Patient ${appt.patientName}`,
+        patientName: `${appt.patientName}`,
         location: appt.isOnline ? "Online" : "In-Person",
       },
     });
@@ -62,21 +61,22 @@ const Calendar: React.FC = () => {
   });
 
   return (
-    <div className="bg-white p-4 rounded-md shadow-md">
+    <div className="bg-white w-full p-4 rounded-md shadow-md">
       <h2 className="text-[10px] xs:text-sm md:text-lg font-semibold mb-4">
         Weekly & Monthly Schedule
       </h2>
-      <div>
+      <div className="w-full">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           initialView={initialView}
           headerToolbar={{
-            left: window.innerWidth < 768 ? "" : "prev,next today",
+            left: typeof window !== "undefined" && window.innerWidth < 450 ? "" : "prev,next today",
             center: "title",
-            right: window.innerWidth < 768 ? "" : "dayGridMonth,timeGridWeek",
+            right: typeof window !== "undefined" && window.innerWidth < 768 ? "" : "dayGridMonth,timeGridWeek",
           }}
           slotMinTime="08:00:00"
           slotMaxTime="18:00:00"
+          dayMaxEventRows={1}
           events={events}
           eventContent={RenderEventContent}
           height="auto"

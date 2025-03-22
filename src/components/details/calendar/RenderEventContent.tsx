@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { EventContentArg } from "@fullcalendar/core";
-import { Appointment } from "@/types/slices/appointment";
 
 const STATUS_COLORS: Record<
   string,
@@ -38,54 +37,17 @@ const RenderEventContent = (eventInfo: EventContentArg) => {
 
   return (
     <div
-      className={`relative group inline-block p-2 rounded-md text-xs font-medium ${colors.bg} ${colors.text}`}
+      className={`relative group w-full py-2 px-4 rounded-md text-xs font-medium ${colors.bg} ${colors.text}`}
     >
-      {/* Left Border Indicator */}
       <div
-        className={`absolute hidden xs:inline-block top-[8px] left-[2px] w-1 h-[60%] rounded-full ${colors.border}`}
+        className={`absolute top-[25%] left-[2px] w-1 h-[60%] rounded-full ${colors.border}`}
       />
-
-      {/* Show only event count by default */}
       <p className="font-bold text-center">{eventInfo.event.title}</p>
-
-      {/* Hover Effect: Show Full Details */}
-      <div
-        className={`absolute left-0 top-full z-50 hidden group-hover:block w-56 p-3 shadow-lg rounded-md transition-opacity duration-300 ${colors.hoverBg} ${colors.text}`}
-      >
-        {extendedProps.appointments ? (
-          <>
-            <p className="font-bold">
-              {extendedProps.appointments.length} Appointments
-            </p>
-            {extendedProps.appointments.map(
-              (appt: Appointment, index: number) => (
-                <div key={index} className="mt-2 p-2 border-b last:border-none">
-                  <p>
-                    <b>Patient:</b> {appt.patientName}
-                  </p>
-                  <p>
-                    <b>Purpose:</b> {appt.purpose}
-                  </p>
-                  <p>
-                    <b>Location:</b> {appt.isOnline}
-                  </p>
-                  <p>
-                    <b>Time:</b> {dayjs(appt.start_time).format("h:mm A")}
-                  </p>
-                </div>
-              )
-            )}
-          </>
-        ) : (
-          <>
-            <p className="font-bold">{extendedProps.status}</p>
-            <p>Patient: {extendedProps.patientName}</p>
-            <p>Purpose: {eventInfo.event.title}</p>
-            <p>Location: {extendedProps.location}</p>
-            <p>Time: {dayjs(eventInfo.event.start).format("h:mm A")}</p>
-          </>
-        )}
-      </div>
+      <p className="font-bold">{extendedProps.status}</p>
+      <p>Patient: {extendedProps.patientName}</p>
+      <p>Purpose: {eventInfo.event.title}</p>
+      <p>Location: {extendedProps.location}</p>
+      <p>Time: {dayjs(eventInfo.event.start).format("h:mm A")}</p>
     </div>
   );
 };

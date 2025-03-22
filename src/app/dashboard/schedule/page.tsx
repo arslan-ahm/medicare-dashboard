@@ -1,4 +1,4 @@
-// import Calendar from "@/components/details/calendar/Calendar";
+import Calendar from "@/components/details/calendar/Calendar";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import ScheduleActions from "@/components/titlebarActions/ScheduleActions";
 
@@ -14,7 +14,7 @@ const Page = () => {
       </PageTitleBar>
 
       <div className="mt-4 lg:h-[60vh] overflow-auto custom-scroll p-2">
-        {/* <Calendar /> */}
+          <Calendar />
       </div>
     </section>
   );
