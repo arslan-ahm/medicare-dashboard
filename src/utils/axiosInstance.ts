@@ -3,7 +3,6 @@ import { getSession } from "next-auth/react";
 
 const api = axios.create({
   baseURL: "https://medicare-dashboard-arslan.vercel.app/api/"
-  // baseURL: "http://localhost:3000/api/"
 });
 
 api.interceptors.request.use(

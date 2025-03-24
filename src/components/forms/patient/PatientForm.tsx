@@ -9,13 +9,8 @@ import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import TextButton from "@/components/TextButton";
 import Image from "next/image";
 import { RiImageEditLine } from "react-icons/ri";
-import { Patient } from "@/types/slices/patient";
+import type { PatientForm } from "@/types/componentsTypes/forms/patientForm";
 
-type PatientForm = {
-  type?: "page" | "model";
-  patient?: Patient;
-  onSuccess?: () => void;
-};
 
 const PatientForm: React.FC<PatientForm> = ({
   type = "page",

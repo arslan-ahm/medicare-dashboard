@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/hooks/useRedux";
-import { formatDate } from "@/lib/timeHandler";
+import { formatDate } from "@/utils/timeHandler";
 import { deleteTask, toggleTaskStatus } from "@/store/slices/task.slice";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";

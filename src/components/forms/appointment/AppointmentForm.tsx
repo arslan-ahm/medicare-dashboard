@@ -7,12 +7,8 @@ import InputRow, { InputSection } from "../InputRow";
 import { APPOINTMENT_STATUS, APPOINTMENT_TYPE } from "@/constants/formData";
 import RadioGroup from "../RadioGroups";
 import FormHeader from "./header/FormHeaderItem";
-import { Appointment } from "@/types/slices/appointment";
+import { AppointmentFormProps } from "@/types/componentsTypes/appointmentForm";
 
-type AppointmentFormProps = {
-  appt?: Appointment;
-  onSuccess?: () => void;
-};
 
 const AppointmentForm: React.FC<AppointmentFormProps> = ({
   appt,

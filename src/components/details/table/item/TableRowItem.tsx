@@ -6,7 +6,7 @@ import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../../DropdownOptions";
 import ModelInterface from "@/components/modal/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
-import { formatDate } from "@/lib/timeHandler";
+import { formatDate } from "@/utils/timeHandler";
 import PatientForm from "@/components/forms/patient/PatientForm";
 import useTableRowItem from "./useTableRowItem";
 

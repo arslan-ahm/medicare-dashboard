@@ -1,13 +1,13 @@
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { signOut } from "next-auth/react";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { fetchAppointments } from "@/store/slices/appointment.slice";
 import { fetchDoctor, logout } from "@/store/slices/auth.slice";
 import { fetchNotifications } from "@/store/slices/notification.slice";
 import { fetchPatients } from "@/store/slices/patient.slice";
 import { fetchTasks } from "@/store/slices/task.slice";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
 
 const useNavbar = () => {
   const dispatch = useAppDispatch();

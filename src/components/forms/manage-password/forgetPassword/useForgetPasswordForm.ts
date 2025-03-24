@@ -1,14 +1,9 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { UseForgetPasswordFormReturn } from "@/types/componentsTypes/forms/useForgetPasswordForm";
 
-interface UseForgetPasswordFormReturn {
-  email: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleForgetPassword: (e: React.FormEvent) => Promise<void>;
-  error: string | null;
-  loading: boolean;
-}
+
 
 export const useForgetPasswordForm = (): UseForgetPasswordFormReturn => {
   const [email, setEmail] = useState("");

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { Appointment, AppointmentsType } from "@/types/slices/appointment";
-import api from "@/lib/axiosInstance";
+import api from "@/utils/axiosInstance";
 
 
 const initialState: AppointmentsType = {

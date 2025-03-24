@@ -1,4 +1,3 @@
-// import { COLORS } from "@/constants/colors";
 import type { Config } from "tailwindcss";
 
 export default {

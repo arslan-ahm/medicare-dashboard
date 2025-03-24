@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/hooks/useRedux";
-import { getWeeklyAppointments } from "@/lib/timeHandler";
+import { getWeeklyAppointments } from "@/utils/timeHandler";
 
 const useOnlineAppointmentChart = () => {
   const { appointments, loading } = useAppSelector(

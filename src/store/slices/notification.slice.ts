@@ -1,4 +1,4 @@
-import api from "@/lib/axiosInstance";
+import api from "@/utils/axiosInstance";
 import { NotificationState, Notification } from "@/types/slices/notification";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";

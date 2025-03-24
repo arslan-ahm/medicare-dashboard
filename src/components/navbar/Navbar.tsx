@@ -12,7 +12,7 @@ import { IMAGES } from "@/constants/imgs";
 import QuickIcon from "./QuickIcon";
 import { TODAYS_DATE } from "@/constants/menu";
 import Link from "next/link";
-import { formatDate } from "@/lib/timeHandler";
+import { formatDate } from "@/utils/timeHandler";
 import useNavbar from "./useNavbar";
 
 const Navbar = () => {

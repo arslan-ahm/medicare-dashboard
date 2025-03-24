@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import api from "@/lib/axiosInstance";
+import api from "@/utils/axiosInstance";
 import { Task, TasksType } from "@/types/slices/task";
 
 const initialState: TasksType = {

@@ -1,4 +1,4 @@
-import api from "@/lib/axiosInstance";
+import api from "@/utils/axiosInstance";
 import { Patient, PatientsType } from "@/types/slices/patient";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
