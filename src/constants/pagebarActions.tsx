@@ -1,6 +1,6 @@
 import { BsPrinter } from "react-icons/bs";
 import { CiFilter } from "react-icons/ci";
-import { IoAddOutline, IoHelpCircleOutline, IoSearchOutline } from "react-icons/io5";
+import { IoAddOutline, IoHelpCircleOutline } from "react-icons/io5";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
 export const NOTIFICATION_HEADER_BUTTONS = [
@@ -33,23 +33,8 @@ export const PATIENT_BAR_ACTIONS = [
   },
 ];
 
-export const SETTINGS_HEADER = [
+export const SETTINGS_HEADER_ACTIONS = [
   {
     icon: <IoHelpCircleOutline className="text-xl" />,
-  },
-];
-
-export const PATIENT_PAGE_ACTIONS = [
-  {
-    icon: <IoAddOutline />,
-    hide: false,
-  },
-  {
-    icon: <IoSearchOutline />,
-    hide: true,
-  },
-  {
-    icon: <CiFilter />,
-    hide: true,
   },
 ];

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { STATUS_COLORS } from "@/constants/colors";
+import { PATIENT_STATUS_COLOR } from "@/constants/colors";
 import { PATIENT_STATUS } from "@/constants/formData";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { deletePatient } from "@/store/slices/patient.slice";
@@ -13,44 +13,55 @@ const useTableRowItem = (patient: Patient) => {
     const [updatePatientState, setUpdatePatientState] = useState(false);
     const dispatch = useAppDispatch();
     const refinedStatus =
-        PATIENT_STATUS.find((status) => status.value === patient.status)?.label ||
-        "N/A";
+      PATIENT_STATUS.find((status) => status.value === patient.status)?.label ||
+      "N/A";
     const statusBadgeColor =
-        STATUS_COLORS[refinedStatus.toLowerCase()] || "bg-gray-100 text-gray-800";
-
+      PATIENT_STATUS_COLOR[refinedStatus.toLowerCase()] || "bg-gray-100 text-gray-800";
+  
     useEffect(() => {
-        if (isOpen && buttonRef.current) {
-            const rect = buttonRef.current.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const dropdownHeight = 80;
-
-            let top = rect.bottom + 5;
-            const left = rect.left - 100;
-
-            if (rect.bottom + dropdownHeight > viewportHeight) {
-                top = rect.top - dropdownHeight - 5;
-            }
-
-            setPosition({ top, left });
+      if (isOpen && buttonRef.current) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const dropdownHeight = 80;
+  
+        let top = rect.bottom + 5;
+        const left = rect.left - 100;
+  
+        if (rect.bottom + dropdownHeight > viewportHeight) {
+          top = rect.top - dropdownHeight - 5;
         }
+  
+        setPosition({ top, left });
+      }
     }, [isOpen]);
-
+  
     const handleEdit = () => {
-        setUpdatePatientState(true);
-        setIsOpen(false);
+      setUpdatePatientState(true);
+      setIsOpen(false);
     };
-
+  
     const handleDelete = async (_id: string) => {
-        try {
-            await dispatch(deletePatient(_id)).unwrap();
-            toast.success("Patient Removed, Successfully... 🙂");
-        } catch (error) {
-            console.error(error);
-            toast.error("Cannot delete patient, Please try again... 😟");
-        }
+      try {
+        await dispatch(deletePatient(_id)).unwrap();
+        toast.success("Patient Removed, Successfully... 🙂");
+      } catch (error) {
+        console.error(error);
+        toast.error("Cannot delete patient, Please try again... 😟");
+      }
     };
 
-    return { handleEdit, handleDelete, updatePatientState, setUpdatePatientState, statusBadgeColor, position, refinedStatus, buttonRef, setIsOpen, isOpen };
+    return {
+        handleDelete, 
+        handleEdit,
+        isOpen,
+        setIsOpen,
+        statusBadgeColor, 
+        refinedStatus,
+        position,
+        buttonRef,
+        updatePatientState,
+        setUpdatePatientState
+    }
 }
 
 export default useTableRowItem;

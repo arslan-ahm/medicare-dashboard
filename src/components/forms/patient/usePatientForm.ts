@@ -1,20 +1,9 @@
 import { useAppDispatch } from "@/hooks/useRedux";
 import { addPatient, updatePatient } from "@/store/slices/patient.slice";
+import { PatientForm } from "@/types/componentsTypes/forms/usePatientForm";
 import { Patient } from "@/types/slices/patient";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-
-type PatientForm = {
-  image?: string;
-  forename: string;
-  surname: string;
-  dateOfBirth: string
-  notes: string;
-  diagnosis: string;
-  gender: "MALE" | "FEMALE";
-  status: "RECOVERED" | "AWAITING_SURGERY" | "ON_TREATMENT" | "OTHER";
-  upcomingAppointment: string | null;
-}
 
 const initailState: PatientForm = {
   image: "",

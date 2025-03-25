@@ -3,10 +3,11 @@ import SidebarSection from "./SidebarSection";
 import { generalItems, menuItems } from "@/constants/menu";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import IconButton from "../titlebarActions/IconButton";
-import useSidebar from "./useSidebar";
+import useSidebar from "@/hooks/useSidebar";
 
 const Sidebar = () => {
-  const { isOpen, setIsOpen, isMobile, hasMounted } = useSidebar();
+  const { hasMounted, isMobile, isOpen, setIsOpen } = useSidebar();
+
   if (!hasMounted) return null;
   return (
     <aside

@@ -32,7 +32,6 @@ const LineChart = ({
   chartData: number[];
 }) => {
   const { data, options } = useLineChart({ type, chartData });
-
   return <Line data={data} options={options} />;
 };
 

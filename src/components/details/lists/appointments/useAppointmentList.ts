@@ -1,15 +1,14 @@
 import { useAppSelector } from "@/hooks/useRedux";
 
-
 const useAppointmentList = () => {
-    const { appointments, loading } = useAppSelector(
-        (store) => store.apponitments
-    );
+  const { appointments, loading } = useAppSelector(
+    (store) => store.apponitments
+  );
 
-    return {
-        appointments,
-        loading,
-    }
-}
+  return {
+    appointments,
+    loading,
+  };
+};
 
-export default useAppointmentList; 
+export default useAppointmentList;

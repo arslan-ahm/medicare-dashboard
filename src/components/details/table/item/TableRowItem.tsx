@@ -15,13 +15,13 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
     statusBadgeColor,
     refinedStatus,
     buttonRef,
-    setIsOpen,
     isOpen,
-    position,
-    handleEdit,
     handleDelete,
+    handleEdit,
     updatePatientState,
     setUpdatePatientState,
+    setIsOpen,
+    position,
   } = useTableRowItem(patient);
 
   return (

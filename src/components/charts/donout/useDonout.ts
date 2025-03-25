@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/hooks/useRedux";
 
-const useDonout = ()=>{
-    const { patients } = useAppSelector((state) => state.patients);
+const useDonout = () => {
+  const { patients } = useAppSelector((state) => state.patients);
 
   const maleCount = patients.filter(
     (patient) => patient.gender.toLowerCase() === "male"
@@ -42,12 +42,7 @@ const useDonout = ()=>{
     },
   };
 
-  return {
-    data,
-    options,
-    maleCount,
-    femaleCount,
-  }
-}
+  return { data, options, maleCount, femaleCount };
+};
 
 export default useDonout;

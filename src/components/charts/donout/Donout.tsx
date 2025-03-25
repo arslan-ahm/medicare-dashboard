@@ -6,7 +6,7 @@ import useDonout from "./useDonout";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DoughnutChart = () => {
-  const { femaleCount, maleCount, data, options } = useDonout();
+  const { data, options, femaleCount, maleCount } = useDonout();
 
   return (
     <div className="relative w-36 h-36">

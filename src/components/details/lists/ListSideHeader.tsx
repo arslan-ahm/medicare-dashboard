@@ -1,13 +1,8 @@
-import IconButton from "@/components/titlebarActions/IconButton";
-import Text from "@/components/Text";
 import React from "react";
 import { FiPlus } from "react-icons/fi";
-
-type ListSideHeaderProps = {
-  subtext?: string;
-  icon?: React.ReactNode;
-  handleClick: () => void;
-};
+import { ListSideHeaderProps } from "@/types/componentsTypes/sidebarListHeader";
+import IconButton from "@/components/titlebarActions/IconButton";
+import Text from "@/components/Text";
 
 const ListSideHeader: React.FC<ListSideHeaderProps> = ({
   subtext,

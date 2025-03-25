@@ -4,11 +4,11 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import RenderEventContent from "./RenderEventContent";
+import RenderEventContent from "./item/RenderEventContent";
 import useCalender from "./useCalender";
 
 const Calendar: React.FC = () => {
-  const { initialView, events } = useCalender();
+  const { events, initialView } = useCalender();
 
   return (
     <div className="bg-white w-full p-4 rounded-md shadow-md">

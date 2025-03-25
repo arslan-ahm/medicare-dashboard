@@ -1,18 +1,19 @@
 "use client";
-
-import { PATIENT_PAGE_ACTIONS } from "@/constants/pagebarActions";
-import IconButton from "./IconButton";
 import { useRouter } from "next/navigation";
+import IconButton from "./IconButton";
+import { PATIENT_ACTION } from "@/constants/menu";
 
 const PatientActions = () => {
   const router = useRouter();
   return (
     <>
       <ul className="flex space-x-2">
-        {PATIENT_PAGE_ACTIONS.map(({ icon, hide }, ind) => (
+        {PATIENT_ACTION.map(({ icon, hide }, ind) => (
           <li
             key={ind}
-            className={`${!hide ? "inline-block" : "hidden cursor-not-allowed"} sm:inline-block`}
+            className={`${
+              !hide ? "inline-block" : "hidden cursor-not-allowed"
+            } sm:inline-block`}
           >
             <IconButton
               icon={icon}

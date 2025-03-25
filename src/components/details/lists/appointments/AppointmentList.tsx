@@ -2,10 +2,10 @@ import React from "react";
 import ViewAllButton from "@/components/ViewAllButton";
 import AppointmentListItem from "./item/AppointmentListItem";
 import LoaderScreen from "@/components/loader/LoaderScreen";
-import useAppointmentList from "./useAppointmentList";
+import useAppoitmentList from "./useAppointmentList";
 
 const AppointmentTimeline = () => {
-  const { appointments, loading } = useAppointmentList();
+  const { loading, appointments } = useAppoitmentList();
   return (
     <div className="flex flex-col w-full max-w-lg py-2 px-3 sm:px-6 mx-auto bg-white rounded-lg">
       {loading ? (

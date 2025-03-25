@@ -1,8 +1,14 @@
 import { MenuItem } from "@/types/componentsTypes/menuTypes";
 import React from "react";
 import { BsPeople } from "react-icons/bs";
+import { CiFilter } from "react-icons/ci";
 import { FiCalendar } from "react-icons/fi";
-import { IoNotificationsOutline, IoSettingsOutline } from "react-icons/io5";
+import {
+  IoAddOutline,
+  IoNotificationsOutline,
+  IoSearchOutline,
+  IoSettingsOutline,
+} from "react-icons/io5";
 import { LuClipboardCheck, LuLayoutDashboard } from "react-icons/lu";
 
 export const menuItems: MenuItem[] = [
@@ -36,9 +42,24 @@ export const TODAYS_DATE = new Date().toLocaleDateString("en-US", {
   year: "numeric",
 });
 
-export const FRONTEND_NAVLIST = [
-  { text: "Home", link: "#home" },
-  { text: "About", link: "#about" },
-  { text: "Contact", link: "#contact" },
-  { text: "Our Work", link: "#our_work" },
+export const PATIENT_ACTION = [
+  {
+    icon: <IoAddOutline />,
+    hide: false,
+  },
+  {
+    icon: <IoSearchOutline />,
+    hide: true,
+  },
+  {
+    icon: <CiFilter />,
+    hide: true,
+  },
 ];
+
+export const FRONTEND_NAVLIST = [
+    { text: "Home", link: "#home" },
+    { text: "About", link: "#about" },
+    { text: "Contact", link: "#contact" },
+    { text: "Our Work", link: "#our_work" },
+  ];

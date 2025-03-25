@@ -5,15 +5,12 @@ import Image from "next/image";
 import Text from "@/components/Text";
 import { IMAGES } from "@/constants/imgs";
 import TextButton from "@/components/TextButton";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FRONTEND_NAVLIST } from "@/constants/menu";
+import useFrontendNavbar from "./useFrontendNavbar";
 
 const Navbar = () => {
-  const router = useRouter();
-  const handleClick = () => {
-    router.push("/dashboard");
-  };
+  const { handleClick } = useFrontendNavbar();
 
   return (
     <nav className="bg-white py-4 px-4 sm:px-6 flex justify-between items-center border-b border-gray-200 sticky top-0 left-0 w-full z-40">
