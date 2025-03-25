@@ -1,5 +1,12 @@
 import React from "react";
+import { Metadata } from "next";
 import PatientForm from "@/components/forms/patient/PatientForm";
+
+export const metadata: Metadata = {
+  title: "Add Patient",
+  description: "You can add a new patient here.",
+};
+
 
 const Page = () => {
   return (

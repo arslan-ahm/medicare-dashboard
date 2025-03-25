@@ -1,6 +1,13 @@
+import { Metadata } from "next";
 import Calendar from "@/components/details/calendar/Calendar";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import ScheduleActions from "@/components/titlebarActions/ScheduleActions";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Schedules",
+  description: "Your schedules are listed here.",
+};
+
 
 const Page = () => {
   const currentDate = new Date();

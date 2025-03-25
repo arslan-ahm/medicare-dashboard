@@ -1,9 +1,16 @@
 import React from "react";
+import { Metadata } from "next";
 import TasksListSection from "@/components/sections/Tasks";
 import AppointmentSection from "@/components/sections/appointmentList/AppointmentList";
 import GenderChart from "@/components/sections/statusCharts/genderChart/GenderChart";
 import OnlineAppointmentChart from "@/components/sections/statusCharts/appointments/online/OnlineAppointmentChart";
 import OnfflineAppointmentChart from "@/components/sections/statusCharts/appointments/offline/OfflineAppointmentChart";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Home",
+  description: "Your dashboard home page.",
+};
+
 
 const Page = () => {
   return (
