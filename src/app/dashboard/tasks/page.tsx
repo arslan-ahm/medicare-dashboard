@@ -1,4 +1,11 @@
 import TasksListSection from "@/components/sections/Tasks";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Tasks",
+  description: "Your tasks are listed here.",
+};
+
 
 const Page = () => {
   return (

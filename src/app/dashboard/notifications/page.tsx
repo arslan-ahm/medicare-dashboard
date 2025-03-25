@@ -1,6 +1,13 @@
+import { Metadata } from "next";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import NotificationActions from "@/components/titlebarActions/NotificationActions";
 import NotificationList from "@/components/details/lists/notifications/NotificationList";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Notifications",
+  description: "Here you'll find all your notifications.",
+};
+
 
 const Page = () => {
   return (
