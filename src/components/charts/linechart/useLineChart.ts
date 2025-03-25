@@ -1,34 +1,4 @@
-"use client";
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from "chart.js";
-
-ChartJS.register(
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
-const LineChart = ({
-  type,
-  chartData,
-}: {
-  type: "success" | "loss";
-  chartData: number[];
-}) => {
+const useLineChart = (type: "success" | "loss", chartData: number[]) => {
   const createGradient = (
     ctx: CanvasRenderingContext2D,
     type: "success" | "loss"
@@ -96,7 +66,7 @@ const LineChart = ({
     },
   };
 
-  return <Line data={data} options={options} />;
+  return { data, options };
 };
 
-export default LineChart;
+export default useLineChart;

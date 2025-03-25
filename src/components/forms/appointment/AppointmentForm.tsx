@@ -6,7 +6,7 @@ import { useAddAppointmentForm } from "./useAppointmentForm";
 import InputRow, { InputSection } from "../InputRow";
 import { APPOINTMENT_STATUS, APPOINTMENT_TYPE } from "@/constants/formData";
 import RadioGroup from "../RadioGroups";
-import FormHeader from "./FormHeaderItem";
+import FormHeader from "./header/FormHeaderItem";
 import { Appointment } from "@/types/slices/appointment";
 
 type AppointmentFormProps = {

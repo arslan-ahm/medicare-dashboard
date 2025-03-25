@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import TableRowItem from "./TableRowItem";
+import TableRowItem from "./item/TableRowItem";
 import { PATIENT_TABLE_HEADERS } from "@/constants/formData";
-import { useAppSelector } from "@/hooks/useRedux";
+import useTable from "./useTable";
 
 const PatientTable = () => {
-  const { patients } = useAppSelector((state) => state.patients);
+  const { patients } = useTable();
 
   if (!patients.length) {
     return (

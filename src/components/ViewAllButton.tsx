@@ -12,7 +12,6 @@ type ViewAllButtonProps = {
 const ViewAllButton: React.FC<ViewAllButtonProps> = ({ subtext, path }) => {
   const viewAllButton = useViewAllButton({ path });
   const handleViewAll = viewAllButton ? viewAllButton.handleViewAll : () => {};
-
   return (
     <>
       <div className="flex justify-end items-center">

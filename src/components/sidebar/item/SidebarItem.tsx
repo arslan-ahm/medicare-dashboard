@@ -1,23 +1,10 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { SidebarItemProps } from "@/types/componentsTypes/menuTypes";
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import useSidebarItem from "./useSidebarItem";
 
 const SidebarItem = ({ label, icon, link, handleText }: SidebarItemProps) => {
-  const [noti, setNoti] = useState(0);
-  const dispatch = useAppDispatch();
-  const messages = useAppSelector((store) => store.notification.notifications);
-  const pathname = usePathname();
-  const isActive = pathname === link;
-
-  useEffect(() => {
-    if (label === "Notification") {
-      const unReadCount = messages.filter((msg) => msg.isRead === false);
-      setNoti(unReadCount.length);
-    }
-  }, [dispatch]);
+  const { isActive, noti } = useSidebarItem(link, label);
 
   return (
     <li className="mb-2 flex justify-between items-center">

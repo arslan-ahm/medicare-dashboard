@@ -1,14 +1,11 @@
 import React from "react";
-import { useAppSelector } from "@/hooks/useRedux";
 import ViewAllButton from "@/components/ViewAllButton";
-import AppointmentListItem from "./AppointmentListItem";
+import AppointmentListItem from "./item/AppointmentListItem";
 import LoaderScreen from "@/components/loader/LoaderScreen";
+import useAppoitmentList from "./useAppointmentList";
 
 const AppointmentTimeline = () => {
-  const { appointments, loading } = useAppSelector(
-    (store) => store.apponitments
-  );
-
+  const { loading, appointments } = useAppoitmentList();
   return (
     <div className="flex flex-col w-full max-w-lg py-2 px-3 sm:px-6 mx-auto bg-white rounded-lg">
       {loading ? (

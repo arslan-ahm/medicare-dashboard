@@ -32,3 +32,9 @@ export const PATIENT_BAR_ACTIONS = [
     hide: true,
   },
 ];
+
+export const SETTINGS_HEADER_ACTIONS = [
+  {
+    icon: <IoHelpCircleOutline className="text-xl" />,
+  },
+];

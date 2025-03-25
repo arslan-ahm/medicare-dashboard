@@ -1,91 +1,31 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { signOut } from "next-auth/react";
+import React from "react";
 import Image from "next/image";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { CiMail } from "react-icons/ci";
 import { RxExit } from "react-icons/rx";
 import { IoNotificationsOutline } from "react-icons/io5";
 import InputField from "../InputField";
 import { IoIosSearch } from "react-icons/io";
-import { fetchDoctor, logout } from "@/store/slices/auth.slice";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import Text from "../Text";
 import { IMAGES } from "@/constants/imgs";
 import QuickIcon from "./QuickIcon";
 import { TODAYS_DATE } from "@/constants/menu";
-import { fetchPatients } from "@/store/slices/patient.slice";
-import { fetchTasks } from "@/store/slices/task.slice";
-import { fetchAppointments } from "@/store/slices/appointment.slice";
-import { fetchNotifications } from "@/store/slices/notification.slice";
 import Link from "next/link";
 import { formatDate } from "@/lib/timeHandler";
+import useNavbar from "./useNavbar";
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
-  const [isNotificationShow, setIsNotificationShow] = useState(false);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
-  const buttonRef = useRef<HTMLSpanElement | null>(null);
-  const doctor = useAppSelector((store) => store.auth.doctor);
-  const messages = useAppSelector((store) => store.notification.notifications);
-  const router = useRouter();
-
-  const hasUnreadMessages = messages.some((msg) => !msg.isRead);
-
-  useEffect(() => {
-    if (isNotificationShow && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const dropdownHeight = 80;
-
-      let top = rect.bottom + 5;
-      const left = rect.left - 150;
-
-      if (rect.bottom + dropdownHeight > viewportHeight) {
-        top = rect.top - dropdownHeight - 5;
-      }
-
-      setPosition({ top, left });
-    }
-  }, [isNotificationShow]);
-
-  useEffect(() => {
-    if (!doctor) {
-      dispatch(fetchDoctor());
-    }
-    console.log("=>", process.env.NEXTAUTH_URL);
-  }, [dispatch, doctor]);
-
-  useEffect(() => {
-    dispatch(fetchPatients());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchAppointments());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchNotifications());
-  }, [dispatch]);
-
-  const handleLogout = async () => {
-    try {
-      await signOut({ redirect: false });
-      toast.success("Logged out... Successfully! 😊");
-      dispatch(logout());
-      router.push("/login");
-    } catch (error) {
-      console.error("Failed to sign out", error);
-      toast.error("Failed to sign out... 😟");
-    }
-  };
-
+  const {
+    doctor,
+    buttonRef,
+    hasUnreadMessages,
+    handleLogout,
+    setIsNotificationShow,
+    isNotificationShow,
+    messages,
+    position,
+  } = useNavbar();
   return (
     <nav className="bg-white py-4 px-4 sm:px-6 flex justify-between items-center border-b border-gray-200 sticky top-0 left-0 w-full z-40">
       <div className="flex gap-2 items-center text-xl text-gray-500 font-bold sm:w-[30%] md:w-[20%]">
@@ -154,7 +94,9 @@ const Navbar = () => {
                   <p className="text-[12px] text-gray-500 font-medium">
                     {msg.title}
                   </p>
-                  <span className="text-[8px] block text-end text-md_gray">({formatDate(msg.time)})</span>
+                  <span className="text-[8px] block text-end text-md_gray">
+                    ({formatDate(msg.time)})
+                  </span>
                 </Link>
               </li>
             ))

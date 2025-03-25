@@ -1,29 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
 import SidebarSection from "./SidebarSection";
 import { generalItems, menuItems } from "@/constants/menu";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import IconButton from "../titlebarActions/IconButton";
+import useSidebar from "@/hooks/useSidebar";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-
-    const handleResize = () => {
-      const mobileView = window.innerWidth < 640;
-      setIsMobile(mobileView);
-      setIsOpen(window.innerWidth >= 1024);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const { hasMounted, isMobile, isOpen, setIsOpen } = useSidebar();
 
   if (!hasMounted) return null;
 
