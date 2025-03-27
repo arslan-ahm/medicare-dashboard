@@ -2,7 +2,7 @@
 
 import React from "react";
 import InputField from "../../../InputField";
-import TextButton from "../../../TextButton";
+import TextButton from "../../../buttons/TextButton";
 import { useResetPasswordForm } from "./useResetPasswordForm";
 
 const ResetPasswordForm = () => {

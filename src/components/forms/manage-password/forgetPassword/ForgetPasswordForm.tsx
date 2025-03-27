@@ -3,7 +3,7 @@
 import React from "react";
 import { useForgetPasswordForm } from "./useForgetPasswordForm";
 import InputField from "../../../InputField";
-import TextButton from "../../../TextButton";
+import TextButton from "../../../buttons/TextButton";
 
 const LoginForm = () => {
   const { email, handleChange, handleForgetPassword, error, loading } =

@@ -47,17 +47,15 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
               />
               <div>
                 <h3
-                  className={`text-md md:text-lg font-semibold ${
-                    isChecked ? "line-through text-gray-400" : ""
-                  }`}
+                  className={`text-md md:text-lg font-semibold`}
                 >
-                  {title}
+                  {isChecked ? "Task Completed Successfully" : "Task Not Completed"}
                 </h3>
                 {description && (
                   <p className="text-[12px] md:text-sm text-gray-500">
-                    {description?.length > 50
-                      ? `${description.slice(0, 50)}...`
-                      : description}
+                    {title?.length > 50
+                      ? `${title.slice(0, 50)}...`
+                      : title}
                   </p>
                 )}
               </div>

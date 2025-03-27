@@ -139,27 +139,27 @@ export const DELETE = async (
   try {
     const { id } = await params;
     const doctorId = req.headers.get("doctorId");
-
+    
     if (!doctorId) {
       return NextResponse.json(
         { status: "error", message: "Unauthorized access.", ok: false },
         { status: 401 }
       );
     }
-
+    
     const itemToDelete = await prisma.task.findUnique({ where: { id } });
-
+    
     if (!itemToDelete) {
       return NextResponse.json(
         { status: "error", message: "Task not found.", ok: false },
         { status: 404 }
       );
     }
-
+    
     await prisma.task.delete({
       where: { id },
     });
-
+    
     return NextResponse.json({
       status: "success",
       data: itemToDelete,

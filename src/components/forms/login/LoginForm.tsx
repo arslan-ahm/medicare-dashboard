@@ -3,7 +3,7 @@
 import React from "react";
 import { useLoginForm } from "./useLoginForm";
 import InputField from "../../InputField";
-import TextButton from "../../TextButton";
+import TextButton from "../../buttons/TextButton";
 import Text from "../../Text";
 
 const LoginForm = () => {

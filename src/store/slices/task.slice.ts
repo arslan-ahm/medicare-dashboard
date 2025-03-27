@@ -76,7 +76,6 @@ export const toggleTaskStatus = createAsyncThunk<
   }
 });
 
-
 export const deleteTask = createAsyncThunk<
   string,
   string,
@@ -119,18 +118,12 @@ const taskSlice = createSlice({
         state.error = action.payload || "Failed to load tasks";
       })
 
-      .addCase(addTask.pending, (state, action) => {
+      .addCase(addTask.pending, (state) => {
         state.loading = true;
-        state.tasks.push({
-          ...action.meta.arg,
-          id: crypto.randomUUID(),
-        });
       })
       .addCase(addTask.fulfilled, (state, action) => {
         state.loading = false;
-        state.tasks = state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
-        );
+        state.tasks.push(action.payload);
       })
       .addCase(addTask.rejected, (state, action) => {
         state.loading = false;
@@ -150,7 +143,7 @@ const taskSlice = createSlice({
         state.loading = false;
         state.error = action.payload || "Failed to update task";
       })
-
+      
       .addCase(toggleTaskStatus.fulfilled, (state, action) => {
         state.tasks = state.tasks.map((task) =>
           task.id === action.payload.id ? { ...task, status: action.payload.status } : task

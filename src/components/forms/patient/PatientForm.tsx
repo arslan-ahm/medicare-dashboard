@@ -6,26 +6,35 @@ import RadioGroup from "../RadioGroups";
 import InputRow, { InputSection } from "../InputRow";
 import { GENDER_OPTIONS, PATIENT_STATUS } from "@/constants/formData";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
-import TextButton from "@/components/TextButton";
+import TextButton from "@/components/buttons/TextButton";
 import Image from "next/image";
 import { RiImageEditLine } from "react-icons/ri";
 import type { PatientForm } from "@/types/componentsTypes/forms/patientForm";
-
 
 const PatientForm: React.FC<PatientForm> = ({
   type = "page",
   patient,
   onSuccess,
 }) => {
-  const { formData, handleChange, error, handleAddPatient, handleImageChange } =
-    usePatientForm(patient, type === "model" ? onSuccess : undefined);
+  const {
+    formData,
+    handleChange,
+    error,
+    handleAddPatient,
+    handleCancel,
+    handleImageChange,
+  } = usePatientForm(patient, type === "model" ? onSuccess : undefined);
 
   return (
     <>
       {type === "page" && (
         <PageTitleBar title="Add Patients">
           <ul className="flex gap-1 sm:gap-2 lg:gap-4">
-            <TextButton text="Cancel" variant="outline" />
+            <TextButton
+              text="Cancel"
+              onClick={handleCancel}
+              variant="outline"
+            />
             <TextButton
               text={"Save"}
               onClick={handleAddPatient}
@@ -35,12 +44,12 @@ const PatientForm: React.FC<PatientForm> = ({
         </PageTitleBar>
       )}
       <div className="w-full custom-scroll overflow-y-auto max-h-[70vh] p-2 sm:p-4">
-        {type === "model" && (
+        {type === "model" ? (
           <div className="pl-8 flex justify-between items-center">
             <div className="relative flex items-center justify-center rounded-full w-[50px] h-[50px] overflow-hidden bg-gray-200 cursor-pointer">
               <label
                 htmlFor="profile-upload"
-                className="group m-l-2 w-full h-full flex items-center justify-center"
+                className="group w-full h-full flex items-center justify-center"
               >
                 <Image
                   src={formData.image || "/imgs/profile_placeholder.webp"}
@@ -68,6 +77,33 @@ const PatientForm: React.FC<PatientForm> = ({
                 type="submit"
               />
             </ul>
+          </div>
+        ) : (
+          <div className="w-full flex justify-center items-center mb-2">
+            <div className="relative flex items-center justify-center rounded-full w-[80px] h-[80px] overflow-hidden bg-gray-200 cursor-pointer">
+              <label
+                htmlFor="profile-upload"
+                className="group w-full h-full flex items-center justify-center"
+              >
+                <Image
+                  src={formData.image || "/imgs/profile_placeholder.webp"}
+                  alt="Profile_Image"
+                  width={50}
+                  height={50}
+                  className="object-cover w-full h-full"
+                />
+                <span className="w-full h-full absolute top-0 left-0 items-center justify-center hidden group-hover:flex bg-slate-600/10 cursor-pointer">
+                  <RiImageEditLine className="text-2xl text-white" />
+                </span>
+                <input
+                  type="file"
+                  id="profile-upload"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+              </label>
+            </div>
           </div>
         )}
         <table className="w-full border-separate border-spacing-y-3">

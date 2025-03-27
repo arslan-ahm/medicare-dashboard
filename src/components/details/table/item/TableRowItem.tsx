@@ -12,7 +12,6 @@ import useTableRowItem from "./useTableRowItem";
 
 const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
   const {
-    statusBadgeColor,
     refinedStatus,
     buttonRef,
     isOpen,
@@ -42,7 +41,17 @@ const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {
       <TableDetail
         title={
           <span
-            className={`px-3 py-1 rounded-full text-nowrap ${statusBadgeColor}`}
+            className={`px-3 py-1 rounded-full text-nowrap ${
+              refinedStatus.toLowerCase() === "recovered"
+                ? "bg-md_varient_green text-green"
+                : refinedStatus.toLowerCase() === "awaiting surgery"
+                ? "bg-md_varient_blue text-blue"
+                : refinedStatus.toLowerCase() === "on treatment"
+                ? "bg-md_varient_red text-red"
+                : refinedStatus.toLowerCase() === "on going"
+                ? "bg-md_varient_yellow text-yellow"
+                : "bg-slate-300 text-slate-600"
+            }`}
           >
             {refinedStatus}
           </span>

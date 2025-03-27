@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Text from "@/components/Text";
 import { IMAGES } from "@/constants/imgs";
-import TextButton from "@/components/TextButton";
+import TextButton from "@/components/buttons/TextButton";
 import Link from "next/link";
 import { FRONTEND_NAVLIST } from "@/constants/menu";
 import useFrontendNavbar from "./useFrontendNavbar";

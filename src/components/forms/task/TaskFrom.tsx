@@ -1,5 +1,5 @@
 import React from "react";
-import TextButton from "@/components/TextButton";
+import TextButton from "@/components/buttons/TextButton";
 import InputRow, { InputSection } from "../InputRow";
 import { useTaskForm } from "./useTaskForm";
 import type { TaskFormEditProp } from "@/types/componentsTypes/taskListItem";

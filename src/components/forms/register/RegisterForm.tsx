@@ -3,7 +3,7 @@
 import React from "react";
 import { useRegisterForm } from "./useRegisterForm";
 import InputField from "../../InputField";
-import TextButton from "../../TextButton";
+import TextButton from "../../buttons/TextButton";
 import { SPECIALIZATION_LIST } from "@/constants/formData";
 import CustomSelect from "../CustomSelect";
 

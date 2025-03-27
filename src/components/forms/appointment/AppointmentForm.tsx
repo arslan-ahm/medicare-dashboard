@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TextButton from "../../TextButton";
+import TextButton from "../../buttons/TextButton";
 import { useAddAppointmentForm } from "./useAppointmentForm";
 import InputRow, { InputSection } from "../InputRow";
 import { APPOINTMENT_STATUS, APPOINTMENT_TYPE } from "@/constants/formData";

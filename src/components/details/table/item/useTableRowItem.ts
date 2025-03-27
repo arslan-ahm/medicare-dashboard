@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { PATIENT_STATUS_COLOR } from "@/constants/colors";
 import { PATIENT_STATUS } from "@/constants/formData";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { deletePatient } from "@/store/slices/patient.slice";
@@ -15,8 +14,7 @@ const useTableRowItem = (patient: Patient) => {
     const refinedStatus =
       PATIENT_STATUS.find((status) => status.value === patient.status)?.label ||
       "N/A";
-    const statusBadgeColor =
-      PATIENT_STATUS_COLOR[refinedStatus.toLowerCase()] || "bg-gray-100 text-gray-800";
+      
   
     useEffect(() => {
       if (isOpen && buttonRef.current) {
@@ -55,7 +53,6 @@ const useTableRowItem = (patient: Patient) => {
         handleEdit,
         isOpen,
         setIsOpen,
-        statusBadgeColor, 
         refinedStatus,
         position,
         buttonRef,

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TextButton from "../../../TextButton";
+import TextButton from "../../../buttons/TextButton";
 import InputRow from "../../InputRow";
 import FormHeader from "../../FormHeader";
 import { useChangePasswordForm } from "./useChangePasswordForm";

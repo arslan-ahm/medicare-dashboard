@@ -2,6 +2,7 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import { addPatient, updatePatient } from "@/store/slices/patient.slice";
 import { PatientForm } from "@/types/componentsTypes/forms/usePatientForm";
 import { Patient } from "@/types/slices/patient";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -19,6 +20,7 @@ const initailState: PatientForm = {
 
 export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void) => {
   const dispatch = useAppDispatch();
+  const router  = useRouter();
   const [formData, setFormData] = useState<PatientForm>(existingPatient ? {
     forename: existingPatient.forename,
     surname: existingPatient.surname || "",
@@ -69,6 +71,10 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
     }
   }
 
+  const handleCancel = () => {
+    setFormData(initailState);
+    router.back();
+  }
 
   const handleAddPatient = async () => {
     setLoading(true);
@@ -136,5 +142,5 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
     }
   };
 
-  return { formData, handleChange, handleAddPatient, handleImageChange, error, loading };
+  return { formData, handleChange, handleAddPatient, handleImageChange, error, loading, handleCancel };
 };

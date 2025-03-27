@@ -35,10 +35,10 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const doctorId = req.headers.get("doctorId");
     let body;
-    try {
-      body = await req.json();
+    const doctorId = req.headers.get("doctorId");
+        try {
+          body = await req.json();
     } catch (parseError) {
       return NextResponse.json(
         {
@@ -50,14 +50,14 @@ export const POST = async (req: NextRequest) => {
         { status: 400 }
       );
     }
-
+    
     if (!body) {
       return NextResponse.json(
         { status: "error", message: "Invalid request body.", ok: false },
         { status: 400 }
       );
     }
-
+    
     if (!doctorId || doctorId.length !== 24) {
       return NextResponse.json(
         {
@@ -68,7 +68,7 @@ export const POST = async (req: NextRequest) => {
         { status: 401 }
       );
     }
-
+    
     const requiredFields = [
       "forename",
       "surname",
@@ -85,7 +85,7 @@ export const POST = async (req: NextRequest) => {
         );
       }
     }
-
+    
     const validStatuses = [
       "RECOVERED",
       "AWAITING_SURGERY",
@@ -114,7 +114,7 @@ export const POST = async (req: NextRequest) => {
         { status: 400 }
       );
     }
-
+    
     const newPatient = await prisma.patient.create({
       data: {
         forename: body?.forename,
@@ -124,7 +124,7 @@ export const POST = async (req: NextRequest) => {
         status: body?.status,
         notes: body?.notes,
         upcomingAppointment: body?.upcomingAppointment
-          ? new Date(body?.upcomingAppointment) : "",
+        ? new Date(body?.upcomingAppointment) : "",
         dateOfBirth: new Date(body?.dateOfBirth),
         doctorId: doctorId,
       },
