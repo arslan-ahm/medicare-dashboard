@@ -15,7 +15,7 @@ const AppointmentSection = () => {
         subtext="New Appointment"
         handleClick={() => setModelOpen(true)}
       />
-      <div className="max-h-[40vh] overflow-y-auto custom-scroll px-2">
+      <div className="">
         <AppointmentList />
       </div>
       <ModelInterface

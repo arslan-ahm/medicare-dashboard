@@ -24,3 +24,33 @@
 .custom-scroll::-webkit-scrollbar-thumb:hover {
   background: #e7e7e7;
 }
+
+.fc .fc-prev-button,
+.fc .fc-dayGridMonth-button,
+.fc .fc-timeGridWeek-button,
+.fc .fc-today-button,
+.fc .fc-next-button {
+  padding: 4px 6px;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .fc .fc-prev-button,
+  .fc .fc-dayGridMonth-button,
+  .fc .fc-timeGridWeek-button,
+  .fc .fc-next-button {
+    padding: 5px 8px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fc .fc-prev-button,
+  .fc .fc-dayGridMonth-button,
+  .fc .fc-timeGridWeek-button,
+  .fc .fc-next-button {
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+}

@@ -14,7 +14,7 @@ const TasksListSection = () => {
         subtext="New Tasks"
         handleClick={() => setModelOpen(true)}
       />
-      <div className="max-h-[40vh] overflow-y-auto custom-scroll px-2">
+      <div className="">
         <TasksList />
       </div>
       <ModelInterface title="Add Tasks" open={modelOpen} setOpen={setModelOpen}>

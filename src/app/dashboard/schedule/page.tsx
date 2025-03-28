@@ -20,7 +20,7 @@ const Page = () => {
         <ScheduleActions />
       </PageTitleBar>
 
-      <div className="mt-4 lg:h-[60vh] overflow-auto custom-scroll p-2">
+      <div className="mt-4 overflow-auto custom-scroll p-2">
           <Calendar />
       </div>
     </section>

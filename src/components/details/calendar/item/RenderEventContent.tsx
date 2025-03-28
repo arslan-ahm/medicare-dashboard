@@ -7,7 +7,7 @@ const RenderEventContent = (eventInfo: EventContentArg) => {
 
   return (
     <div
-      className={`relative group w-full py-2 px-4 rounded-md text-xs font-medium ${colors.bg} ${colors.text}`}
+      className={`relative group w-full overflow-x-auto custom-scroll py-2 px-4 rounded-md text-xs font-medium ${colors.bg} ${colors.text}`}
     >
       <div
         className={`absolute top-[25%] left-[2px] w-1 h-[60%] rounded-full ${colors.border}`}

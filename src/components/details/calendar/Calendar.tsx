@@ -21,7 +21,7 @@ const Calendar: React.FC = () => {
           initialView={initialView}
           headerToolbar={{
             left:
-              typeof window !== "undefined" && window.innerWidth < 450
+              typeof window !== "undefined" && window.innerWidth < 530
                 ? ""
                 : "prev,next today",
             center: "title",
@@ -32,7 +32,9 @@ const Calendar: React.FC = () => {
           }}
           slotMinTime="08:00:00"
           slotMaxTime="18:00:00"
-          dayMaxEventRows={1}
+          dayMaxEventRows={
+            typeof window !== "undefined" && window.innerWidth < 768 ? 0 : 1
+          }
           events={events}
           eventContent={RenderEventContent}
           height="auto"

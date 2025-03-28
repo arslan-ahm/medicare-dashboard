@@ -20,10 +20,10 @@ const Page = () => {
         <OnlineAppointmentChart />
         <GenderChart /> 
 
-        <div className="bg-white shadow-sm p-4 order-last sm:order-none col-span-6 md:col-span-4">
+        <div className="max-h-[52vh] overflow-y-auto custom-scroll px-2 bg-white shadow-sm p-4 order-last sm:order-none col-span-6 md:col-span-4">
           <TasksListSection />
         </div>
-        <div className="bg-white shadow-sm p-4 col-span-6 md:col-span-2">
+        <div className="max-h-[52vh] overflow-y-auto custom-scroll px-2 bg-white shadow-sm p-4 col-span-6 md:col-span-2">
           <AppointmentSection />
         </div>
       </div>

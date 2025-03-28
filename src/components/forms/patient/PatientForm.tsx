@@ -20,6 +20,7 @@ const PatientForm: React.FC<PatientForm> = ({
     formData,
     handleChange,
     error,
+    loading,
     handleAddPatient,
     handleCancel,
     handleImageChange,
@@ -36,7 +37,7 @@ const PatientForm: React.FC<PatientForm> = ({
               variant="outline"
             />
             <TextButton
-              text={"Save"}
+              text={loading ? "Saving..." : "Save"}
               onClick={handleAddPatient}
               type="submit"
             />
@@ -72,7 +73,7 @@ const PatientForm: React.FC<PatientForm> = ({
             </div>
             <ul className="flex gap-1 sm:gap-2 lg:gap-4">
               <TextButton
-                text={"Save"}
+                text={loading ? "Saving..." :"Save"}
                 onClick={handleAddPatient}
                 type="submit"
               />

@@ -3,14 +3,14 @@ import React from "react";
 import NotificationListItem from "./item/NotificationListItem";
 import { Notification } from "@/types/slices/notification";
 import useNotification from "./useNotification";
-import Loader from "@/components/loader/Loader";
+import Loader from "@/components/loader/LoaderScreen";
 
 const NotificationList = () => {
   const { notifications, loading } = useNotification();
   return (
     <ul className="space-y-2">
       {loading ? (
-        <Loader size="md" />
+        <Loader size={50} />
       ) : notifications.length > 0 ? (
         notifications.map((notification: Notification) => (
           <li key={notification.id}>

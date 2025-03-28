@@ -42,7 +42,7 @@ const FormHeader = () => {
                     ? doctor?.specialization || "N/A"
                     : option.subtitle === "formattedDate"
                     ? timeWithPeriod || "N/A"
-                    : option.subtitle || "N/A"
+                    : String(option.bold_text || "N/A")
                 }
                 type="p"
                 className="text-gray-400 sm:inline-block hidden"

@@ -32,12 +32,12 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
 
   return (
     <>
-      <div className="flex flex-col-reverse sm:flex-row items-center justify-between relative border-b border-gray-200 py-2">
+      <div className="flex flex-col-reverse sm:flex-row items-start sm:items-center justify-between relative border-b border-gray-200 py-2">
         {isDeleteLoading ? (
           <Loader size="sm" />
         ) : (
           <>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 w-full sm:w-[80%]">
               <input
                 type="checkbox"
                 name="status"
