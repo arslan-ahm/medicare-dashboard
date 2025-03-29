@@ -1,9 +1,32 @@
-import Image from 'next/image'
+
 import React from 'react'
 import Text from '../Text'
-import { SERVICES_CARDS } from '@/constants/frontend'
+import Carousel from './ui/Carousel';
+import { IMAGES } from '@/constants/imgs';
 
 const Services = () => {
+  const slideData = [
+    {
+      title: "Patient Records",
+      desc: "Easily access and manage patient records securely, ensuring data privacy and quick retrieval for better healthcare decisions.",
+      src: IMAGES.MEDICARE_1,
+    },
+    {
+      title: "Appointments",
+      desc: "Schedule and track appointments effortlessly, with automated reminders and seamless integration into your workflow.",
+      src: IMAGES.MEDICARE_2,
+    },
+    {
+      title: "Medical History",
+      desc: "Review comprehensive medical history at a glance, enabling informed diagnoses and personalized treatment plans.",
+      src: IMAGES.MEDICARE_3,
+    },
+    {
+      title: "Prescriptions",
+      desc: "Organize and manage prescriptions with ease, reducing errors and improving medication adherence for patients.",
+      src: IMAGES.MEDICARE_4,
+    },
+    ];
   return (
     <>
      <section className="flex flex-col items-center justify-center gap-8 my-4 bg-light_varient_blue/35 py-8 px-8">
@@ -12,7 +35,7 @@ const Services = () => {
             <Text
               text="We Offer a wide range of services"
               type="h2"
-              className="text-xl sm:text-2xl md:text-3xl lg:text-6xl"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-6xl text-primary"
             />
           </div>
           <div className="w-[60%] md:w-[35%]">
@@ -23,43 +46,8 @@ const Services = () => {
             />
           </div>
         </div>
-        <div className="flex w-full items-stretch justify-center gap-4 flex-wrap">
-          {SERVICES_CARDS.map((card, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center  justify-center md:justify-between gap-4 w-[330px] bg-white p-4 rounded-lg shadow-md"
-            >
-              <div className="w-full">
-                <Text
-                  text={card.title}
-                  type="h5"
-                  className="text-md font-semibold md:text-lg lg:text-xl"
-                />
-                <Text
-                  text={
-                    card.description.length > 50
-                      ? card.description.slice(0, 50) + "..."
-                      : card.description
-                  }
-                  type="span"
-                  className="text-sm lg:text-md xl:text-lg text-md_gray"
-                />
-              </div>
-              <div className="relative overflow-hidden rounded-lg before:absolute before:bottom-0 before:right-0 before:w-12 before:h-12 before:bg-white  before:rounded-tl-[20px] before:content-[''] before:z-10 before:shadow-[inset_4px_6px_1px_rgba(0,0,0,0.01)] bg-red ">
-                <Image
-                  src={card.image}
-                  alt="Dashboard Preview"
-                  layout="responsive"
-                  width={200}
-                  height={100}
-                  className="object-cover w-full h-full shadow-md"
-                />
-                <div className="absolute bottom-2 right-2 w-8 h-8 bg-yellow flex justify-center items-center font-semibold text-white rounded-full z-30">
-                  {index + 1}
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="relative overflow-hidden w-full h-full py-20">
+          <Carousel slides={slideData} />
         </div>
       </section> 
     </>

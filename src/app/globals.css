@@ -25,6 +25,15 @@
   background: #e7e7e7;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .fc .fc-prev-button,
 .fc .fc-dayGridMonth-button,
 .fc .fc-timeGridWeek-button,

@@ -1,13 +1,20 @@
-
-
 export const IMAGES = {
   DASHBOARD_IMAGE: "/imgs/auth_layout_image.webp",
   HeroSectionBanner: "/imgs/herosection.jpg",
   LOGO: "/imgs/logo.png",
   NOT_FOUND: "/imgs/not_found.webp",
-  BLOB: '/svgs/blob.svg',
+  BLOB: "/svgs/blob.svg",
   MEDICARE_1: "/imgs/medicare_1.webp",
   MEDICARE_2: "/imgs/medicare_2.webp",
   MEDICARE_3: "/imgs/medicare_3.webp",
   MEDICARE_4: "/imgs/medicare_4.webp",
+  DASHBOARD_HOME: "/imgs/dashboard_home.webp",
+  DASHBOARD_NOTIFICATIONS: "/imgs/dashboard_notifications.webp",
+  DASHBOARD_PATIENTS: "/imgs/dashboard_patients.webp",
+  DASHBOARD_SCHEDULE: "/imgs/dashboard_schedules.webp",
+  DASHBOARD_SETTINGS: "/imgs/dashboard_settings.webp",
+  USER_1: "/imgs/user_1.webp",
+  USER_2: "/imgs/user_2.webp",
+  USER_3: "/imgs/user_3.webp",
+  USER_4: "/imgs/user_4.webp",
 };

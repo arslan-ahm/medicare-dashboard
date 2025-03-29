@@ -1,5 +1,5 @@
 import Navbar from "@/components/navbar/frontendNavbar/FrontendNavbar";
-import HeroSection from "@/components/frontend/HeroSection";
+import HeroParallex from "@/components/frontend/HeroSection";
 import ServicesSection from "@/components/frontend/Services";
 import SpecialitySection from "@/components/frontend/SpecialitySection";
 import SupportSection from "@/components/frontend/SupportSection";
@@ -11,7 +11,7 @@ export default function Page() {
     <>
       <main className="flex flex-col min-h-screen">
         <Navbar />
-        <HeroSection />
+        <HeroParallex />
         <ServicesSection />
         <SpecialitySection />
         <SupportSection />

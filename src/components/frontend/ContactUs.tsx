@@ -1,47 +1,63 @@
+"use client";
 import React from "react";
-import Text from "../Text";
-import { CONTACT_US_CARDS } from "@/constants/frontend";
+import { BackgroundBeams } from "./ui/background-beams";
+import { PlaceholdersAndVanishInput } from "./ui/animated-placeholders";
 
-const ContactUs = () => {
+
+export default function ContactUs() {
+  const [email, setEmail] = React.useState("");
+  const placeholders = [
+    "What's the first rule of Fight Club?",
+    "Who is Tyler Durden?",
+    "Where is Andrew Laeddis Hiding?",
+    "Write a Javascript method to reverse a string",
+    "How to assemble your own PC?",
+  ];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Email submitted:", email);
+  };
+
   return (
-    <section className="flex flex-col items-center justify-center gap-8 my-4 py-8 px-8">
-      <div className="flex flex-col md:flex-row items-start gap-2 md:items-center justify-between">
-        <div className="w-full md:w-[65%]">
-          <Text
-            text="Let Us Know What You Think"
-            type="h2"
-            className="text-xl sm:text-2xl md:text-3xl lg:text-6xl"
-          />
-        </div>
-        <div className="w-[60%] md:w-[35%]">
-          <Text
-            text="We are always here to help you. If you have any query or feedback, feel free to contact us."
-            type="p"
-            className="text-sm sm:text-md lg:text-lg xl:text-xl text-md_gray"
+    <div className="h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
+      <div className="max-w-2xl mx-auto p-4">
+        <h1 className="relative z-10 text-lg md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600 text-center font-sans font-bold">
+          Join the Waitlist
+        </h1>
+        <p className="text-slate-400  xl:max-w-lg max-w-sm sm:max-w-sm mx-auto my-2 text-sm text-center relative z-10">
+          Stay updated with the latest Medicare plans and services tailored to
+          your needs. Join our community to receive exclusive insights, tips,
+          and updates directly in your inbox.
+        </p>
+        <div className="mt-8">
+          <PlaceholdersAndVanishInput
+            placeholders={placeholders}
+            onChange={handleChange}
+            onSubmit={onSubmit}
           />
         </div>
       </div>
-
-      <ul className="w-full flex items-center justify-center gap-4 flex-wrap">
-        {CONTACT_US_CARDS.map((item, index) => (
-          <li key={index} className="">
-            <div
-              className={`flex w-full ${item.color} p-8 rounded-lg shadow-md gap-9 flex-col items-start`}
-            >
-              <div className="flex flex-col items-start gap-2">
-                <h6 className="text-xl font-semibold">{item.title}</h6>
-                <p className="text-base text-gray-600">{item.description}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl text-blue-500">{item.icon}</span>
-                <p className="text-base text-gray-800">{item.content}</p>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+      <BackgroundBeams />
+    </div>
   );
-};
+}
 
-export default ContactUs;
+ 
+export function GlobeDemo() {
+  
+ 
+  return (
+    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
+      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+        
+        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+        
+      </div>
+    </div>
+  );
+}
