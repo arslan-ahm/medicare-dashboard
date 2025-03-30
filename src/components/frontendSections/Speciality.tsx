@@ -5,6 +5,7 @@ import { StickyScroll } from "./ui/sticky-scroll";
 import { WobbleCard } from "./ui/grid-cards";
 import Text from "../Text";
 import { SIDE_FIX_SCROLL_CONTENT, SPECIALITY_GRID } from "@/constants/frontend";
+import { GridSectionProps } from "@/types/componentsTypes/speciality";
 
 const SpecialitySection = () => {
   return (
@@ -40,14 +41,6 @@ const SpecialitySection = () => {
       </div>
     </section>
   );
-};
-
-type GridSectionProps = {
-  title: string;
-  desc: string;
-  img?: boolean;
-  imgSrc?: string;
-  imgAlt?: string;
 };
 
 const GridSection: React.FC<GridSectionProps> = ({

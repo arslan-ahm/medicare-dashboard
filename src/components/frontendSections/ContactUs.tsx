@@ -3,45 +3,11 @@ import React from "react";
 import { BackgroundBeams } from "./ui/background-beams";
 import { PlaceholdersAndVanishInput } from "./ui/animated-placeholders";
 import { CONTACT_US_PLACEHOLDERS } from "@/constants/frontend";
-import toast from "react-hot-toast";
+import useContactUs from "@/hooks/useContactUs";
 
 
 export default function ContactUs() {
-  const [email, setEmail] = React.useState("");
-  
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (!email) {
-      toast.error("Enter Email... You won't regret... 😉");
-      return;
-    }
-
-    try {
-      const res = await fetch("/api/join-wishlist", {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: { "Content-Type": "application/json" },
-      });
-      
-      const data = await res.json();
-      
-      toast.success("Thanks for you Interest... 😊");
-      if (!res.ok) {
-        throw new Error(data.message || "Something went wrong!");
-      }
-
-    } catch (err) {
-      console.error(err);
-      toast.error("Failed to send email. Try again! 🤐");
-    } 
-  };
-
+  const { handleChange, onSubmit } = useContactUs();
   return (
     <section id="contact" className="h-[40rem] w-full rounded-md bg-neutral-950 relative flex flex-col items-center justify-center antialiased">
       <div className="max-w-2xl mx-auto p-4">

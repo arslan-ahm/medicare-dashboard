@@ -17,7 +17,7 @@ const Services = () => {
               className="text-xl sm:text-2xl md:text-3xl lg:text-6xl text-primary"
             />
           </div>
-          <div className="w-[60%] md:w-[35%]">
+          <div className="w-full sm:w-[60%] md:w-[35%]">
             <Text
               text="This is an amazing and easy to use platform to manage your tasks, routeins and more over you patient's data, in easy and attractive way."
               type="p"

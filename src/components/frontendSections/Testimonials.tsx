@@ -2,9 +2,9 @@ import React from "react";
 import { AnimatedTestimonials } from "./ui/testimonials";
 import { CUSTOMERS_TESTIMONIALS } from "@/constants/frontend";
 
-const TreatmentSection = () => {
+const TestimonialsSection = () => {
   return (
-    <section className="flex flex-col justify-center space-y-2 p-12">
+    <section className="flex flex-col justify-center space-y-2 p-5 md:p-12">
       <div className="text-center">
         <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-6xl text-primary">
           Comprehensive Treatment Management
@@ -14,11 +14,11 @@ const TreatmentSection = () => {
           ensuring healthcare professionals can deliver their best.
         </p>
       </div>
-      <div className="flex flex-col-reverse items-stretch justify-center gap-10 lg:flex-row py-20 px-5 sm:px-10">
-        <AnimatedTestimonials testimonials={CUSTOMERS_TESTIMONIALS} />;
+      <div className="flex flex-col-reverse items-stretch justify-center gap-10 lg:flex-row pb-5 md:py-10 px-5  md:px-10">
+        <AnimatedTestimonials testimonials={CUSTOMERS_TESTIMONIALS} />
       </div>
     </section>
   );
 };
 
-export default TreatmentSection;
+export default TestimonialsSection;

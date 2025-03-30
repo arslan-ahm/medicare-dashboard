@@ -1,10 +1,10 @@
 import Navbar from "@/components/navbar/frontendNavbar/FrontendNavbar";
-import HeroParallex from "@/components/frontend/HeroSection";
-import ServicesSection from "@/components/frontend/Services";
-import SpecialitySection from "@/components/frontend/SpecialitySection";
-import SupportSection from "@/components/frontend/SupportSection";
-import ContactUs from "@/components/frontend/ContactUs";
-import TreatmentSection from "@/components/frontend/Treatment";
+import HeroParallex from "@/components/frontendSections/HeroSection";
+import ServicesSection from "@/components/frontendSections/Services";
+import SpecialitySection from "@/components/frontendSections/Speciality";
+import SupportSection from "@/components/frontendSections/OurSupport";
+import ContactUs from "@/components/frontendSections/ContactUs";
+import TestimonialsSection from "@/components/frontendSections/Testimonials";
 
 export default function Page() {
   return (
@@ -15,7 +15,7 @@ export default function Page() {
         <ServicesSection />
         <SpecialitySection />
         <SupportSection />
-        <TreatmentSection />
+        <TestimonialsSection />
         <ContactUs />
       </main>
     </>

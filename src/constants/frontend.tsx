@@ -179,3 +179,42 @@ export const CONTACT_US_PLACEHOLDERS = [
   "Need help scheduling an appointment?",
   "Have questions about managing patient records?",
 ];
+
+export const OUR_SUPPORTS = [
+  {
+    title: "Appointment Scheduling",
+    description:
+      "A feature that allows doctors to manage and schedule patient appointments efficiently.",
+    link: "/features/appointment-scheduling",
+  },
+  {
+    title: "Patient Records Management",
+    description:
+      "A system to securely store and manage patient medical records and history.",
+    link: "/features/patient-records-management",
+  },
+  {
+    title: "Billing and Invoicing",
+    description:
+      "A tool to streamline billing processes and generate invoices for patients.",
+    link: "/features/billing-invoicing",
+  },
+  {
+    title: "Telemedicine",
+    description:
+      "A feature enabling doctors to consult with patients remotely through video calls.",
+    link: "/features/telemedicine",
+  },
+  {
+    title: "Analytics Dashboard",
+    description:
+      "A dashboard providing insights into patient data, appointments, and other key metrics.",
+    link: "/features/analytics-dashboard",
+  },
+  {
+    title: "Prescription Management",
+    description:
+      "A system to create, manage, and share prescriptions with patients digitally.",
+    link: "/features/prescription-management",
+  },
+];
