@@ -1,6 +1,4 @@
-import { MdWorkHistory } from "react-icons/md";
-import { MdAdminPanelSettings } from "react-icons/md";
-import { TbLockAccess } from "react-icons/tb";
+import Image from "next/image";
 import { IMAGES } from "./imgs";
 
 export const HEROSECTION_LIST = [
@@ -54,7 +52,7 @@ export const HEROSECTION_LIST = [
     link: "/product-1",
     thumbnail: IMAGES.DASHBOARD_HOME,
   },
-]
+];
 
 export const SERVICES_CRASOULE_CONTENT = [
   {
@@ -77,453 +75,107 @@ export const SERVICES_CRASOULE_CONTENT = [
     desc: "Organize and manage prescriptions with ease, reducing errors and improving medication adherence for patients.",
     src: IMAGES.MEDICARE_4,
   },
-  ];
+];
 export const CUSTOMERS_TESTIMONIALS = [
-    {
-      quote:
-        "The care and attention provided by the staff have been exceptional. This platform has made managing my health so much easier.",
-      name: "Linda Johnson",
-      designation: "Patient",
-      src: IMAGES.USER_2,
-    },
-    {
-      quote:
-        "As a healthcare provider, this system has streamlined our operations and improved patient satisfaction significantly.",
-      name: "Dr. Robert Smith",
-      designation: "General Practitioner",
-      src: IMAGES.USER_1,
-    },
-    {
-      quote:
-        "The intuitive design and robust features have made a real difference in how I manage my medical records.",
-      name: "Karen Williams",
-      designation: "Healthcare Administrator",
-      src: IMAGES.USER_3,
-    },
-    {
-      quote:
-        "This platform has truly revolutionized the way we deliver care. The support team is always there to help.",
-      name: "Dr. Emily Davis",
-      designation: "Specialist at CityCare Hospital",
-      src: IMAGES.USER_4,
-    },
-  ];
-
-export const TREATMENT_TABS = [
   {
-    icon: <MdWorkHistory />,
-    title: "Diabetes Management",
-    text: "Comprehensive care plans to manage diabetes effectively.",
+    quote:
+      "The care and attention provided by the staff have been exceptional. This platform has made managing my health so much easier.",
+    name: "Linda Johnson",
+    designation: "Patient",
+    src: IMAGES.USER_2,
   },
   {
-    icon: <MdAdminPanelSettings />,
-    title: "Cardiac Care",
-    text: "Advanced treatments and monitoring for heart diseases.",
+    quote:
+      "As a healthcare provider, this system has streamlined our operations and improved patient satisfaction significantly.",
+    name: "Dr. Robert Smith",
+    designation: "General Practitioner",
+    src: IMAGES.USER_1,
   },
   {
-    icon: <TbLockAccess />,
-    title: "Cancer Treatment",
-    text: "Innovative therapies and personalized treatment plans for cancer patients.",
+    quote:
+      "The intuitive design and robust features have made a real difference in how I manage my medical records.",
+    name: "Karen Williams",
+    designation: "Healthcare Administrator",
+    src: IMAGES.USER_3,
+  },
+  {
+    quote:
+      "This platform has truly revolutionized the way we deliver care. The support team is always there to help.",
+    name: "Dr. Emily Davis",
+    designation: "Specialist at CityCare Hospital",
+    src: IMAGES.USER_4,
   },
 ];
 
-export const SUPPORT_LIST = [
+export const SPECIALITY_GRID = [
   {
-    title: "Healthcare Facilities",
-    text: "You can manage your healthcare facilities with ease and efficiency.",
+    containerClassName:
+      "col-span-1 lg:col-span-2 h-full bg-primary min-h-[500px] lg:min-h-[300px]",
+    title: "Empower Your Practice with Medicare Dashboard",
+    desc: "Streamline patient management, appointment scheduling, and data insights with our intuitive platform designed for healthcare professionals.",
+    img: true,
+    imgSrc: IMAGES.DASHBOARD_PATIENTS,
+    imgAlt: "Patient management demo image",
   },
   {
-    title: "Patient Data",
-    text: "You can manage your patient data with ease and efficiency.",
+    containerClassName: "col-span-1 bg-blue min-h-[300px]",
+    title: "Simplify Appointment Scheduling",
+    desc: "Enable seamless scheduling for your patients and manage your calendar effortlessly with our advanced tools.",
+  },
+  {
+    containerClassName:
+      "col-span-1 bg-primary lg:col-span-3 bg-blue min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]",
+    title: "Gain Insights with Interactive Dashboards",
+    desc: "Monitor key metrics, track patient data, and make informed decisions with real-time analytics tailored for your practice.",
+    img: true,
+    imgSrc: IMAGES.DASHBOARD_SCHEDULE,
+    imgAlt: "Dashboard insights demo image",
+  },
+];
+
+export const SIDE_FIX_SCROLL_CONTENT = [
+  {
+    title: "Patient Management",
+    description:
+      "Easily manage patient records, medical history, and treatment plans. Our platform ensures that all patient information is organized and accessible, helping you provide better care.",
+    content: (
+      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--blue-500),var(--green-500))] text-white">
+        Patient Management
+      </div>
+    ),
   },
   {
     title: "Appointment Scheduling",
-    text: "You can manage your appointment scheduling with ease and efficiency.",
+    description:
+      "Streamline appointment scheduling with an intuitive interface. Allow patients to book appointments online and manage your schedule efficiently.",
+    content: (
+      <div className="flex h-full w-full items-center justify-center text-white">
+        <Image
+          src={IMAGES.DASHBOARD_HOME}
+          width={250}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="Appointment scheduling demo"
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Interactive Dashboards",
+    description:
+      "Get real-time insights into your practice with interactive dashboards. Track appointments, patient statistics, and other key metrics to make informed decisions.",
+    content: (
+      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(to_bottom_right,var(--purple-500),var(--pink-500))] text-white">
+        Interactive Dashboards
+      </div>
+    ),
   },
 ];
 
-export const GLOBE_CONFIG = {
-  pointSize: 4,
-  globeColor: "#062056",
-  showAtmosphere: true,
-  atmosphereColor: "#FFFFFF",
-  atmosphereAltitude: 0.1,
-  emissive: "#062056",
-  emissiveIntensity: 0.1,
-  shininess: 0.9,
-  polygonColor: "rgba(255,255,255,0.7)",
-  ambientLight: "#38bdf8",
-  directionalLeftLight: "#ffffff",
-  directionalTopLight: "#ffffff",
-  pointLight: "#ffffff",
-  arcTime: 1000,
-  arcLength: 0.9,
-  rings: 1,
-  maxRings: 3,
-  initialPosition: { lat: 22.3193, lng: 114.1694 },
-  autoRotate: true,
-  autoRotateSpeed: 0.5,
-};
-export const GLOBE_COLOR = ["#06b6d4", "#3b82f6", "#6366f1"];
-export const ARCS_CONFIG = [
-  {
-    order: 1,
-    startLat: -19.885592,
-    startLng: -43.951191,
-    endLat: -22.9068,
-    endLng: -43.1729,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 1,
-    startLat: 28.6139,
-    startLng: 77.209,
-    endLat: 3.139,
-    endLng: 101.6869,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 1,
-    startLat: -19.885592,
-    startLng: -43.951191,
-    endLat: -1.303396,
-    endLng: 36.852443,
-    arcAlt: 0.5,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 2,
-    startLat: 1.3521,
-    startLng: 103.8198,
-    endLat: 35.6762,
-    endLng: 139.6503,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 2,
-    startLat: 51.5072,
-    startLng: -0.1276,
-    endLat: 3.139,
-    endLng: 101.6869,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 2,
-    startLat: -15.785493,
-    startLng: -47.909029,
-    endLat: 36.162809,
-    endLng: -115.119411,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 3,
-    startLat: -33.8688,
-    startLng: 151.2093,
-    endLat: 22.3193,
-    endLng: 114.1694,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 3,
-    startLat: 21.3099,
-    startLng: -157.8581,
-    endLat: 40.7128,
-    endLng: -74.006,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 3,
-    startLat: -6.2088,
-    startLng: 106.8456,
-    endLat: 51.5072,
-    endLng: -0.1276,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 4,
-    startLat: 11.986597,
-    startLng: 8.571831,
-    endLat: -15.595412,
-    endLng: -56.05918,
-    arcAlt: 0.5,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 4,
-    startLat: -34.6037,
-    startLng: -58.3816,
-    endLat: 22.3193,
-    endLng: 114.1694,
-    arcAlt: 0.7,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 4,
-    startLat: 51.5072,
-    startLng: -0.1276,
-    endLat: 48.8566,
-    endLng: -2.3522,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 5,
-    startLat: 14.5995,
-    startLng: 120.9842,
-    endLat: 51.5072,
-    endLng: -0.1276,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 5,
-    startLat: 1.3521,
-    startLng: 103.8198,
-    endLat: -33.8688,
-    endLng: 151.2093,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 5,
-    startLat: 34.0522,
-    startLng: -118.2437,
-    endLat: 48.8566,
-    endLng: -2.3522,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 6,
-    startLat: -15.432563,
-    startLng: 28.315853,
-    endLat: 1.094136,
-    endLng: -63.34546,
-    arcAlt: 0.7,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 6,
-    startLat: 37.5665,
-    startLng: 126.978,
-    endLat: 35.6762,
-    endLng: 139.6503,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 6,
-    startLat: 22.3193,
-    startLng: 114.1694,
-    endLat: 51.5072,
-    endLng: -0.1276,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 7,
-    startLat: -19.885592,
-    startLng: -43.951191,
-    endLat: -15.595412,
-    endLng: -56.05918,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 7,
-    startLat: 48.8566,
-    startLng: -2.3522,
-    endLat: 52.52,
-    endLng: 13.405,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 7,
-    startLat: 52.52,
-    startLng: 13.405,
-    endLat: 34.0522,
-    endLng: -118.2437,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 8,
-    startLat: -8.833221,
-    startLng: 13.264837,
-    endLat: -33.936138,
-    endLng: 18.436529,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 8,
-    startLat: 49.2827,
-    startLng: -123.1207,
-    endLat: 52.3676,
-    endLng: 4.9041,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 8,
-    startLat: 1.3521,
-    startLng: 103.8198,
-    endLat: 40.7128,
-    endLng: -74.006,
-    arcAlt: 0.5,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 9,
-    startLat: 51.5072,
-    startLng: -0.1276,
-    endLat: 34.0522,
-    endLng: -118.2437,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 9,
-    startLat: 22.3193,
-    startLng: 114.1694,
-    endLat: -22.9068,
-    endLng: -43.1729,
-    arcAlt: 0.7,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 9,
-    startLat: 1.3521,
-    startLng: 103.8198,
-    endLat: -34.6037,
-    endLng: -58.3816,
-    arcAlt: 0.5,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 10,
-    startLat: -22.9068,
-    startLng: -43.1729,
-    endLat: 28.6139,
-    endLng: 77.209,
-    arcAlt: 0.7,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 10,
-    startLat: 34.0522,
-    startLng: -118.2437,
-    endLat: 31.2304,
-    endLng: 121.4737,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 10,
-    startLat: -6.2088,
-    startLng: 106.8456,
-    endLat: 52.3676,
-    endLng: 4.9041,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 11,
-    startLat: 41.9028,
-    startLng: 12.4964,
-    endLat: 34.0522,
-    endLng: -118.2437,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 11,
-    startLat: -6.2088,
-    startLng: 106.8456,
-    endLat: 31.2304,
-    endLng: 121.4737,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 11,
-    startLat: 22.3193,
-    startLng: 114.1694,
-    endLat: 1.3521,
-    endLng: 103.8198,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 12,
-    startLat: 34.0522,
-    startLng: -118.2437,
-    endLat: 37.7749,
-    endLng: -122.4194,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 12,
-    startLat: 35.6762,
-    startLng: 139.6503,
-    endLat: 22.3193,
-    endLng: 114.1694,
-    arcAlt: 0.2,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 12,
-    startLat: 22.3193,
-    startLng: 114.1694,
-    endLat: 34.0522,
-    endLng: -118.2437,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 13,
-    startLat: 52.52,
-    startLng: 13.405,
-    endLat: 22.3193,
-    endLng: 114.1694,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 13,
-    startLat: 11.986597,
-    startLng: 8.571831,
-    endLat: 35.6762,
-    endLng: 139.6503,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 13,
-    startLat: -22.9068,
-    startLng: -43.1729,
-    endLat: -34.6037,
-    endLng: -58.3816,
-    arcAlt: 0.1,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
-  {
-    order: 14,
-    startLat: -33.936138,
-    startLng: 18.436529,
-    endLat: 21.395643,
-    endLng: 39.883798,
-    arcAlt: 0.3,
-    color: GLOBE_COLOR[Math.floor(Math.random() * (GLOBE_COLOR.length - 1))],
-  },
+export const CONTACT_US_PLACEHOLDERS = [
+  "What is your primary healthcare concern?",
+  "How can we assist you with Medicare plans?",
+  "Looking for a doctor? Let us know your preferences.",
+  "Need help scheduling an appointment?",
+  "Have questions about managing patient records?",
 ];

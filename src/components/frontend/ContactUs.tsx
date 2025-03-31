@@ -2,25 +2,44 @@
 import React from "react";
 import { BackgroundBeams } from "./ui/background-beams";
 import { PlaceholdersAndVanishInput } from "./ui/animated-placeholders";
+import { CONTACT_US_PLACEHOLDERS } from "@/constants/frontend";
+import toast from "react-hot-toast";
 
 
 export default function ContactUs() {
   const [email, setEmail] = React.useState("");
-  const placeholders = [
-    "What's the first rule of Fight Club?",
-    "Who is Tyler Durden?",
-    "Where is Andrew Laeddis Hiding?",
-    "Write a Javascript method to reverse a string",
-    "How to assemble your own PC?",
-  ];
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Email submitted:", email);
+
+    if (!email) {
+      toast.error("Enter Email... You won't regret... 😉");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/join-wishlist", {
+        method: "POST",
+        body: JSON.stringify({ email }),
+        headers: { "Content-Type": "application/json" },
+      });
+      
+      const data = await res.json();
+      
+      toast.success("Thanks for you Interest... 😊");
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong!");
+      }
+
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to send email. Try again! 🤐");
+    } 
   };
 
   return (
@@ -36,7 +55,7 @@ export default function ContactUs() {
         </p>
         <div className="mt-8">
           <PlaceholdersAndVanishInput
-            placeholders={placeholders}
+            placeholders={CONTACT_US_PLACEHOLDERS}
             onChange={handleChange}
             onSubmit={onSubmit}
           />
@@ -54,9 +73,7 @@ export function GlobeDemo() {
   return (
     <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-        
         <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        
       </div>
     </div>
   );
