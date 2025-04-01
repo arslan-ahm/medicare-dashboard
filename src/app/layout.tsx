@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lato.className}`}>
+      <body className={`${lato.className} scroll-smooth`}>
         <NextAuthSessionProvider>
           <ReduxProvider>{children}</ReduxProvider>
           <Toaster />

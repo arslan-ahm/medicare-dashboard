@@ -58,8 +58,8 @@ export const PATIENT_ACTION = [
 ];
 
 export const FRONTEND_NAVLIST = [
-    { text: "Home", link: "#home" },
-    { text: "About", link: "#about" },
+    { text: "Home", link: "#hero-section" },
+    { text: "Services", link: "#services" },
+    { text: "Our Work", link: "#speciality" },
     { text: "Contact", link: "#contact" },
-    { text: "Our Work", link: "#our_work" },
   ];

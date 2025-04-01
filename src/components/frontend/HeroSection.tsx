@@ -54,7 +54,8 @@ const HeroParallex = ({
     springConfig
   );
   return (
-    <div
+    <section
+      id="hero-section"
       ref={ref}
       className="h-[180vh] sm:h-[240vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
@@ -88,7 +89,7 @@ const HeroParallex = ({
           ))}
         </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 

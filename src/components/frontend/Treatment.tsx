@@ -1,41 +1,22 @@
 import React from "react";
 import { AnimatedTestimonials } from "./ui/testimonials";
-import { IMAGES } from "@/constants/imgs";
+import { CUSTOMERS_TESTIMONIALS } from "@/constants/frontend";
 
 const TreatmentSection = () => {
-  const testimonials = [
-    {
-      quote:
-        "The care and attention provided by the staff have been exceptional. This platform has made managing my health so much easier.",
-      name: "Linda Johnson",
-      designation: "Patient",
-      src: IMAGES.USER_2,
-    },
-    {
-      quote:
-        "As a healthcare provider, this system has streamlined our operations and improved patient satisfaction significantly.",
-      name: "Dr. Robert Smith",
-      designation: "General Practitioner",
-      src: IMAGES.USER_1,
-    },
-    {
-      quote:
-        "The intuitive design and robust features have made a real difference in how I manage my medical records.",
-      name: "Karen Williams",
-      designation: "Healthcare Administrator",
-      src: IMAGES.USER_3,
-    },
-    {
-      quote:
-        "This platform has truly revolutionized the way we deliver care. The support team is always there to help.",
-      name: "Dr. Emily Davis",
-      designation: "Specialist at CityCare Hospital",
-      src: IMAGES.USER_4,
-    },
-  ];
   return (
-    <section className="flex flex-col-reverse items-stretch justify-center gap-10 lg:flex-row py-20 px-5 sm:px-10">
-      <AnimatedTestimonials testimonials={testimonials} />;
+    <section className="flex flex-col justify-center space-y-2 p-12">
+      <div className="text-center">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-6xl text-primary">
+          Comprehensive Treatment Management
+        </h2>
+        <p className="mt-4 w-full mx-auto md:w-[60%] text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600">
+          Our platform provides tools for effective treatment management,
+          ensuring healthcare professionals can deliver their best.
+        </p>
+      </div>
+      <div className="flex flex-col-reverse items-stretch justify-center gap-10 lg:flex-row py-20 px-5 sm:px-10">
+        <AnimatedTestimonials testimonials={CUSTOMERS_TESTIMONIALS} />;
+      </div>
     </section>
   );
 };

@@ -56,47 +56,58 @@ export const HEROSECTION_LIST = [
   },
 ]
 
-export const SERVICES_CARDS = [
+export const SERVICES_CRASOULE_CONTENT = [
   {
-    title: "Online Appointment",
-    description:
-      "Book an appointment with your doctor online and get a reminder before the appointment.",
-    image: IMAGES.DASHBOARD_IMAGE,
+    title: "Patient Records",
+    desc: "Easily access and manage patient records securely, ensuring data privacy and quick retrieval for better healthcare decisions.",
+    src: IMAGES.MEDICARE_1,
   },
   {
-    title: "Patient Management",
-    description:
-      "Manage your patient's data, appointments, prescriptions and more in one place.",
-    image: IMAGES.HeroSectionBanner,
+    title: "Appointments",
+    desc: "Schedule and track appointments effortlessly, with automated reminders and seamless integration into your workflow.",
+    src: IMAGES.MEDICARE_2,
   },
   {
-    title: "Medication Reminder",
-    description:
-      "Get a reminder for your medication and never miss a dose of your medicine.",
-    image: IMAGES.BLOB,
-  },
-];
-
-export const SPECIALITY_TABS = [
-  {
-    icon: <MdWorkHistory />,
-    title: "Reduce Administrative",
-    text: "Reduce burden, save time.",
-    color: "bg-light_varient_blue",
+    title: "Medical History",
+    desc: "Review comprehensive medical history at a glance, enabling informed diagnoses and personalized treatment plans.",
+    src: IMAGES.MEDICARE_3,
   },
   {
-    icon: <MdAdminPanelSettings />,
-    title: "Easy Management",
-    text: "Easy and Attractive",
-    color: "bg-light_varient_yellow",
+    title: "Prescriptions",
+    desc: "Organize and manage prescriptions with ease, reducing errors and improving medication adherence for patients.",
+    src: IMAGES.MEDICARE_4,
   },
-  {
-    icon: <TbLockAccess />,
-    title: "Access Control",
-    text: "Authorized & Secure",
-    color: "bg-light_varient_green",
-  },
-];
+  ];
+export const CUSTOMERS_TESTIMONIALS = [
+    {
+      quote:
+        "The care and attention provided by the staff have been exceptional. This platform has made managing my health so much easier.",
+      name: "Linda Johnson",
+      designation: "Patient",
+      src: IMAGES.USER_2,
+    },
+    {
+      quote:
+        "As a healthcare provider, this system has streamlined our operations and improved patient satisfaction significantly.",
+      name: "Dr. Robert Smith",
+      designation: "General Practitioner",
+      src: IMAGES.USER_1,
+    },
+    {
+      quote:
+        "The intuitive design and robust features have made a real difference in how I manage my medical records.",
+      name: "Karen Williams",
+      designation: "Healthcare Administrator",
+      src: IMAGES.USER_3,
+    },
+    {
+      quote:
+        "This platform has truly revolutionized the way we deliver care. The support team is always there to help.",
+      name: "Dr. Emily Davis",
+      designation: "Specialist at CityCare Hospital",
+      src: IMAGES.USER_4,
+    },
+  ];
 
 export const TREATMENT_TABS = [
   {
