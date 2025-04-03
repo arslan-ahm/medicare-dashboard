@@ -1,44 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useAppDispatch } from "@/hooks/useRedux";
-import { addAppointment, updateAppointment } from "@/store/slices/appointment.slice";
+import {
+  addAppointment,
+  updateAppointment,
+} from "@/store/slices/appointment.slice";
 import { AppointmentFormData } from "@/types/componentsTypes/form";
 import { Appointment } from "@/types/slices/appointment";
 
 const initialFormData: AppointmentFormData = {
   patientName: "",
   purpose: "",
-  start_time: null,
+  start_time: new Date().toISOString(),
   end_time: null,
   status: "CONFIRMED",
   type: "FIRST_TIME",
   isOnline: false,
 };
 
-export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: () => void) => {
+export const useAddAppointmentForm = (
+  existingAppt?: Appointment,
+  onSuccess?: () => void
+) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFormData((prevData) => ({
+        ...prevData,
+        start_time: new Date().toISOString(),
+      }));
+    }, 3 * 60 * 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const [formData, setFormData] = useState<AppointmentFormData>(
     existingAppt
       ? {
-        patientName: existingAppt.patientName,
-        purpose: existingAppt.purpose,
-        start_time: existingAppt.start_time
-          ? new Date(existingAppt.start_time + ":00Z")
-            .toISOString()
-            .slice(0, 16)
-          : null,
-        end_time: existingAppt.end_time
-          ? new Date(existingAppt.end_time + ":00Z")
-            .toISOString()
-            .slice(0, 16)
-          : null,
-        status: existingAppt.status,
-        type: existingAppt.type || "FIRST_TIME",
-        isOnline: existingAppt.isOnline,
-      }
+          patientName: existingAppt.patientName,
+          purpose: existingAppt.purpose,
+          start_time: existingAppt.start_time
+            ? new Date(existingAppt.start_time + ":00Z")
+                .toISOString()
+                .slice(0, 16)
+            : null,
+          end_time: existingAppt.end_time
+            ? new Date(existingAppt.end_time + ":00Z")
+                .toISOString()
+                .slice(0, 16)
+            : null,
+          status: existingAppt.status,
+          type: existingAppt.type || "FIRST_TIME",
+          isOnline: existingAppt.isOnline,
+        }
       : initialFormData
   );
   const [isChecked, setIsChecked] = useState(formData.isOnline);
@@ -59,8 +76,11 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
   ) => {
     const { name, type, value } = e.target;
 
-    const newValue = type === "checkbox" && e.target instanceof HTMLInputElement
+    const newValue =
+      type === "checkbox" && e.target instanceof HTMLInputElement
       ? e.target.checked
+      : type === "datetime-local" && name === "start_time" && value === ""
+      ? new Date().toISOString()
       : value;
 
     setFormData((prevData) => ({
@@ -68,10 +88,8 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
       [name]: newValue,
     }));
 
-
     setError(null);
   };
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,7 +102,9 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
 
     try {
       if (existingAppt) {
-        await dispatch(updateAppointment({ ...existingAppt, ...formData })).unwrap();
+        await dispatch(
+          updateAppointment({ ...existingAppt, ...formData })
+        ).unwrap();
         toast.success("Your appointment updated, Successfully... 😉");
       } else {
         await dispatch(addAppointment(formData)).unwrap();
@@ -92,7 +112,9 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
       }
 
       setFormData(initialFormData);
-      if (onSuccess) { onSuccess(); }
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error) {
       console.error(error);
       return toast.error("Something went wrong... 😔");
@@ -102,5 +124,13 @@ export const useAddAppointmentForm = (existingAppt?: Appointment, onSuccess?: ()
     }
   };
 
-  return { formData, handleChange, handleSubmit, handleCheck, isChecked, error, loading };
+  return {
+    formData,
+    handleChange,
+    handleSubmit,
+    handleCheck,
+    isChecked,
+    error,
+    loading,
+  };
 };

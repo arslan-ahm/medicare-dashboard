@@ -30,8 +30,8 @@ const FormHeader = () => {
                     ? formattedDate ?? ""
                     : option.subtitle
                 }
-                type="h6"
-                className="text-sm sm:text-base text-md_gray"
+                type="p"
+                className="text-sm text-gray sm:inline-block hidden"
               />
             )}
             {option.bold_text && (
@@ -45,8 +45,8 @@ const FormHeader = () => {
                     ? option.bold_text
                     : ""
                 }
-                type="p"
-                className="text-gray-400 sm:inline-block hidden"
+                type="h6"
+                className="sm:text-base"
               />
             )}
           </div>

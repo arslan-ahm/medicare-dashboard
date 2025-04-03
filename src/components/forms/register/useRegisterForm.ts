@@ -10,6 +10,10 @@ export const useRegisterForm = () => {
     organization: "",
     specialization: "",
   });
+  const [extraData, setExtraData] = useState({
+    industry: "",
+    employCount: "",
+  });
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -71,5 +75,13 @@ export const useRegisterForm = () => {
     }
   };
 
-  return { formData, handleChange, handleRegister, error, loading };
+  return {
+    extraData,
+    setExtraData,
+    formData,
+    handleChange,
+    handleRegister,
+    error,
+    loading,
+  };
 };

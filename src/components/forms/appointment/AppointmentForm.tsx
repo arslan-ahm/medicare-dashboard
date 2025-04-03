@@ -8,7 +8,7 @@ import { APPOINTMENT_STATUS, APPOINTMENT_TYPE } from "@/constants/formData";
 import RadioGroup from "../RadioGroups";
 import FormHeader from "./header/FormHeaderItem";
 import { AppointmentFormProps } from "@/types/componentsTypes/appointmentForm";
-
+import { FaRegBell } from "react-icons/fa6";
 
 const AppointmentForm: React.FC<AppointmentFormProps> = ({
   appt,
@@ -51,14 +51,6 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
               name="purpose"
               inputType="text"
               placeholder="i.e. Cough"
-              required
-            />
-            <InputRow
-              lable="Start Time"
-              setValue={handleChange}
-              value={formData.start_time || ""}
-              name="start_time"
-              inputType="datetime-local"
               required
             />
             <InputRow
@@ -115,6 +107,16 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
                 </div>
               </label>
             </InputSection>
+          </div>
+          <div className="ml-8 my-4 md:my-9 w-full md:w-2/3">
+            <div className="flex items-center gap-2 mb-2">
+              <FaRegBell className="text-2xl text-md_gray" />
+              <span className="font-semibold">Send Notification</span>
+            </div>
+            <p className="text-sm text-gray">
+              Appointment confirmation and reminder messages will be
+              automatically sent to clinic SMS notification settings.
+            </p>
           </div>
         </div>
 

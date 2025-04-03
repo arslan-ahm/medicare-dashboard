@@ -4,7 +4,7 @@ import { APPOINTMENT_DETAILS } from "@/constants/formData";
 import useFormHeaderItem from "./useFormHeaderItem";
 
 const FormHeader = () => {
-  const { doctor, formattedDate, timeWithPeriod } = useFormHeaderItem();
+  const { doctor, formattedDate, timeWithPeriod, dateTimeInputRef, handleOpenPicker, handleDateChange } = useFormHeaderItem();
 
   return (
     <>
@@ -47,6 +47,27 @@ const FormHeader = () => {
                 type="p"
                 className="text-gray-400 sm:inline-block hidden"
               />
+            )}
+            {option.subtitle !== "doctorName" ? (
+              <>
+                <p
+                  className="text-primary text-sm hover:underline underline-offset-2 cursor-pointer"
+                  onClick={handleOpenPicker}
+                >
+                  Change
+                </p>
+                <input
+                  type="datetime-local"
+                  ref={dateTimeInputRef}
+                  name="start_time"
+                  className="hidden"
+                  onChange={handleDateChange}
+                />
+              </>
+            ) : (
+              <>
+                <p className="text-blue text-sm ">&nbsp;</p>
+              </>
             )}
           </div>
         </div>
