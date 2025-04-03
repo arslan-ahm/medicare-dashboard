@@ -19,6 +19,10 @@ const PatientForm: React.FC<PatientForm> = ({
   const {
     formData,
     handleChange,
+    recordForm,
+    setRecordForm,
+    extraData,
+    setExtraData,
     error,
     loading,
     handleAddPatient,
@@ -29,7 +33,7 @@ const PatientForm: React.FC<PatientForm> = ({
   return (
     <>
       {type === "page" && (
-        <PageTitleBar title="Add Patients">
+        <PageTitleBar title="Add New Patients">
           <ul className="flex gap-1 sm:gap-2 lg:gap-4">
             <TextButton
               text="Cancel"
@@ -73,7 +77,7 @@ const PatientForm: React.FC<PatientForm> = ({
             </div>
             <ul className="flex gap-1 sm:gap-2 lg:gap-4">
               <TextButton
-                text={loading ? "Saving..." :"Save"}
+                text={loading ? "Saving..." : "Save"}
                 onClick={handleAddPatient}
                 type="submit"
               />
@@ -109,6 +113,27 @@ const PatientForm: React.FC<PatientForm> = ({
         )}
         <table className="w-full border-separate border-spacing-y-3">
           <tbody>
+            <InputSection title="Record Number">
+              <p className="text-md_gray">
+                Record number will be assigned automatically when you save.
+              </p>
+              {!recordForm ? (
+                <button
+                  onClick={() => setRecordForm(true)}
+                  className="p-2 my-1 text-sm border border-gray-300 rounded-sm hover:bg-gray-100 focus:outline-none focus:ring-2 font-semibold"
+                >
+                  Assign manually
+                </button>
+              ) : (
+                <div>
+                  <input
+                    className="border border-gray-300 rounded-sm placeholder:text-md_gray p-2 py-[2px] outline-none"
+                    placeholder="Enter Record Number"
+                    type="text"
+                  />
+                </div>
+              )}
+            </InputSection>
             <InputRow
               lable="Forename"
               setValue={handleChange}
@@ -188,6 +213,16 @@ const PatientForm: React.FC<PatientForm> = ({
                 placeholder="Type here..."
               />
             </InputSection>
+            <InputRow
+              lable="Phone"
+              setValue={(e) =>
+                setExtraData({ ...extraData, phone: e.target.value })
+              }
+              value={extraData.phone}
+              inputType="text"
+              name="phone"
+              placeholder="+1 234 567 890"
+            />
             {error && <p className="text-sm text-red-600">{error}</p>}
           </tbody>
         </table>

@@ -32,7 +32,7 @@ const ScheduleActions = () => {
           )
         )}
       </ul>
-      <ModelInterface title="Add Appointment" open={isOpen} setOpen={setIsOpen}>
+      <ModelInterface title="New Appointment" open={isOpen} setOpen={setIsOpen}>
         <AppointmentForm onSuccess={() => setIsOpen(false)} />
       </ModelInterface>
     </>

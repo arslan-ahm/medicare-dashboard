@@ -3,14 +3,14 @@ import useBreadCrumb from "@/hooks/useBreadCrumb";
 import Link from "next/link";
 
 const Breadcrumb: React.FC = () => {
-  const { pathSegments } = useBreadCrumb();
+  const { refinedPath } = useBreadCrumb();
 
   return (
     <nav aria-label="breadcrumb" className="text-gray-600 text-sm">
       <ul className="flex items-center space-x-2">
-        {pathSegments.map((segment, index) => {
-          const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
-          const isLast = index === pathSegments.length - 1;
+        {refinedPath.map((segment, index) => {
+          const path = `/${refinedPath.slice(0, index + 1).join("/")}`;
+          const isLast = index === refinedPath.length - 1;
 
           const formattedSegment =
             segment.charAt(0).toUpperCase() + segment.slice(1);
@@ -22,7 +22,7 @@ const Breadcrumb: React.FC = () => {
                   <Link href={path} className="text-blue-600 hover:underline">
                     {decodeURIComponent(formattedSegment)}
                   </Link>
-                  <span>/</span>
+                  <span>&gt;</span>
                 </>
               ) : (
                 <span className="text-gray-500">

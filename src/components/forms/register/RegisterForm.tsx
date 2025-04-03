@@ -53,6 +53,16 @@ const RegisterForm = () => {
           fieldType="password"
           required
         />
+        {/* <InputField
+          label=""
+          name="text"
+          inputType="primary"
+          value={}
+          setValue={}
+          labelStyle="text-[13px]"
+          fieldType="password"
+          required
+        /> */}
         <div className="mb-6">
           <label
             htmlFor="specialization"
@@ -69,7 +79,7 @@ const RegisterForm = () => {
         </div>
 
         {error && <p className="text-sm text-red-600">{error}</p>}
-        <TextButton type="submit" text={loading ? "Loading..." : "Register"} />
+        <TextButton type="submit" text={loading ? "Loading..." : "Finish"} />
       </form>
     </>
   );

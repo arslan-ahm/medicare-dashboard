@@ -8,7 +8,7 @@ const PatientHeader = () => {
   const { patients } = useAppSelector((state) => state.patients);
   return (
     <div>
-      <PageTitleBar title="Total Population" subtitle={`(${patients.length})`}>
+      <PageTitleBar title="Total Patients" subtitle={`(${patients.length})`}>
         <PatientActions />
       </PageTitleBar>
     </div>

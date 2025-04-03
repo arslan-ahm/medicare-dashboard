@@ -16,24 +16,37 @@ const initailState: PatientForm = {
   notes: "",
   status: "OTHER",
   upcomingAppointment: null,
-}
+};
 
-export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void) => {
+export const usePatientForm = (
+  existingPatient?: Patient,
+  onSuccess?: () => void
+) => {
   const dispatch = useAppDispatch();
-  const router  = useRouter();
-  const [formData, setFormData] = useState<PatientForm>(existingPatient ? {
-    forename: existingPatient.forename,
-    surname: existingPatient.surname || "",
-    dateOfBirth: existingPatient.dateOfBirth,
-    gender: existingPatient.gender,
-    notes: existingPatient.notes || "",
-    image: existingPatient.image || "",
-    diagnosis: existingPatient.diagnosis,
-    status: existingPatient.status,
-    upcomingAppointment: existingPatient.upcomingAppointment
-      ? new Date(existingPatient.upcomingAppointment).toISOString().slice(0, 16)
-      : null,
-  } : initailState);
+  const [recordForm, setRecordForm] = useState(false);
+  const router = useRouter();
+  const [extraData, setExtraData] = useState({
+    phone: "",
+  });
+  const [formData, setFormData] = useState<PatientForm>(
+    existingPatient
+      ? {
+          forename: existingPatient.forename,
+          surname: existingPatient.surname || "",
+          dateOfBirth: existingPatient.dateOfBirth,
+          gender: existingPatient.gender,
+          notes: existingPatient.notes || "",
+          image: existingPatient.image || "",
+          diagnosis: existingPatient.diagnosis,
+          status: existingPatient.status,
+          upcomingAppointment: existingPatient.upcomingAppointment
+            ? new Date(existingPatient.upcomingAppointment)
+                .toISOString()
+                .slice(0, 16)
+            : null,
+        }
+      : initailState
+  );
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -57,7 +70,7 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       const res = await fetch("/api/upload-image", {
         method: "POST",
         body: formData,
-      })
+      });
 
       if (!res.ok) {
         toast.error("Not able to upload image... 😶");
@@ -69,17 +82,23 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       toast.error("Opps, Something went wrong");
       console.error(error);
     }
-  }
+  };
 
   const handleCancel = () => {
     setFormData(initailState);
     router.back();
-  }
+  };
 
   const handleAddPatient = async () => {
     setLoading(true);
-    const { forename, diagnosis, gender, upcomingAppointment, dateOfBirth, status } =
-      formData;
+    const {
+      forename,
+      diagnosis,
+      gender,
+      upcomingAppointment,
+      dateOfBirth,
+      status,
+    } = formData;
 
     if (
       !forename ||
@@ -92,7 +111,6 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       setLoading(false);
       return toast.error("Important fields are missing... 🙄");
     }
-
 
     try {
       let uploadedImageUrl = formData.image;
@@ -111,7 +129,9 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       };
 
       if (existingPatient) {
-        await dispatch(updatePatient({ ...existingPatient, ...updatedPatientData })).unwrap();
+        await dispatch(
+          updatePatient({ ...existingPatient, ...updatedPatientData })
+        ).unwrap();
         toast.success("Patient updated, Successfully... 😉");
       } else {
         await dispatch(addPatient(updatedPatientData)).unwrap();
@@ -119,6 +139,7 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
       }
 
       setFormData(initailState);
+      setRecordForm(false);
       if (onSuccess) {
         onSuccess();
       }
@@ -128,8 +149,6 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
     } finally {
       setLoading(false);
     }
-
-
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,5 +161,17 @@ export const usePatientForm = (existingPatient?: Patient, onSuccess?: () => void
     }
   };
 
-  return { formData, handleChange, handleAddPatient, handleImageChange, error, loading, handleCancel };
+  return {
+    formData,
+    handleChange,
+    recordForm,
+    setRecordForm,
+    extraData,
+    setExtraData,
+    handleAddPatient,
+    handleImageChange,
+    error,
+    loading,
+    handleCancel,
+  };
 };
