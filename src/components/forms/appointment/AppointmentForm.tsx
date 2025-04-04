@@ -4,7 +4,7 @@ import React from "react";
 import TextButton from "../../buttons/TextButton";
 import { useAddAppointmentForm } from "./useAppointmentForm";
 import InputRow, { InputSection } from "../InputRow";
-import { APPOINTMENT_STATUS, APPOINTMENT_TYPE } from "@/constants/formData";
+import { APPOINTMENT_STATUS, APPOINTMENT_TYPE, DURATION_LIST } from "@/constants/formData";
 import RadioGroup from "../RadioGroups";
 import FormHeader from "./header/FormHeaderItem";
 import { AppointmentFormProps } from "@/types/componentsTypes/appointmentForm";
@@ -53,20 +53,22 @@ const AppointmentForm: React.FC<AppointmentFormProps> = ({
               placeholder="i.e. Cough"
               required
             />
-            <InputRow
-              lable="End Time"
-              setValue={handleChange}
-              value={formData.end_time || ""}
-              name="end_time"
-              inputType="datetime-local"
-              required
-            />
             <InputSection title="Appointment Status">
               <div className="flex gap-2">
                 <RadioGroup
                   name="status"
                   options={APPOINTMENT_STATUS}
                   selectedValue={formData.status}
+                  onChange={handleChange}
+                />
+              </div>
+            </InputSection>
+            <InputSection title="Duration">
+              <div className="flex gap-2">
+                <RadioGroup
+                  name="duration"
+                  options={DURATION_LIST}
+                  selectedValue={formData.duration}
                   onChange={handleChange}
                 />
               </div>

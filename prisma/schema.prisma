@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -57,7 +56,7 @@ model Appointment {
   id          String            @id @default(auto()) @map("_id") @db.ObjectId
   patientName String
   start_time  String
-  end_time    String
+  duration    Int
   purpose     String
   type        AppointmentType
   status      AppointmentStatus

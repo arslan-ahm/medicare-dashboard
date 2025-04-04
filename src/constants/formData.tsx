@@ -40,6 +40,15 @@ export const APPOINTMENT_STATUS = [
   { label: "Not Confirmed", value: "NOT_CONFIRMED" },
 ];
 
+export const DURATION_LIST = [
+  { label: "10'", value: '10' },
+  { label: "30'", value: '30' },
+  { label: "45'", value: '45' },
+  { label: "60'", value: '60' },
+  { label: "90'", value: '90' },
+  { label: "120'", value: '120' },
+];
+
 export const APPOINTMENT_DETAILS = [
     {
       title: "Partictioner",

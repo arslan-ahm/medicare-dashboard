@@ -2,7 +2,7 @@
 export type Appointment = {
   id: string;
   start_time: string | null,
-  end_time: string | null,
+  duration: number | null,
   patientName: string;
   purpose: string;
   type: "" | "FIRST_TIME" | "FOLLOW_UP" | "SURGERY";

@@ -63,13 +63,13 @@ export const PUT = async (
       where: { id },
     });
 
-    const { start_time, end_time, patientName, purpose, type, status, isOnline } = body;
+    const { start_time, duration, patientName, purpose, type, status, isOnline } = body;
     const updatedAppointment = await prisma.appointment.update({
       where: { id },
       data: {
         patientName,
         start_time,
-        end_time,
+        duration,
         purpose,
         type,
         status,
@@ -87,8 +87,8 @@ export const PUT = async (
     const changes = [];
     if (oldAppointment?.patientName !== patientName) changes.push(`Patient Name: ${oldAppointment?.patientName} → ${patientName}`);
     if (oldAppointment?.start_time && oldAppointment.start_time !== start_time) changes.push(`Start Time: ${formatDate(oldAppointment.start_time)} → ${formatDate(start_time)}`);
-    if (oldAppointment?.end_time && oldAppointment?.end_time !== end_time) changes.push(`End Time: ${formatDate(oldAppointment?.end_time)} → ${formatDate(end_time)}`);
     if (oldAppointment?.purpose !== purpose) changes.push(`Purpose: ${oldAppointment?.purpose} → ${purpose}`);
+    if (oldAppointment?.duration !== duration) changes.push(`Duration: ${oldAppointment?.duration} → ${duration}`);
     if (oldAppointment?.type !== type) changes.push(`Type: ${oldAppointment?.type} → ${type}`);
     if (oldAppointment?.status !== status) changes.push(`Status: ${oldAppointment?.status} → ${status}`);
     if (oldAppointment?.isOnline !== isOnline) changes.push(`Online: ${oldAppointment?.isOnline ? "Yes" : "No"} → ${isOnline ? "Yes" : "No"}`);

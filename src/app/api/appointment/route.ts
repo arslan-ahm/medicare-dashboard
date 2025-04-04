@@ -37,7 +37,7 @@ export const POST = async (req: NextRequest) => {
     const body = await req.json();
     const {
       start_time,
-      end_time,
+      duration,
       patientName,
       purpose,
       type,
@@ -57,7 +57,7 @@ export const POST = async (req: NextRequest) => {
       !patientName ||
       !purpose ||
       !start_time ||
-      !end_time ||
+      !duration ||
       !status ||
       !type ||
       isOnline === undefined
@@ -71,7 +71,7 @@ export const POST = async (req: NextRequest) => {
     const newAppointment = await prisma.appointment.create({
       data: {
         start_time,
-        end_time,
+        duration,
         purpose,
         patientName,
         type,

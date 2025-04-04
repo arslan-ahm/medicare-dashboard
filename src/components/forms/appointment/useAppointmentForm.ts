@@ -12,7 +12,7 @@ const initialFormData: AppointmentFormData = {
   patientName: "",
   purpose: "",
   start_time: new Date().toISOString(),
-  end_time: null,
+  duration: "10",
   status: "CONFIRMED",
   type: "FIRST_TIME",
   isOnline: false,
@@ -47,12 +47,8 @@ export const useAddAppointmentForm = (
                 .toISOString()
                 .slice(0, 16)
             : null,
-          end_time: existingAppt.end_time
-            ? new Date(existingAppt.end_time + ":00Z")
-                .toISOString()
-                .slice(0, 16)
-            : null,
           status: existingAppt.status,
+          duration: existingAppt.duration?.toString() || "10",
           type: existingAppt.type || "FIRST_TIME",
           isOnline: existingAppt.isOnline,
         }
@@ -88,26 +84,28 @@ export const useAddAppointmentForm = (
       [name]: newValue,
     }));
 
+    console.log("Form Data:", formData);
+
     setError(null);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const { patientName, purpose, start_time, end_time } = formData;
+    const { patientName, purpose, start_time, duration } = formData;
 
-    if (!patientName || !purpose || !start_time || !end_time) {
+    if (!patientName || !purpose || !start_time || !duration) {
       return toast.error("Important fields are missing... 🙄");
     }
 
     try {
       if (existingAppt) {
         await dispatch(
-          updateAppointment({ ...existingAppt, ...formData })
+          updateAppointment({ ...existingAppt, ...formData, duration: Number(formData.duration) })
         ).unwrap();
         toast.success("Your appointment updated, Successfully... 😉");
       } else {
-        await dispatch(addAppointment(formData)).unwrap();
+        await dispatch(addAppointment({ ...formData, duration: Number(formData.duration) })).unwrap();
         toast.success("Appointment Added, Successfully... 😋");
       }
 
