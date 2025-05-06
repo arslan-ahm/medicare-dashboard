@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import ListHeader from "@/components/details/lists/ListHeader";
 import ModelInterface from "@/components/modal/ModelInterface";
-import TaskForm from "@/components/forms/task/TaskFrom";
+import TaskForm from "@/components/forms/taskForm/TaskFrom";
 import TasksList from "@/components/details/lists/tasks/TasksList";
 
 const TasksListSection = () => {

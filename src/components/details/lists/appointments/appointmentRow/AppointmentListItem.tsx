@@ -6,7 +6,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import IconButton from "@/components/titlebarActions/IconButton";
 import { Appointment } from "@/types/slices/appointment";
 import ModelInterface from "@/components/modal/ModelInterface";
-import AppointmentForm from "@/components/forms/appointment/AppointmentForm";
+import AppointmentForm from "@/components/forms/appointmentForm/AppointmentForm";
 import useAppointmentListItem from "./useAppointmentListItem";
 
 const AppointmentListItem = ({ appt }: { appt: Appointment }) => {

@@ -7,7 +7,7 @@ import OptionButton from "../../DropdownOptions";
 import ModelInterface from "@/components/modal/ModelInterface";
 import { TableRowItemProps } from "@/types/componentsTypes/table";
 import { formatDate } from "@/utils/timeHandler";
-import PatientForm from "@/components/forms/patient/PatientForm";
+import PatientForm from "@/components/forms/patientForm/PatientForm";
 import useTableRowItem from "./useTableRowItem";
 
 const TableRowItem: React.FC<TableRowItemProps> = ({ id, patient }) => {

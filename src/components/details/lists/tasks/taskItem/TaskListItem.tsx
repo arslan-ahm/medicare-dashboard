@@ -2,7 +2,7 @@
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { TaskListItemProps } from "@/types/componentsTypes/taskListItem";
 import ModelInterface from "@/components/modal/ModelInterface";
-import TaskForm from "@/components/forms/task/TaskFrom";
+import TaskForm from "@/components/forms/taskForm/TaskFrom";
 import IconButton from "@/components/titlebarActions/IconButton";
 import OptionButton from "../../../DropdownOptions";
 import Loader from "@/components/loader/Loader";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import PatientForm from "@/components/forms/patient/PatientForm";
+import PatientForm from "@/components/forms/patientForm/PatientForm";
 
 export const metadata: Metadata = {
   title: "Add Patient",

@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ChangePasswordForm from "@/components/forms/manage-password/changePassword/ChangePasswordForm";
-import EditProfileForm from "@/components/forms/profile/EditProfileForm";
+import EditProfileForm from "@/components/forms/profileEditForm/EditProfileForm";
 import PageTitleBar from "@/components/titlebarActions/PageTitieBar";
 import SettingsActions from "@/components/titlebarActions/SettingsActions";
 import TabSwitcher from "@/components/TabSwitcher";

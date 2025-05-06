@@ -2,7 +2,7 @@
 import IconButton from "./IconButton";
 import { useState } from "react";
 import ModelInterface from "../modal/ModelInterface";
-import AppointmentForm from "../forms/appointment/AppointmentForm";
+import AppointmentForm from "../forms/appointmentForm/AppointmentForm";
 import { PATIENT_BAR_ACTIONS } from "@/constants/pagebarActions";
 
 const ScheduleActions = () => {
