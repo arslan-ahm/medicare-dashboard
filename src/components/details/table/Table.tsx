@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import TableRowItem from "./item/TableRowItem";
+import TableRowItem from "./tableRow/TableRowItem";
 import { PATIENT_TABLE_HEADERS } from "@/constants/formData";
 import useTable from "./useTable";
 

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import NotificationListItem from "./item/NotificationListItem";
+import NotificationListItem from "./notificationRow/NotificationListItem";
 import { Notification } from "@/types/slices/notification";
 import useNotification from "./useNotification";
 import Loader from "@/components/loader/LoaderScreen";

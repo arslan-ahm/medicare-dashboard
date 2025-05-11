@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import TaskListItem from "./item/TaskListItem";
+import TaskListItem from "./taskItem/TaskListItem";
 import ViewAllButton from "@/components/buttons/ViewAllButton";
 import LoaderScreen from "@/components/loader/LoaderScreen";
 import useTaskList from "./useTaskList";

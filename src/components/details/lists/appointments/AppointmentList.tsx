@@ -1,6 +1,6 @@
 import React from "react";
 import ViewAllButton from "@/components/buttons/ViewAllButton";
-import AppointmentListItem from "./item/AppointmentListItem";
+import AppointmentListItem from "./appointmentRow/AppointmentListItem";
 import LoaderScreen from "@/components/loader/LoaderScreen";
 import useAppoitmentList from "./useAppointmentList";
 

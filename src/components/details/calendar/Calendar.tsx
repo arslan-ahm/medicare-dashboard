@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import RenderEventContent from "./item/RenderEventContent";
+import RenderEventContent from "./eventCard/RenderEventContent";
 import useCalender from "./useCalender";
 
 const Calendar: React.FC = () => {
